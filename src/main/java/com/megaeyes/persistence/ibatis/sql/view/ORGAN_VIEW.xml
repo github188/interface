@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" 
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="OrganView">
+	<resultMap id="childOrgan" class="com.megaeyes.persistence.ibatis.model.Organ">
+		<result column="ID" jdbcType="VARCHAR" property="id" />
+		<result column="OPTIMISTIC_LOCK" jdbcType="DECIMAL" property="optimisticLock" />
+		<result column="F_NAME" jdbcType="VARCHAR" property="name" />
+		<result column="PARENT_ORGAN_ID" jdbcType="VARCHAR" property="parentOrganId" />
+		<result column="PATH" jdbcType="VARCHAR" property="path" />
+	</resultMap>
+	<resultMap id="organ" class="com.megaeyes.persistence.ibatis.vo.OrganVO">
+		<result column="ID" property="id" jdbcType="VARCHAR" />
+		<result column="F_NAME" property="name" jdbcType="VARCHAR" />
+		<result column="LINKMAN" property="linkMan" jdbcType="VARCHAR" />
+		<result column="PHONE" property="phone" jdbcType="VARCHAR" />
+		<result column="EMAIL" property="email" jdbcType="VARCHAR" />
+		<result column="FAX" property="fax" jdbcType="VARCHAR" />
+		<result column="ADDRESS" property="address" jdbcType="VARCHAR" />
+		<result column="POSTALCODE" property="postalCode" jdbcType="VARCHAR" />
+		<result column="F_NUMBER" property="number" jdbcType="VARCHAR" />
+		<result column="IS_SUSPENDED" property="isSuspended" jdbcType="VARCHAR" />
+		<result column="IS_MSP" property="isMSP" jdbcType="VARCHAR" />
+		<result column="NOTE" property="note" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<select id="getChildOrganById" resultMap="childOrgan">
+		select
+		path,id,f_name,optimistic_lock,parent_organ_id from organ where
+		parent_organ_id=#organId#
+	</select>
+
+	<select id="getOrganById" resultMap="organ">
+		select o.ID, o.F_NAME,
+		c.LINKMAN, c.PHONE, c.EMAIL, c.FAX, c.ADDRESS, c.POSTALCODE,
+		c.F_NUMBER, c.IS_SUSPENDED, c.IS_MSP, c.NOTE
+		from COMPANY c, ORGAN o
+		where o.ID = c.ORGAN_ID
+		and o.Id = #id#
+	</select>
+
+	<select id="listChidOrgan" resultMap="childOrgan">
+		select * from organ where
+		PARENT_ORGAN_ID=#parentId#
+	</select>
+	<select id="listOrganByOrganIdNextLevel" resultMap="childOrgan">
+		select * from (
+		select t.*,rownum r from organ t where 1=1
+		<isNotEmpty property="organId">
+			and t.path like '%$organId$%'
+		</isNotEmpty>
+		)where 1= 1
+		<isNotEmpty property="start">
+			and r>#start#
+		</isNotEmpty>
+		<isNotEmpty property="end">
+			and r<![CDATA[ <]]>=#end#
+		</isNotEmpty>
+	</select>
+
+	<select id="countListOrganByOrganIdNextLevel" resultClass="java.lang.Integer">
+		select count(*) from (
+		select t.*,rownum r from organ t where 1=1
+		<isNotEmpty property="organId">
+			and t.path like '%$organId$%'
+		</isNotEmpty>
+		)
+	</select>
+	
+	<resultMap class="com.megaeyes.persistence.ibatis.vo.ListOrganVO"
+		id="listOrganById" extends="ORGAN._OrganResult">
+		<result column="SIP_CODE" property="sipCode" jdbcType="String" />
+	</resultMap>
+	<select id="listOrganById" resultMap="listOrganById">
+		select
+		a.*,b.sip_code from organ a left join
+		platform_resources b on a.id=b.resource_id and b.type='organ' where
+		a.path like '%$organId$%'
+	</select>
+</sqlMap>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="AC_R_DOOR_CARD_VIEW">
+
+
+<update id="updateTypeByDoorIdAndCardId">
+
+update Ac_r_door_card set authorize_Type = #authorizeType# where door_id = #doorId# and card_id = #cardId#
+
+</update>
+
+</sqlMap>

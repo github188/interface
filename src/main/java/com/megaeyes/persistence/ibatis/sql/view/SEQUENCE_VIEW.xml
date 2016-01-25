@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" 
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="SequenceSQL">
+
+	<select id="getUserId" resultClass="java.lang.String">
+    <![CDATA[
+        select lpad(TUSER_SEQ.nextval, 31, '0') as id from dual        
+    ]]>
+	</select>
+	<select id="getACGatewaySeq" resultClass="java.lang.String">
+		select
+		lpad(AC_GATEWAY_SEQ.nextval, 31, '0') as id from dual
+	</select>
+	<select id="getAccessServerSeq" resultClass="java.lang.String">
+		select
+		lpad(ACCESSSERVER_SEQ.nextval, 31, '0') as id from dual
+	</select>
+	<select id="getDispatchServerSeq" resultClass="java.lang.String">
+		select
+		lpad(DISPATCHSERVER_SEQ.nextval, 31, '0') as id from dual
+	</select>
+	<select id="getStorageServerSeq" resultClass="java.lang.String">
+		select
+		lpad(STORAGESERVER_SEQ.nextval, 31, '0') as id from dual
+	</select>
+	<select id="getEpUserViewSeq" resultClass="java.lang.String">
+		select
+		lpad(EP_USER_VIEW_SEQ.nextval, 31, '0') as id from dual
+	</select>
+	<select id="getUserSessionSeq" resultClass="java.lang.String">
+		select
+		lpad(USERSESSION_SEQ.nextval, 31, '0') as id from dual
+	</select>
+	<select id="getEpOperationLogSeq" resultClass="java.lang.String">
+		select
+		lpad(EP_OPERATION_LOG_SEQ.nextval, 31, '0') as id from dual
+	</select>
+	<select id="getOrganSeq" resultClass="java.lang.String">
+		select
+		lpad(ORGAN_SEQ.nextval, 31, '0') as id from dual
+	</select>
+	<select id="getPlatformResourcesSeq" resultClass="java.lang.String">
+		select
+		lpad(PLATFORM_RESOURCES_SEQ.nextval, 31, '0') as id from dual
+	</select>
+	<select id="getTUserSeq" resultClass="java.lang.String">
+		select
+		lpad(TUser_SEQ.nextval, 31, '0') as id from dual
+	</select>
+
+	<select id="getVISSeq" resultClass="java.lang.String">
+		select
+		lpad(VIDEOINPUTSERVER_SEQ.nextval, 31, '0') as id from dual
+	</select>
+
+	<select id="getEpEventServerSeq" resultClass="java.lang.String">
+		select
+		lpad(EP_EVENT_SERVER_SEQ.nextval, 31, '0') as id from dual
+	</select>
+	<select id="getEpGatherServerSeq" resultClass="java.lang.String">
+		select
+		lpad(EP_GATHER_SERVER_SEQ.nextval, 31, '0') as id from dual
+	</select>
+	<select id="getVideoDisPlayDeviceSeq" resultClass="java.lang.String">
+		select
+		lpad(VIDEODISPLAYDEVICE_SEQ.nextval, 31, '0') as id from dual
+	</select>
+
+	<select id="getVideoInputChannelSeq" resultClass="java.lang.String">
+		select
+		lpad(VIDEOINPUTCHANNEL_SEQ.nextval, 31, '0') as id from dual
+	</select>
+
+	<select id="getAlarmInputChannelSeq" resultClass="java.lang.String">
+		select
+		lpad(ALARMINPUTCHANNEL_SEQ.nextval, 31, '0') as id from dual
+	</select>
+	<select id="getAlarmOutputChannelSeq" resultClass="java.lang.String">
+		select
+		lpad(ALARMOUTPUTCHANNEL_SEQ.nextval, 31, '0') as id from dual
+	</select>
+
+	<select id="getVideOutputChannelSeq" resultClass="java.lang.String">
+		select
+		lpad(VIDEOOUTPUTCHANNEL_SEQ.nextval, 31, '0') as id from dual
+	</select>
+	<select id="getEpRoleSeq" resultClass="java.lang.String">
+		select
+		lpad(EP_ROLE_SEQ.nextval, 31, '0') as id from dual
+	</select>
+	<select id="getEpIntelligentChannelSeq" resultClass="java.lang.String">
+		select
+		lpad(EP_INTELLIGENT_CHANNEL_SEQ.nextval, 31, '0') as id from dual
+	</select>
+	<select id="getUserSessionHistorySeq" resultClass="java.lang.String">
+		select
+		lpad(USERSESSIONHISTORY_SEQ.nextval, 31, '0') as id from dual
+	</select>
+
+	<select id="getEpRUserRoleSeq" resultClass="java.lang.String">
+		select
+		lpad(USERSESSIONHISTORY_SEQ.nextval, 31, '0') as id from dual
+	</select>
+
+	<select id="getEpAssetsSeq" resultClass="java.lang.String">
+		select
+		lpad(EP_ASSETS_SEQ.nextval, 31, '0') as id from dual
+	</select>
+
+	<select id="getEpRAssetsSeq" resultClass="java.lang.String">
+		select
+		lpad(EP_R_ASSETS_SEQ.nextval, 31, '0') as id from dual
+	</select>
+	<select id="getEpAlarmEventSeq" resultClass="java.lang.String">
+		select
+		lpad(EP_ALARM_EVENT_SEQ.nextval, 31, '0') as id from dual
+	</select>
+	<select id="getACLogSeq" resultClass="java.lang.String">
+		select
+		lpad(AC_LOG_SEQ.nextval, 31, '0') as id from dual
+	</select>
+	<select id="getEpMapSeq" resultClass="java.lang.String">
+		select
+		lpad(EP_MAP_SEQ.nextval, 31, '0') as id from dual
+
+	</select>
+	<select id="getEpRRoleOperationSeq" resultClass="java.lang.String">
+		select
+		lpad(EP_R_ROLE_OPERATION_SEQ.nextval, 31, '0') as id from dual
+	</select>
+
+	<select id="getEpRRoleResourceSeq" resultClass="java.lang.String">
+		select
+		lpad(EP_R_ROLE_RESOURCE_SEQ.nextval, 31, '0') as id from dual
+	</select>
+
+	<select id="getEpSchemeSeq" resultClass="java.lang.String">
+		select
+		lpad(EP_SCHEME_SEQ.nextval, 31, '0') as id from dual
+	</select>
+	<select id="getEpSchemeCommandSeq" resultClass="java.lang.String">
+		select
+		lpad(EP_SCHEME_COMMAND_SEQ.nextval, 31, '0') as id from dual
+	</select>
+	<select id="getEpRSchemeAlarmSourceSeq" resultClass="java.lang.String">
+		select
+		lpad(EP_R_SCHEME_ALARM_SOURCE_SEQ.nextval, 31, '0') as id from dual
+	</select>
+
+	<select id="getAcEmployeesSeq" resultClass="java.lang.String">
+		select
+		lpad(AC_EMPLOYEES_SEQ.nextval, 31, '0') as id from dual
+	</select>
+
+	<select id="getEpDeviceSeq" resultClass="java.lang.String">
+		select
+		lpad(EP_DEVICE_SEQ.nextval, 31, '0') as id from dual
+	</select>
+	<select id="getEpRMapDeviceSeq" resultClass="java.lang.String">
+		select
+		lpad(EP_R_MAP_DEVICE_SEQ.nextval, 31, '0') as id from dual
+	</select>
+	<select id="getEpMonitorDeviceSeq" resultClass="java.lang.String">
+		select
+		lpad(EP_MONITOR_DEVICE_SEQ.nextval, 31, '0') as id from dual
+	</select>
+	<select id="getEpRMonitorDeviceSeq" resultClass="java.lang.String">
+		select
+		lpad(EP_R_MONITOR_DEVICE_SEQ.nextval, 31, '0') as id from dual
+	</select>
+	<select id="getBranchSeq" resultClass="java.lang.String">
+		select
+		lpad(BRANCH_SEQ.nextval, 31, '0') as id from dual
+	</select>
+	<select id="getAlarmBoxSeq" resultClass="java.lang.String">
+		select
+		lpad(ALARMBOX_SEQ.nextval, 31, '0') as id from dual
+	</select>
+
+	<select id="getUserSubscribeSeq" resultClass="java.lang.String">
+		select
+		lpad(USER_SUBSCRIBE_SEQ.nextval, 31, '0') as id from dual
+	</select>
+	<select id="getPlatformSubscribeSeq" resultClass="java.lang.String">
+		select
+		lpad(PLATFORM_SUBSCRIBE_SEQ.nextval, 31, '0') as id from dual
+	</select>
+
+	<select id="getEpControlServerSeq" resultClass="java.lang.String">
+		select
+		lpad(EP_CONTROL_SERVER_SEQ.nextval, 31, '0') as id from dual
+	</select>
+	<select id="getEpProberSeq" resultClass="java.lang.String">
+		select
+		lpad(EP_PROBER_SEQ.nextval, 31, '0') as id from dual
+	</select>
+	<select id="getEpPresetSeq" resultClass="java.lang.String">
+		select
+		lpad(EP_PRESET_SEQ.nextval, 31, '0') as id from dual
+	</select>
+	<select id="getThirdPartyPlatformSeq" resultClass="java.lang.String">
+		select
+		lpad(THIRD_PARTY_PLATFORM_SEQ.nextval, 31, '0') as id from dual
+	</select>
+	<select id="getEpTaskSeq" resultClass="java.lang.String">
+		select
+		lpad(EP_TASK_SEQ.nextval, 31, '0') as id from dual
+	</select>
+
+	<select id="getEpTaskStepSeq" resultClass="java.lang.String">
+		select
+		lpad(EP_TASK_STEP_SEQ.nextval, 31, '0') as id from dual
+	</select>
+
+	<select id="getEpRTaskStepMonitorSeq" resultClass="java.lang.String">
+		select
+		lpad(EP_R_TASKSTEP_MONITOR_SEQ.nextval, 31, '0') as id from dual
+	</select>
+
+	<select id="getEpRTaskEmployeeSeq" resultClass="java.lang.String">
+		select
+		lpad(EP_R_TASK_EMPLOYEE_SEQ.nextval, 31, '0') as id from dual
+	</select>
+	<select id="getTempResourcesSeq" resultClass="java.lang.String">
+		select
+		lpad(TEMP_RESOURCES_SEQ.nextval, 31, '0') as id from dual
+	</select>
+	<select id="getEpRProberVicSeq" resultClass="java.lang.String">
+		select
+		lpad(EP_R_PROBER_VIC_SEQ.nextval, 31, '0') as id from dual
+	</select>
+	<select id="getEpTaskHistoryeq" resultClass="java.lang.String">
+		select
+		lpad(EP_TASK_HISTORY_SEQ.nextval, 31, '0') as id from dual
+	</select>
+	<select id="getEpTaskStepHistoryeq" resultClass="java.lang.String">
+		select
+		lpad(EP_TASK_STEP_HISTORY_SEQ.nextval, 31, '0') as id from dual
+	</select>
+
+	<select id="getAcAccessServersSeq" resultClass="java.lang.String">
+		select
+		lpad(AC_ACCESS_SERVERS_SEQ.nextval, 31, '0') as id from dual
+	</select>
+	<select id="getAcAccessControlsSeq" resultClass="java.lang.String">
+		select
+		lpad(AC_ACCESS_CONTROLS_SEQ.nextval, 31, '0') as id from dual
+	</select>
+	<select id="getAcAccessCardSeq" resultClass="java.lang.String">
+		select
+		lpad(AC_ACCESS_CARDS_SEQ.nextval, 31, '0') as id from dual
+	</select>
+	<select id="getAcRDoorCardSeq" resultClass="java.lang.String">
+		select
+		lpad(AC_R_DOOR_CARD_SEQ.nextval, 31, '0') as id from dual
+	</select>
+	<select id="getEpTaskInstanceSeq" resultClass="java.lang.String">
+		select
+		lpad(EP_TASK_INSTANCE_SEQ.nextval, 31, '0') as id from dual
+	</select>
+	<select id="getAcREmployeeCardSeq" resultClass="java.lang.String">
+		select
+		lpad(AC_R_EMPLOYEE_CARD_SEQ.nextval, 31, '0') as id from dual
+	</select>
+	<select id="getEpRDoorVicSeq" resultClass="java.lang.String">
+		select
+		lpad(EP_R_DOOR_VIC_SEQ.nextval, 31, '0') as id from dual
+	</select>
+	
+	<select id="getIvuTaskSeq" resultClass="java.lang.String">
+		 select lpad(IVU_TASK_SEQ.nextval, 31, '0') as id from dual
+	</select>
+	<select id="getSipServerSeq" resultClass="java.lang.String">
+		 select lpad(SIP_SERVER_SEQ.nextval, 31, '0') as id from dual
+	</select>
+		<select id="getMediaGatewayServerSeq" resultClass="java.lang.String">
+		 select lpad(MEDIA_GATEWAY_SERVER_SEQ.nextval, 31, '0') as id from dual
+	</select>
+	
+	<select id="getVideoInputServerModelSeq" resultClass="java.lang.String">
+		 select lpad(VIDEOINPUTSERVERMODEL_SEQ.nextval, 31, '0') as id from dual
+	</select>
+		<select id="getEpClientGatewaySeq" resultClass="java.lang.String">
+		 select lpad(EP_CLIENT_GATEWAY_SEQ.nextval, 31, '0') as id from dual
+	</select>
+	
+	<select id="getAcEmployeeScheduleSeq" resultClass="java.lang.String">
+		 select lpad(AC_EMPLOYEE_SCHEDULE_SEQ.nextval, 31, '0') as id from dual
+	</select>
+	
+	<select id="getAcEmployeeGroupSeq" resultClass="java.lang.String">
+		 select lpad(AC_EMPLOYEE_GROUP_SEQ.nextval, 31, '0') as id from dual
+	</select>
+	
+	<select id="getAcREmployeeGroupSeq" resultClass="java.lang.String">
+		 select lpad(AC_R_EMPLOYEE_GROUP_SEQ.nextval, 31, '0') as id from dual
+	</select>
+	
+	<select id="getAcRScheduleGroupSeq" resultClass="java.lang.String">
+		 select lpad(AC_R_SCHEDULE_GROUP_SEQ.nextval, 31, '0') as id from dual
+	</select>
+	
+	<select id="getAcEmployeeAbsentSeq" resultClass="java.lang.String">
+		 select lpad(AC_EMPLOYEE_ABSENT_SEQ.nextval, 31, '0') as id from dual
+	</select>
+	
+	<select id="getAcWorkRuleSeq" resultClass="java.lang.String">
+		 select lpad(AC_WORK_RULE_SEQ.nextval, 31, '0') as id from dual
+	</select>
+	
+	<select id="getAcWorkAttendanceRuleSeq" resultClass="java.lang.String">
+		 select lpad(AC_WORK_ATTENDANCE_RULE_SEQ.nextval, 31, '0') as id from dual
+	</select>
+</sqlMap>

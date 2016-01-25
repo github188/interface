@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="EP_INTELLIGENT_CHANNEL_VIEW" >
+  <resultMap id="_listEICResult" class="com.megaeyes.persistence.ibatis.model.EpIntelligentChannel" >
+    <result column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="OPTIMISTIC_LOCK" property="optimisticLock" jdbcType="DECIMAL" />
+    <result column="F_NAME" property="name" jdbcType="VARCHAR" />
+    <result column="NAMING" property="naming" jdbcType="VARCHAR" />
+    <result column="INSTALL_LOCATION" property="installLocation" jdbcType="VARCHAR" />
+    <result column="PARENT_ID" property="parentId" jdbcType="VARCHAR" />
+    <result column="PARENT_TYPE" property="parentType" jdbcType="DECIMAL" />
+    <result column="DESCRIPTION" property="description" jdbcType="VARCHAR" />
+    <result column="NOTE" property="note" jdbcType="VARCHAR" />
+    <result column="COMPANY" property="company" jdbcType="VARCHAR" />
+    <result column="CHANNEL_ID" property="channelId" jdbcType="DECIMAL" />
+    <result column="ORGAN_ID" property="organId" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <select id="listEICByParentId" resultMap="_listEICResult">
+		select * from EP_INTELLIGENT_CHANNEL WHERE PARENT_ID = #parentId#
+	</select>
+	
+	<select id="listEICByOrganId" resultMap="_listEICResult">
+		select * from EP_INTELLIGENT_CHANNEL WHERE ORGAN_ID = #organId#
+	</select>
+	</sqlMap>

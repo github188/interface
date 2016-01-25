@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="USER_SESSION_VIEW">
+  <resultMap class="com.megaeyes.persistence.ibatis.model.UserSession" id="abatorgenerated_UserSessionResult">
+    <result column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="OPTIMISTIC_LOCK" jdbcType="DECIMAL" property="optimisticLock" />
+    <result column="LOGON_TIME" jdbcType="DECIMAL" property="logonTime" />
+    <result column="HEARTBEAT_TIME" jdbcType="DECIMAL" property="heartbeatTime" />
+    <result column="USER_ID" jdbcType="VARCHAR" property="userId" />
+    <result column="IP" jdbcType="VARCHAR" property="ip" />
+    <result column="CLIENT_TYPE" jdbcType="VARCHAR" property="clientType" />
+  </resultMap>  
+  <delete id="deleteByUserId">
+    delete from USER_SESSION
+    where user_id = #userId#
+  </delete>  
+  
+  <resultMap id="userSession" class="com.megaeyes.persistence.ibatis.vo.UserSessionVO" >
+	<result column="ID" property="id" jdbcType="VARCHAR" />
+	<result column="LOGON_TIME" property="logonTime" jdbcType="VARCHAR" />
+	<result column="USER_ID" property="userId" jdbcType="VARCHAR" />
+	<result column="LOGON_NAME" property="userName" jdbcType="VARCHAR" />
+	<result column="IP" property="ip" jdbcType="VARCHAR" />
+	<result column="ORGAN_ID" property="organId" jdbcType="VARCHAR" />
+	<result column="USER_ACCOUNT" property="isAdmin" jdbcType="VARCHAR" />
+	<result column="NAMING" property="naming" jdbcType="VARCHAR" />
+	<result column="PRIORITY" property="priority" jdbcType="DECIMAL" />
+	<result column="USER_ACCOUNT" property="isAdmin" jdbcType="VARCHAR" />
+	<result column="BRANCH_ID" property="branchId" jdbcType="VARCHAR" />
+	<result column="IS_BRANCH_MANAGE" property="isBranchAdmin" jdbcType="VARCHAR" />
+	<result column="DISPATCH_SERVER_ID" property="dispatchServerId" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <resultMap id="userSessionResult" class="com.megaeyes.persistence.ibatis.vo.UserSessionVO" >
+	<result column="ID" property="id" jdbcType="VARCHAR" />
+	<result column="NAMING" property="naming" jdbcType="VARCHAR" />
+	<result column="LOGON_TIME" property="logonTime" jdbcType="VARCHAR" />
+	<result column="USER_ID" property="userId" jdbcType="VARCHAR" />
+	<result column="LOGON_NAME" property="userName" jdbcType="VARCHAR" />
+	<result column="IP" property="ip" jdbcType="VARCHAR" />
+	<result column="ORGAN_ID" property="organId" jdbcType="VARCHAR" />
+	<result column="ORGAN_NAME" property="organName" jdbcType="VARCHAR" />
+	<result column="GRADE" property="grade" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <select id="getUserBySessionId" resultMap="userSession">
+  	select us.ID, us.LOGON_TIME, us.USER_ID, us.IP, u.LOGON_NAME,u.ORGAN_ID,u.USER_ACCOUNT, u.PRIORITY, u.NAMING, u.USER_ACCOUNT,
+  	u.BRANCH_ID, u.IS_BRANCH_MANAGE, u.DISPATCH_SERVER_ID
+	from USER_SESSION us, T_USER u
+	where us.USER_ID = u.ID
+	and us.ID = #sessionId:VARCHAR#
+  </select>
+  
+  <select id="listUserSession" resultMap="userSessionResult">
+  	select * from (
+		select temp.*, rownum RID from (
+			select us.ID, us.LOGON_TIME, us.USER_ID, u.LOGON_NAME, us.IP, u.ORGAN_ID, o.F_NAME as ORGAN_NAME, u.GRADE, u.NAMING
+			from USER_SESSION us, T_USER u, ORGAN o
+			where us.USER_ID = u.ID
+			and u.ORGAN_ID = o.ID 
+	<isNotEmpty prepend="and" property="userName">
+	   		u.LOGON_NAME like '%$userName$%'
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="organName">
+	   		o.F_NAME like '%$organName$%'
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="ip">
+	   		us.IP like '%$ip$%'
+	</isNotEmpty>
+			and ROWNUM <![CDATA[ <]]>= #end# 
+			order by us.ID) temp
+		)
+	where RID > #start#
+  </select>
+  
+  <select id="countUserSession" resultClass="java.lang.Integer">
+  	select count(*) from USER_SESSION us, T_USER u, ORGAN o
+	where us.USER_ID = u.ID
+	and u.ORGAN_ID = o.ID
+	<isNotEmpty prepend="and" property="userName">
+	   		u.LOGON_NAME like '%$userName$%'
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="organName">
+	   		o.F_NAME like '%$organName$%'
+	</isNotEmpty>
+	<isNotEmpty prepend="and" property="ip">
+	   		us.IP like '%$ip$%'
+	</isNotEmpty>
+  </select>
+  
+  <select id="listOnlineUserByIds" resultMap="userSessionResult">
+  	select s.id, u.naming, s.LOGON_TIME, s.USER_ID, u.LOGON_NAME, s.IP, u.ORGAN_ID, '' as ORGAN_NAME, '' as GRADE
+  	from t_user u, user_session s
+	where s.user_id = u.id
+    <isNotEmpty prepend="and" property="ids">
+	   u.id in 
+		<iterate property="ids" open="(" close=")" conjunction=",">
+			#ids[]#
+		</iterate>
+	</isNotEmpty>
+  </select>
+</sqlMap>

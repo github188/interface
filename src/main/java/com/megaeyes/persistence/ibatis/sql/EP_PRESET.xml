@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="EP_PRESET">
+  <resultMap class="com.megaeyes.persistence.ibatis.model.EpPreset" id="_EpPresetResult">
+    <result column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+    <result column="PRESET_NUMBER" jdbcType="DECIMAL" property="presetNumber" />
+    <result column="VIC_ID" jdbcType="VARCHAR" property="vicId" />
+    <result column="NOTE" jdbcType="VARCHAR" property="note" />
+    <result column="TYPE" jdbcType="DECIMAL" property="type" />
+    <result column="SET_FLAG" jdbcType="DECIMAL" property="setFlag" />
+  </resultMap>
+  <sql id="_Example_Where_Clause">
+    <iterate conjunction="or" prepend="where" property="oredCriteria" removeFirstPrepend="iterate">
+      <isEqual compareValue="true" property="oredCriteria[].valid">
+        (
+        <iterate conjunction="and" prepend="and" property="oredCriteria[].criteriaWithoutValue">
+          $oredCriteria[].criteriaWithoutValue[]$
+        </iterate>
+        <iterate conjunction="and" prepend="and" property="oredCriteria[].criteriaWithSingleValue">
+          $oredCriteria[].criteriaWithSingleValue[].condition$
+            #oredCriteria[].criteriaWithSingleValue[].value#
+        </iterate>
+        <iterate conjunction="and" prepend="and" property="oredCriteria[].criteriaWithListValue">
+          $oredCriteria[].criteriaWithListValue[].condition$
+          <iterate close=")" conjunction="," open="(" property="oredCriteria[].criteriaWithListValue[].values">
+            #oredCriteria[].criteriaWithListValue[].values[]#
+          </iterate>
+        </iterate>
+        <iterate conjunction="and" prepend="and" property="oredCriteria[].criteriaWithBetweenValue">
+          $oredCriteria[].criteriaWithBetweenValue[].condition$
+          #oredCriteria[].criteriaWithBetweenValue[].values[0]# and
+          #oredCriteria[].criteriaWithBetweenValue[].values[1]#
+        </iterate>
+        )
+      </isEqual>
+    </iterate>
+  </sql>
+  <select id="_selectByPrimaryKey" parameterClass="com.megaeyes.persistence.ibatis.model.EpPreset" resultMap="_EpPresetResult">
+    select ID, NAME, PRESET_NUMBER, VIC_ID, NOTE, TYPE, SET_FLAG
+    from EP_PRESET
+    where ID = #id:VARCHAR#
+  </select>
+  <select id="_selectByExample" parameterClass="com.megaeyes.persistence.ibatis.model.EpPresetExample" resultMap="_EpPresetResult">
+    select ID, NAME, PRESET_NUMBER, VIC_ID, NOTE, TYPE, SET_FLAG
+    from EP_PRESET
+    <isParameterPresent>
+      <include refid="EP_PRESET._Example_Where_Clause" />
+      <isNotNull property="orderByClause">
+        order by $orderByClause$
+      </isNotNull>
+    </isParameterPresent>
+  </select>
+  <delete id="_deleteByPrimaryKey" parameterClass="com.megaeyes.persistence.ibatis.model.EpPreset">
+    delete from EP_PRESET
+    where ID = #id:VARCHAR#
+  </delete>
+  <delete id="_deleteByExample" parameterClass="com.megaeyes.persistence.ibatis.model.EpPresetExample">
+    delete from EP_PRESET
+    <include refid="EP_PRESET._Example_Where_Clause" />
+  </delete>
+  <insert id="_insert" parameterClass="com.megaeyes.persistence.ibatis.model.EpPreset">
+    insert into EP_PRESET (ID, NAME, PRESET_NUMBER, VIC_ID, NOTE, TYPE, SET_FLAG)
+    values (#id:VARCHAR#, #name:VARCHAR#, #presetNumber:DECIMAL#, #vicId:VARCHAR#, #note:VARCHAR#,
+      #type:DECIMAL#, #setFlag:DECIMAL#)
+  </insert>
+  <update id="_updateByPrimaryKey" parameterClass="com.megaeyes.persistence.ibatis.model.EpPreset">
+    update EP_PRESET
+    set NAME = #name:VARCHAR#,
+      PRESET_NUMBER = #presetNumber:DECIMAL#,
+      VIC_ID = #vicId:VARCHAR#,
+      NOTE = #note:VARCHAR#,
+      TYPE = #type:DECIMAL#,
+      SET_FLAG = #setFlag:DECIMAL#
+    where ID = #id:VARCHAR#
+  </update>
+  <update id="_updateByPrimaryKeySelective" parameterClass="com.megaeyes.persistence.ibatis.model.EpPreset">
+    update EP_PRESET
+    <dynamic prepend="set">
+      <isNotNull prepend="," property="name">
+        NAME = #name:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="presetNumber">
+        PRESET_NUMBER = #presetNumber:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="vicId">
+        VIC_ID = #vicId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="note">
+        NOTE = #note:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="type">
+        TYPE = #type:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="setFlag">
+        SET_FLAG = #setFlag:DECIMAL#
+      </isNotNull>
+    </dynamic>
+    where ID = #id:VARCHAR#
+  </update>
+  <select id="_countByExample" parameterClass="com.megaeyes.persistence.ibatis.model.EpPresetExample" resultClass="java.lang.Integer">
+    select count(*) from EP_PRESET
+    <include refid="EP_PRESET._Example_Where_Clause" />
+  </select>
+  <update id="_updateByExampleSelective">
+    update EP_PRESET
+    <dynamic prepend="set">
+      <isNotNull prepend="," property="record.id">
+        ID = #record.id:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.name">
+        NAME = #record.name:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.presetNumber">
+        PRESET_NUMBER = #record.presetNumber:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.vicId">
+        VIC_ID = #record.vicId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.note">
+        NOTE = #record.note:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.type">
+        TYPE = #record.type:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.setFlag">
+        SET_FLAG = #record.setFlag:DECIMAL#
+      </isNotNull>
+    </dynamic>
+    <isParameterPresent>
+      <include refid="EP_PRESET._Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="_updateByExample">
+    update EP_PRESET
+    set ID = #record.id:VARCHAR#,
+      NAME = #record.name:VARCHAR#,
+      PRESET_NUMBER = #record.presetNumber:DECIMAL#,
+      VIC_ID = #record.vicId:VARCHAR#,
+      NOTE = #record.note:VARCHAR#,
+      TYPE = #record.type:DECIMAL#,
+      SET_FLAG = #record.setFlag:DECIMAL#
+    <isParameterPresent>
+      <include refid="EP_PRESET._Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+</sqlMap>

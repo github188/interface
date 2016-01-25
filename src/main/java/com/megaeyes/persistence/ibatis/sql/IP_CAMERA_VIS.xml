@@ -1,0 +1,466 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="IP_CAMERA_VIS">
+  <resultMap class="com.megaeyes.persistence.ibatis.model.IpCameraVis" id="_IpCameraVisResult">
+    <result column="VIDEO_INPUT_SERVER_ID" jdbcType="VARCHAR" property="videoInputServerId" />
+    <result column="LOCAL_ALARM1_FLAG" jdbcType="DECIMAL" property="localAlarm1Flag" />
+    <result column="LOCAL_ALARM2_FLAG" jdbcType="DECIMAL" property="localAlarm2Flag" />
+    <result column="LOCAL_ALARM3_FLAG" jdbcType="DECIMAL" property="localAlarm3Flag" />
+    <result column="LOCAL_TIMING_FLAG" jdbcType="DECIMAL" property="localTimingFlag" />
+    <result column="LOCAL_TIMING_INTERVAL" jdbcType="DECIMAL" property="localTimingInterval" />
+    <result column="LOCAL_SHOOTING_FLAG" jdbcType="DECIMAL" property="localShootingFlag" />
+    <result column="SD_CACHE_FLAG" jdbcType="DECIMAL" property="sdCacheFlag" />
+    <result column="SD_RED_SAVE_FLAG" jdbcType="DECIMAL" property="sdRedSaveFlag" />
+    <result column="IS_DELETED" jdbcType="DECIMAL" property="isDeleted" />
+    <result column="REMOTE_ALARM1_FLAG" jdbcType="DECIMAL" property="remoteAlarm1Flag" />
+    <result column="REMOTE_ALARM2_FLAG" jdbcType="DECIMAL" property="remoteAlarm2Flag" />
+    <result column="REMOTE_ALARM3_FLAG" jdbcType="DECIMAL" property="remoteAlarm3Flag" />
+    <result column="REMOTE_TIMING_FLAG" jdbcType="DECIMAL" property="remoteTimingFlag" />
+    <result column="REMOTE_TIMING_INTERVAL" jdbcType="DECIMAL" property="remoteTimingInterval" />
+    <result column="REMOTE_SHOOTING_FLAG" jdbcType="DECIMAL" property="remoteShootingFlag" />
+    <result column="TOTAL_CAPACITY" jdbcType="DECIMAL" property="totalCapacity" />
+    <result column="USED_CAPACITY" jdbcType="DECIMAL" property="usedCapacity" />
+    <result column="REMAIN_CAPACITY" jdbcType="DECIMAL" property="remainCapacity" />
+    <result column="SD_CARD_EXIST_FLAG" jdbcType="DECIMAL" property="sdCardExistFlag" />
+    <result column="LOW_CAPACITY_FLAG" jdbcType="DECIMAL" property="lowCapacityFlag" />
+    <result column="STORE_CYCLE" jdbcType="DECIMAL" property="storeCycle" />
+    <result column="OVERWRITE_FLAG" jdbcType="DECIMAL" property="overwriteFlag" />
+    <result column="BACKUP_FLAG" jdbcType="DECIMAL" property="backupFlag" />
+    <result column="CLEAN_FLAG" jdbcType="DECIMAL" property="cleanFlag" />
+    <result column="STORE_SIZE" jdbcType="VARCHAR" property="storeSize" />
+    <result column="BACKUP_PATH" jdbcType="VARCHAR" property="backupPath" />
+    <result column="BACKUP_TIME" jdbcType="VARCHAR" property="backupTime" />
+    <result column="BRIGHTNESS" jdbcType="DECIMAL" property="brightness" />
+    <result column="CONTRAST" jdbcType="DECIMAL" property="contrast" />
+    <result column="SATURATION" jdbcType="DECIMAL" property="saturation" />
+    <result column="HUE" jdbcType="DECIMAL" property="hue" />
+    <result column="FRAME_NUM" jdbcType="DECIMAL" property="frameNum" />
+    <result column="FRAME_INTERVAL" jdbcType="DECIMAL" property="frameInterval" />
+    <result column="TRANSMISSION_SPEED" jdbcType="DECIMAL" property="transmissionSpeed" />
+    <result column="CAPTION" jdbcType="VARCHAR" property="caption" />
+    <result column="CAPTION_LOCATION" jdbcType="DECIMAL" property="captionLocation" />
+    <result column="TIME_LOCATION" jdbcType="DECIMAL" property="timeLocation" />
+    <result column="DEVICE_TYPE" jdbcType="VARCHAR" property="deviceType" />
+  </resultMap>
+  <sql id="_Example_Where_Clause">
+    <iterate conjunction="or" prepend="where" property="oredCriteria" removeFirstPrepend="iterate">
+      <isEqual compareValue="true" property="oredCriteria[].valid">
+        (
+        <iterate conjunction="and" prepend="and" property="oredCriteria[].criteriaWithoutValue">
+          $oredCriteria[].criteriaWithoutValue[]$
+        </iterate>
+        <iterate conjunction="and" prepend="and" property="oredCriteria[].criteriaWithSingleValue">
+          $oredCriteria[].criteriaWithSingleValue[].condition$
+            #oredCriteria[].criteriaWithSingleValue[].value#
+        </iterate>
+        <iterate conjunction="and" prepend="and" property="oredCriteria[].criteriaWithListValue">
+          $oredCriteria[].criteriaWithListValue[].condition$
+          <iterate close=")" conjunction="," open="(" property="oredCriteria[].criteriaWithListValue[].values">
+            #oredCriteria[].criteriaWithListValue[].values[]#
+          </iterate>
+        </iterate>
+        <iterate conjunction="and" prepend="and" property="oredCriteria[].criteriaWithBetweenValue">
+          $oredCriteria[].criteriaWithBetweenValue[].condition$
+          #oredCriteria[].criteriaWithBetweenValue[].values[0]# and
+          #oredCriteria[].criteriaWithBetweenValue[].values[1]#
+        </iterate>
+        )
+      </isEqual>
+    </iterate>
+  </sql>
+  <select id="_selectByPrimaryKey" parameterClass="com.megaeyes.persistence.ibatis.model.IpCameraVis" resultMap="_IpCameraVisResult">
+    select VIDEO_INPUT_SERVER_ID, LOCAL_ALARM1_FLAG, LOCAL_ALARM2_FLAG, LOCAL_ALARM3_FLAG,
+      LOCAL_TIMING_FLAG, LOCAL_TIMING_INTERVAL, LOCAL_SHOOTING_FLAG, SD_CACHE_FLAG,
+      SD_RED_SAVE_FLAG, IS_DELETED, REMOTE_ALARM1_FLAG, REMOTE_ALARM2_FLAG, REMOTE_ALARM3_FLAG,
+      REMOTE_TIMING_FLAG, REMOTE_TIMING_INTERVAL, REMOTE_SHOOTING_FLAG, TOTAL_CAPACITY,
+      USED_CAPACITY, REMAIN_CAPACITY, SD_CARD_EXIST_FLAG, LOW_CAPACITY_FLAG, STORE_CYCLE,
+      OVERWRITE_FLAG, BACKUP_FLAG, CLEAN_FLAG, STORE_SIZE, BACKUP_PATH, BACKUP_TIME, BRIGHTNESS,
+      CONTRAST, SATURATION, HUE, FRAME_NUM, FRAME_INTERVAL, TRANSMISSION_SPEED, CAPTION,
+      CAPTION_LOCATION, TIME_LOCATION, DEVICE_TYPE
+    from IP_CAMERA_VIS
+    where VIDEO_INPUT_SERVER_ID = #videoInputServerId:VARCHAR#
+  </select>
+  <select id="_selectByExample" parameterClass="com.megaeyes.persistence.ibatis.model.IpCameraVisExample" resultMap="_IpCameraVisResult">
+    select VIDEO_INPUT_SERVER_ID, LOCAL_ALARM1_FLAG, LOCAL_ALARM2_FLAG, LOCAL_ALARM3_FLAG,
+      LOCAL_TIMING_FLAG, LOCAL_TIMING_INTERVAL, LOCAL_SHOOTING_FLAG, SD_CACHE_FLAG,
+      SD_RED_SAVE_FLAG, IS_DELETED, REMOTE_ALARM1_FLAG, REMOTE_ALARM2_FLAG, REMOTE_ALARM3_FLAG,
+      REMOTE_TIMING_FLAG, REMOTE_TIMING_INTERVAL, REMOTE_SHOOTING_FLAG, TOTAL_CAPACITY,
+      USED_CAPACITY, REMAIN_CAPACITY, SD_CARD_EXIST_FLAG, LOW_CAPACITY_FLAG, STORE_CYCLE,
+      OVERWRITE_FLAG, BACKUP_FLAG, CLEAN_FLAG, STORE_SIZE, BACKUP_PATH, BACKUP_TIME, BRIGHTNESS,
+      CONTRAST, SATURATION, HUE, FRAME_NUM, FRAME_INTERVAL, TRANSMISSION_SPEED, CAPTION,
+      CAPTION_LOCATION, TIME_LOCATION, DEVICE_TYPE
+    from IP_CAMERA_VIS
+    <isParameterPresent>
+      <include refid="IP_CAMERA_VIS._Example_Where_Clause" />
+      <isNotNull property="orderByClause">
+        order by $orderByClause$
+      </isNotNull>
+    </isParameterPresent>
+  </select>
+  <delete id="_deleteByPrimaryKey" parameterClass="com.megaeyes.persistence.ibatis.model.IpCameraVis">
+    delete from IP_CAMERA_VIS
+    where VIDEO_INPUT_SERVER_ID = #videoInputServerId:VARCHAR#
+  </delete>
+  <delete id="_deleteByExample" parameterClass="com.megaeyes.persistence.ibatis.model.IpCameraVisExample">
+    delete from IP_CAMERA_VIS
+    <include refid="IP_CAMERA_VIS._Example_Where_Clause" />
+  </delete>
+  <insert id="_insert" parameterClass="com.megaeyes.persistence.ibatis.model.IpCameraVis">
+    insert into IP_CAMERA_VIS (VIDEO_INPUT_SERVER_ID, LOCAL_ALARM1_FLAG, LOCAL_ALARM2_FLAG,
+      LOCAL_ALARM3_FLAG, LOCAL_TIMING_FLAG, LOCAL_TIMING_INTERVAL, LOCAL_SHOOTING_FLAG,
+      SD_CACHE_FLAG, SD_RED_SAVE_FLAG, IS_DELETED, REMOTE_ALARM1_FLAG, REMOTE_ALARM2_FLAG,
+      REMOTE_ALARM3_FLAG, REMOTE_TIMING_FLAG, REMOTE_TIMING_INTERVAL, REMOTE_SHOOTING_FLAG,
+      TOTAL_CAPACITY, USED_CAPACITY, REMAIN_CAPACITY, SD_CARD_EXIST_FLAG, LOW_CAPACITY_FLAG,
+      STORE_CYCLE, OVERWRITE_FLAG, BACKUP_FLAG, CLEAN_FLAG, STORE_SIZE, BACKUP_PATH, BACKUP_TIME,
+      BRIGHTNESS, CONTRAST, SATURATION, HUE, FRAME_NUM, FRAME_INTERVAL, TRANSMISSION_SPEED, CAPTION,
+      CAPTION_LOCATION, TIME_LOCATION, DEVICE_TYPE)
+    values (#videoInputServerId:VARCHAR#, #localAlarm1Flag:DECIMAL#, #localAlarm2Flag:DECIMAL#,
+      #localAlarm3Flag:DECIMAL#, #localTimingFlag:DECIMAL#, #localTimingInterval:DECIMAL#,
+      #localShootingFlag:DECIMAL#, #sdCacheFlag:DECIMAL#, #sdRedSaveFlag:DECIMAL#,
+      #isDeleted:DECIMAL#, #remoteAlarm1Flag:DECIMAL#, #remoteAlarm2Flag:DECIMAL#,
+      #remoteAlarm3Flag:DECIMAL#, #remoteTimingFlag:DECIMAL#, #remoteTimingInterval:DECIMAL#,
+      #remoteShootingFlag:DECIMAL#, #totalCapacity:DECIMAL#, #usedCapacity:DECIMAL#,
+      #remainCapacity:DECIMAL#, #sdCardExistFlag:DECIMAL#, #lowCapacityFlag:DECIMAL#,
+      #storeCycle:DECIMAL#, #overwriteFlag:DECIMAL#, #backupFlag:DECIMAL#, #cleanFlag:DECIMAL#,
+      #storeSize:VARCHAR#, #backupPath:VARCHAR#, #backupTime:VARCHAR#, #brightness:DECIMAL#,
+      #contrast:DECIMAL#, #saturation:DECIMAL#, #hue:DECIMAL#, #frameNum:DECIMAL#,
+      #frameInterval:DECIMAL#, #transmissionSpeed:DECIMAL#, #caption:VARCHAR#,
+      #captionLocation:DECIMAL#, #timeLocation:DECIMAL#, #deviceType:VARCHAR#)
+  </insert>
+  <update id="_updateByPrimaryKey" parameterClass="com.megaeyes.persistence.ibatis.model.IpCameraVis">
+    update IP_CAMERA_VIS
+    set LOCAL_ALARM1_FLAG = #localAlarm1Flag:DECIMAL#,
+      LOCAL_ALARM2_FLAG = #localAlarm2Flag:DECIMAL#,
+      LOCAL_ALARM3_FLAG = #localAlarm3Flag:DECIMAL#,
+      LOCAL_TIMING_FLAG = #localTimingFlag:DECIMAL#,
+      LOCAL_TIMING_INTERVAL = #localTimingInterval:DECIMAL#,
+      LOCAL_SHOOTING_FLAG = #localShootingFlag:DECIMAL#,
+      SD_CACHE_FLAG = #sdCacheFlag:DECIMAL#,
+      SD_RED_SAVE_FLAG = #sdRedSaveFlag:DECIMAL#,
+      IS_DELETED = #isDeleted:DECIMAL#,
+      REMOTE_ALARM1_FLAG = #remoteAlarm1Flag:DECIMAL#,
+      REMOTE_ALARM2_FLAG = #remoteAlarm2Flag:DECIMAL#,
+      REMOTE_ALARM3_FLAG = #remoteAlarm3Flag:DECIMAL#,
+      REMOTE_TIMING_FLAG = #remoteTimingFlag:DECIMAL#,
+      REMOTE_TIMING_INTERVAL = #remoteTimingInterval:DECIMAL#,
+      REMOTE_SHOOTING_FLAG = #remoteShootingFlag:DECIMAL#,
+      TOTAL_CAPACITY = #totalCapacity:DECIMAL#,
+      USED_CAPACITY = #usedCapacity:DECIMAL#,
+      REMAIN_CAPACITY = #remainCapacity:DECIMAL#,
+      SD_CARD_EXIST_FLAG = #sdCardExistFlag:DECIMAL#,
+      LOW_CAPACITY_FLAG = #lowCapacityFlag:DECIMAL#,
+      STORE_CYCLE = #storeCycle:DECIMAL#,
+      OVERWRITE_FLAG = #overwriteFlag:DECIMAL#,
+      BACKUP_FLAG = #backupFlag:DECIMAL#,
+      CLEAN_FLAG = #cleanFlag:DECIMAL#,
+      STORE_SIZE = #storeSize:VARCHAR#,
+      BACKUP_PATH = #backupPath:VARCHAR#,
+      BACKUP_TIME = #backupTime:VARCHAR#,
+      BRIGHTNESS = #brightness:DECIMAL#,
+      CONTRAST = #contrast:DECIMAL#,
+      SATURATION = #saturation:DECIMAL#,
+      HUE = #hue:DECIMAL#,
+      FRAME_NUM = #frameNum:DECIMAL#,
+      FRAME_INTERVAL = #frameInterval:DECIMAL#,
+      TRANSMISSION_SPEED = #transmissionSpeed:DECIMAL#,
+      CAPTION = #caption:VARCHAR#,
+      CAPTION_LOCATION = #captionLocation:DECIMAL#,
+      TIME_LOCATION = #timeLocation:DECIMAL#,
+      DEVICE_TYPE = #deviceType:VARCHAR#
+    where VIDEO_INPUT_SERVER_ID = #videoInputServerId:VARCHAR#
+  </update>
+  <update id="_updateByPrimaryKeySelective" parameterClass="com.megaeyes.persistence.ibatis.model.IpCameraVis">
+    update IP_CAMERA_VIS
+    <dynamic prepend="set">
+      <isNotNull prepend="," property="localAlarm1Flag">
+        LOCAL_ALARM1_FLAG = #localAlarm1Flag:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="localAlarm2Flag">
+        LOCAL_ALARM2_FLAG = #localAlarm2Flag:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="localAlarm3Flag">
+        LOCAL_ALARM3_FLAG = #localAlarm3Flag:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="localTimingFlag">
+        LOCAL_TIMING_FLAG = #localTimingFlag:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="localTimingInterval">
+        LOCAL_TIMING_INTERVAL = #localTimingInterval:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="localShootingFlag">
+        LOCAL_SHOOTING_FLAG = #localShootingFlag:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="sdCacheFlag">
+        SD_CACHE_FLAG = #sdCacheFlag:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="sdRedSaveFlag">
+        SD_RED_SAVE_FLAG = #sdRedSaveFlag:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="isDeleted">
+        IS_DELETED = #isDeleted:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="remoteAlarm1Flag">
+        REMOTE_ALARM1_FLAG = #remoteAlarm1Flag:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="remoteAlarm2Flag">
+        REMOTE_ALARM2_FLAG = #remoteAlarm2Flag:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="remoteAlarm3Flag">
+        REMOTE_ALARM3_FLAG = #remoteAlarm3Flag:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="remoteTimingFlag">
+        REMOTE_TIMING_FLAG = #remoteTimingFlag:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="remoteTimingInterval">
+        REMOTE_TIMING_INTERVAL = #remoteTimingInterval:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="remoteShootingFlag">
+        REMOTE_SHOOTING_FLAG = #remoteShootingFlag:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="totalCapacity">
+        TOTAL_CAPACITY = #totalCapacity:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="usedCapacity">
+        USED_CAPACITY = #usedCapacity:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="remainCapacity">
+        REMAIN_CAPACITY = #remainCapacity:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="sdCardExistFlag">
+        SD_CARD_EXIST_FLAG = #sdCardExistFlag:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="lowCapacityFlag">
+        LOW_CAPACITY_FLAG = #lowCapacityFlag:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="storeCycle">
+        STORE_CYCLE = #storeCycle:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="overwriteFlag">
+        OVERWRITE_FLAG = #overwriteFlag:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="backupFlag">
+        BACKUP_FLAG = #backupFlag:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="cleanFlag">
+        CLEAN_FLAG = #cleanFlag:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="storeSize">
+        STORE_SIZE = #storeSize:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="backupPath">
+        BACKUP_PATH = #backupPath:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="backupTime">
+        BACKUP_TIME = #backupTime:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="brightness">
+        BRIGHTNESS = #brightness:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="contrast">
+        CONTRAST = #contrast:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="saturation">
+        SATURATION = #saturation:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="hue">
+        HUE = #hue:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="frameNum">
+        FRAME_NUM = #frameNum:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="frameInterval">
+        FRAME_INTERVAL = #frameInterval:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="transmissionSpeed">
+        TRANSMISSION_SPEED = #transmissionSpeed:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="caption">
+        CAPTION = #caption:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="captionLocation">
+        CAPTION_LOCATION = #captionLocation:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="timeLocation">
+        TIME_LOCATION = #timeLocation:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="deviceType">
+        DEVICE_TYPE = #deviceType:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    where VIDEO_INPUT_SERVER_ID = #videoInputServerId:VARCHAR#
+  </update>
+  <select id="_countByExample" parameterClass="com.megaeyes.persistence.ibatis.model.IpCameraVisExample" resultClass="java.lang.Integer">
+    select count(*) from IP_CAMERA_VIS
+    <include refid="IP_CAMERA_VIS._Example_Where_Clause" />
+  </select>
+  <update id="_updateByExampleSelective">
+    update IP_CAMERA_VIS
+    <dynamic prepend="set">
+      <isNotNull prepend="," property="record.videoInputServerId">
+        VIDEO_INPUT_SERVER_ID = #record.videoInputServerId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.localAlarm1Flag">
+        LOCAL_ALARM1_FLAG = #record.localAlarm1Flag:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.localAlarm2Flag">
+        LOCAL_ALARM2_FLAG = #record.localAlarm2Flag:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.localAlarm3Flag">
+        LOCAL_ALARM3_FLAG = #record.localAlarm3Flag:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.localTimingFlag">
+        LOCAL_TIMING_FLAG = #record.localTimingFlag:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.localTimingInterval">
+        LOCAL_TIMING_INTERVAL = #record.localTimingInterval:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.localShootingFlag">
+        LOCAL_SHOOTING_FLAG = #record.localShootingFlag:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.sdCacheFlag">
+        SD_CACHE_FLAG = #record.sdCacheFlag:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.sdRedSaveFlag">
+        SD_RED_SAVE_FLAG = #record.sdRedSaveFlag:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.isDeleted">
+        IS_DELETED = #record.isDeleted:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.remoteAlarm1Flag">
+        REMOTE_ALARM1_FLAG = #record.remoteAlarm1Flag:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.remoteAlarm2Flag">
+        REMOTE_ALARM2_FLAG = #record.remoteAlarm2Flag:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.remoteAlarm3Flag">
+        REMOTE_ALARM3_FLAG = #record.remoteAlarm3Flag:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.remoteTimingFlag">
+        REMOTE_TIMING_FLAG = #record.remoteTimingFlag:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.remoteTimingInterval">
+        REMOTE_TIMING_INTERVAL = #record.remoteTimingInterval:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.remoteShootingFlag">
+        REMOTE_SHOOTING_FLAG = #record.remoteShootingFlag:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.totalCapacity">
+        TOTAL_CAPACITY = #record.totalCapacity:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.usedCapacity">
+        USED_CAPACITY = #record.usedCapacity:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.remainCapacity">
+        REMAIN_CAPACITY = #record.remainCapacity:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.sdCardExistFlag">
+        SD_CARD_EXIST_FLAG = #record.sdCardExistFlag:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.lowCapacityFlag">
+        LOW_CAPACITY_FLAG = #record.lowCapacityFlag:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.storeCycle">
+        STORE_CYCLE = #record.storeCycle:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.overwriteFlag">
+        OVERWRITE_FLAG = #record.overwriteFlag:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.backupFlag">
+        BACKUP_FLAG = #record.backupFlag:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.cleanFlag">
+        CLEAN_FLAG = #record.cleanFlag:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.storeSize">
+        STORE_SIZE = #record.storeSize:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.backupPath">
+        BACKUP_PATH = #record.backupPath:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.backupTime">
+        BACKUP_TIME = #record.backupTime:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.brightness">
+        BRIGHTNESS = #record.brightness:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.contrast">
+        CONTRAST = #record.contrast:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.saturation">
+        SATURATION = #record.saturation:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.hue">
+        HUE = #record.hue:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.frameNum">
+        FRAME_NUM = #record.frameNum:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.frameInterval">
+        FRAME_INTERVAL = #record.frameInterval:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.transmissionSpeed">
+        TRANSMISSION_SPEED = #record.transmissionSpeed:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.caption">
+        CAPTION = #record.caption:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.captionLocation">
+        CAPTION_LOCATION = #record.captionLocation:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.timeLocation">
+        TIME_LOCATION = #record.timeLocation:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.deviceType">
+        DEVICE_TYPE = #record.deviceType:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    <isParameterPresent>
+      <include refid="IP_CAMERA_VIS._Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="_updateByExample">
+    update IP_CAMERA_VIS
+    set VIDEO_INPUT_SERVER_ID = #record.videoInputServerId:VARCHAR#,
+      LOCAL_ALARM1_FLAG = #record.localAlarm1Flag:DECIMAL#,
+      LOCAL_ALARM2_FLAG = #record.localAlarm2Flag:DECIMAL#,
+      LOCAL_ALARM3_FLAG = #record.localAlarm3Flag:DECIMAL#,
+      LOCAL_TIMING_FLAG = #record.localTimingFlag:DECIMAL#,
+      LOCAL_TIMING_INTERVAL = #record.localTimingInterval:DECIMAL#,
+      LOCAL_SHOOTING_FLAG = #record.localShootingFlag:DECIMAL#,
+      SD_CACHE_FLAG = #record.sdCacheFlag:DECIMAL#,
+      SD_RED_SAVE_FLAG = #record.sdRedSaveFlag:DECIMAL#,
+      IS_DELETED = #record.isDeleted:DECIMAL#,
+      REMOTE_ALARM1_FLAG = #record.remoteAlarm1Flag:DECIMAL#,
+      REMOTE_ALARM2_FLAG = #record.remoteAlarm2Flag:DECIMAL#,
+      REMOTE_ALARM3_FLAG = #record.remoteAlarm3Flag:DECIMAL#,
+      REMOTE_TIMING_FLAG = #record.remoteTimingFlag:DECIMAL#,
+      REMOTE_TIMING_INTERVAL = #record.remoteTimingInterval:DECIMAL#,
+      REMOTE_SHOOTING_FLAG = #record.remoteShootingFlag:DECIMAL#,
+      TOTAL_CAPACITY = #record.totalCapacity:DECIMAL#,
+      USED_CAPACITY = #record.usedCapacity:DECIMAL#,
+      REMAIN_CAPACITY = #record.remainCapacity:DECIMAL#,
+      SD_CARD_EXIST_FLAG = #record.sdCardExistFlag:DECIMAL#,
+      LOW_CAPACITY_FLAG = #record.lowCapacityFlag:DECIMAL#,
+      STORE_CYCLE = #record.storeCycle:DECIMAL#,
+      OVERWRITE_FLAG = #record.overwriteFlag:DECIMAL#,
+      BACKUP_FLAG = #record.backupFlag:DECIMAL#,
+      CLEAN_FLAG = #record.cleanFlag:DECIMAL#,
+      STORE_SIZE = #record.storeSize:VARCHAR#,
+      BACKUP_PATH = #record.backupPath:VARCHAR#,
+      BACKUP_TIME = #record.backupTime:VARCHAR#,
+      BRIGHTNESS = #record.brightness:DECIMAL#,
+      CONTRAST = #record.contrast:DECIMAL#,
+      SATURATION = #record.saturation:DECIMAL#,
+      HUE = #record.hue:DECIMAL#,
+      FRAME_NUM = #record.frameNum:DECIMAL#,
+      FRAME_INTERVAL = #record.frameInterval:DECIMAL#,
+      TRANSMISSION_SPEED = #record.transmissionSpeed:DECIMAL#,
+      CAPTION = #record.caption:VARCHAR#,
+      CAPTION_LOCATION = #record.captionLocation:DECIMAL#,
+      TIME_LOCATION = #record.timeLocation:DECIMAL#,
+      DEVICE_TYPE = #record.deviceType:VARCHAR#
+    <isParameterPresent>
+      <include refid="IP_CAMERA_VIS._Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+</sqlMap>

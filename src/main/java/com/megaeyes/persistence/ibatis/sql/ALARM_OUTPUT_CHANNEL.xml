@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="alarm_output_channel">
+  <resultMap class="com.megaeyes.persistence.ibatis.model.AlarmOutputChannel" id="_AlarmOutputChannelResult">
+    <result column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="OPTIMISTIC_LOCK" jdbcType="DECIMAL" property="optimisticLock" />
+    <result column="F_NAME" jdbcType="VARCHAR" property="name" />
+    <result column="NAMING" jdbcType="VARCHAR" property="naming" />
+    <result column="INSTALL_LOCATION" jdbcType="VARCHAR" property="installLocation" />
+    <result column="NOTE" jdbcType="VARCHAR" property="note" />
+    <result column="ALARM_BOX_ID" jdbcType="VARCHAR" property="alarmBoxId" />
+    <result column="ADDRESS_NUMBER_ON_ALARM_BOX" jdbcType="VARCHAR" property="addressNumberOnAlarmBox" />
+    <result column="ALARM_OUTPUT_CHANNEL_TYPE_ID" jdbcType="VARCHAR" property="alarmOutputChannelTypeId" />
+    <result column="ORGAN_ID" jdbcType="VARCHAR" property="organId" />
+    <result column="DEVICE_PHYSICAL_RELATION_ID" jdbcType="VARCHAR" property="devicePhysicalRelationId" />
+    <result column="IS_SUPPORT_SCHEME" jdbcType="SMALLINT" property="isSupportScheme" />
+    <result column="IS_SHARE" jdbcType="INTEGER" property="isShare" />
+    <result column="CHANNEL_ID" jdbcType="SMALLINT" property="channelId" />
+  </resultMap>
+  <sql id="_Example_Where_Clause">
+    <iterate conjunction="or" prepend="where" property="oredCriteria" removeFirstPrepend="iterate">
+      <isEqual compareValue="true" property="oredCriteria[].valid">
+        (
+        <iterate conjunction="and" prepend="and" property="oredCriteria[].criteriaWithoutValue">
+          $oredCriteria[].criteriaWithoutValue[]$
+        </iterate>
+        <iterate conjunction="and" prepend="and" property="oredCriteria[].criteriaWithSingleValue">
+          $oredCriteria[].criteriaWithSingleValue[].condition$
+            #oredCriteria[].criteriaWithSingleValue[].value#
+        </iterate>
+        <iterate conjunction="and" prepend="and" property="oredCriteria[].criteriaWithListValue">
+          $oredCriteria[].criteriaWithListValue[].condition$
+          <iterate close=")" conjunction="," open="(" property="oredCriteria[].criteriaWithListValue[].values">
+            #oredCriteria[].criteriaWithListValue[].values[]#
+          </iterate>
+        </iterate>
+        <iterate conjunction="and" prepend="and" property="oredCriteria[].criteriaWithBetweenValue">
+          $oredCriteria[].criteriaWithBetweenValue[].condition$
+          #oredCriteria[].criteriaWithBetweenValue[].values[0]# and
+          #oredCriteria[].criteriaWithBetweenValue[].values[1]#
+        </iterate>
+        )
+      </isEqual>
+    </iterate>
+  </sql>
+  <select id="_selectByPrimaryKey" parameterClass="com.megaeyes.persistence.ibatis.model.AlarmOutputChannel" resultMap="_AlarmOutputChannelResult">
+    select ID, OPTIMISTIC_LOCK, F_NAME, NAMING, INSTALL_LOCATION, NOTE, ALARM_BOX_ID,
+      ADDRESS_NUMBER_ON_ALARM_BOX, ALARM_OUTPUT_CHANNEL_TYPE_ID, ORGAN_ID,
+      DEVICE_PHYSICAL_RELATION_ID, IS_SUPPORT_SCHEME, IS_SHARE, CHANNEL_ID
+    from alarm_output_channel
+    where ID = #id:VARCHAR#
+  </select>
+  <select id="_selectByExample" parameterClass="com.megaeyes.persistence.ibatis.model.AlarmOutputChannelExample" resultMap="_AlarmOutputChannelResult">
+    select ID, OPTIMISTIC_LOCK, F_NAME, NAMING, INSTALL_LOCATION, NOTE, ALARM_BOX_ID,
+      ADDRESS_NUMBER_ON_ALARM_BOX, ALARM_OUTPUT_CHANNEL_TYPE_ID, ORGAN_ID,
+      DEVICE_PHYSICAL_RELATION_ID, IS_SUPPORT_SCHEME, IS_SHARE, CHANNEL_ID
+    from alarm_output_channel
+    <isParameterPresent>
+      <include refid="alarm_output_channel._Example_Where_Clause" />
+      <isNotNull property="orderByClause">
+        order by $orderByClause$
+      </isNotNull>
+    </isParameterPresent>
+  </select>
+  <delete id="_deleteByPrimaryKey" parameterClass="com.megaeyes.persistence.ibatis.model.AlarmOutputChannel">
+    delete from alarm_output_channel
+    where ID = #id:VARCHAR#
+  </delete>
+  <delete id="_deleteByExample" parameterClass="com.megaeyes.persistence.ibatis.model.AlarmOutputChannelExample">
+    delete from alarm_output_channel
+    <include refid="alarm_output_channel._Example_Where_Clause" />
+  </delete>
+  <insert id="_insert" parameterClass="com.megaeyes.persistence.ibatis.model.AlarmOutputChannel">
+    insert into alarm_output_channel (ID, OPTIMISTIC_LOCK, F_NAME, NAMING, INSTALL_LOCATION, NOTE,
+      ALARM_BOX_ID, ADDRESS_NUMBER_ON_ALARM_BOX, ALARM_OUTPUT_CHANNEL_TYPE_ID, ORGAN_ID,
+      DEVICE_PHYSICAL_RELATION_ID, IS_SUPPORT_SCHEME, IS_SHARE, CHANNEL_ID)
+    values (#id:VARCHAR#, #optimisticLock:DECIMAL#, #name:VARCHAR#, #naming:VARCHAR#,
+      #installLocation:VARCHAR#, #note:VARCHAR#, #alarmBoxId:VARCHAR#,
+      #addressNumberOnAlarmBox:VARCHAR#, #alarmOutputChannelTypeId:VARCHAR#, #organId:VARCHAR#,
+      #devicePhysicalRelationId:VARCHAR#, #isSupportScheme:SMALLINT#, #isShare:INTEGER#,
+      #channelId:SMALLINT#)
+  </insert>
+  <update id="_updateByPrimaryKey" parameterClass="com.megaeyes.persistence.ibatis.model.AlarmOutputChannel">
+    update alarm_output_channel
+    set OPTIMISTIC_LOCK = #optimisticLock:DECIMAL#,
+      F_NAME = #name:VARCHAR#,
+      NAMING = #naming:VARCHAR#,
+      INSTALL_LOCATION = #installLocation:VARCHAR#,
+      NOTE = #note:VARCHAR#,
+      ALARM_BOX_ID = #alarmBoxId:VARCHAR#,
+      ADDRESS_NUMBER_ON_ALARM_BOX = #addressNumberOnAlarmBox:VARCHAR#,
+      ALARM_OUTPUT_CHANNEL_TYPE_ID = #alarmOutputChannelTypeId:VARCHAR#,
+      ORGAN_ID = #organId:VARCHAR#,
+      DEVICE_PHYSICAL_RELATION_ID = #devicePhysicalRelationId:VARCHAR#,
+      IS_SUPPORT_SCHEME = #isSupportScheme:SMALLINT#,
+      IS_SHARE = #isShare:INTEGER#,
+      CHANNEL_ID = #channelId:SMALLINT#
+    where ID = #id:VARCHAR#
+  </update>
+  <update id="_updateByPrimaryKeySelective" parameterClass="com.megaeyes.persistence.ibatis.model.AlarmOutputChannel">
+    update alarm_output_channel
+    <dynamic prepend="set">
+      <isNotNull prepend="," property="optimisticLock">
+        OPTIMISTIC_LOCK = #optimisticLock:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="name">
+        F_NAME = #name:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="naming">
+        NAMING = #naming:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="installLocation">
+        INSTALL_LOCATION = #installLocation:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="note">
+        NOTE = #note:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="alarmBoxId">
+        ALARM_BOX_ID = #alarmBoxId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="addressNumberOnAlarmBox">
+        ADDRESS_NUMBER_ON_ALARM_BOX = #addressNumberOnAlarmBox:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="alarmOutputChannelTypeId">
+        ALARM_OUTPUT_CHANNEL_TYPE_ID = #alarmOutputChannelTypeId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="organId">
+        ORGAN_ID = #organId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="devicePhysicalRelationId">
+        DEVICE_PHYSICAL_RELATION_ID = #devicePhysicalRelationId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="isSupportScheme">
+        IS_SUPPORT_SCHEME = #isSupportScheme:SMALLINT#
+      </isNotNull>
+      <isNotNull prepend="," property="isShare">
+        IS_SHARE = #isShare:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="," property="channelId">
+        CHANNEL_ID = #channelId:SMALLINT#
+      </isNotNull>
+    </dynamic>
+    where ID = #id:VARCHAR#
+  </update>
+  <select id="_countByExample" parameterClass="com.megaeyes.persistence.ibatis.model.AlarmOutputChannelExample" resultClass="java.lang.Integer">
+    select count(*) from alarm_output_channel
+    <include refid="alarm_output_channel._Example_Where_Clause" />
+  </select>
+  <update id="_updateByExampleSelective">
+    update alarm_output_channel
+    <dynamic prepend="set">
+      <isNotNull prepend="," property="record.id">
+        ID = #record.id:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.optimisticLock">
+        OPTIMISTIC_LOCK = #record.optimisticLock:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.name">
+        F_NAME = #record.name:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.naming">
+        NAMING = #record.naming:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.installLocation">
+        INSTALL_LOCATION = #record.installLocation:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.note">
+        NOTE = #record.note:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.alarmBoxId">
+        ALARM_BOX_ID = #record.alarmBoxId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.addressNumberOnAlarmBox">
+        ADDRESS_NUMBER_ON_ALARM_BOX = #record.addressNumberOnAlarmBox:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.alarmOutputChannelTypeId">
+        ALARM_OUTPUT_CHANNEL_TYPE_ID = #record.alarmOutputChannelTypeId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.organId">
+        ORGAN_ID = #record.organId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.devicePhysicalRelationId">
+        DEVICE_PHYSICAL_RELATION_ID = #record.devicePhysicalRelationId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.isSupportScheme">
+        IS_SUPPORT_SCHEME = #record.isSupportScheme:SMALLINT#
+      </isNotNull>
+      <isNotNull prepend="," property="record.isShare">
+        IS_SHARE = #record.isShare:INTEGER#
+      </isNotNull>
+      <isNotNull prepend="," property="record.channelId">
+        CHANNEL_ID = #record.channelId:SMALLINT#
+      </isNotNull>
+    </dynamic>
+    <isParameterPresent>
+      <include refid="alarm_output_channel._Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="_updateByExample">
+    update alarm_output_channel
+    set ID = #record.id:VARCHAR#,
+      OPTIMISTIC_LOCK = #record.optimisticLock:DECIMAL#,
+      F_NAME = #record.name:VARCHAR#,
+      NAMING = #record.naming:VARCHAR#,
+      INSTALL_LOCATION = #record.installLocation:VARCHAR#,
+      NOTE = #record.note:VARCHAR#,
+      ALARM_BOX_ID = #record.alarmBoxId:VARCHAR#,
+      ADDRESS_NUMBER_ON_ALARM_BOX = #record.addressNumberOnAlarmBox:VARCHAR#,
+      ALARM_OUTPUT_CHANNEL_TYPE_ID = #record.alarmOutputChannelTypeId:VARCHAR#,
+      ORGAN_ID = #record.organId:VARCHAR#,
+      DEVICE_PHYSICAL_RELATION_ID = #record.devicePhysicalRelationId:VARCHAR#,
+      IS_SUPPORT_SCHEME = #record.isSupportScheme:SMALLINT#,
+      IS_SHARE = #record.isShare:INTEGER#,
+      CHANNEL_ID = #record.channelId:SMALLINT#
+    <isParameterPresent>
+      <include refid="alarm_output_channel._Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+</sqlMap>

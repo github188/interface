@@ -1,0 +1,570 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="VIDEO_INPUT_CHANNEL_VIEW">
+	<resultMap class="com.megaeyes.persistence.ibatis.model.VideoInputChannel"
+		id="ibatorgenerated_BaseResultMap">
+		<result column="ID" jdbcType="VARCHAR" property="id" />
+		<result column="OPTIMISTIC_LOCK" jdbcType="DECIMAL" property="optimisticLock" />
+		<result column="F_NAME" jdbcType="VARCHAR" property="name" />
+		<result column="NAMING" jdbcType="VARCHAR" property="naming" />
+		<result column="INSTALL_LOCATION" jdbcType="VARCHAR" property="installLocation" />
+		<result column="NOTE" jdbcType="VARCHAR" property="note" />
+		<result column="HAS_PAN" jdbcType="DECIMAL" property="hasPan" />
+		<result column="PTZ_DECODE_TYPE" jdbcType="VARCHAR" property="ptzDecodeType" />
+		<result column="VIDEO_FORMAT" jdbcType="VARCHAR" property="videoFormat" />
+		<result column="STORE_CYCLE" jdbcType="DECIMAL" property="storeCycle" />
+		<result column="STORE_PLAN_HOUR_FLAG" jdbcType="VARCHAR"
+			property="storePlanHourFlag" />
+		<result column="FRAME_RATE" jdbcType="DECIMAL" property="frameRate" />
+		<result column="MAX_BPS" jdbcType="DECIMAL" property="maxBps" />
+		<result column="BRIGHTNESS" jdbcType="DECIMAL" property="brightness" />
+		<result column="HUE" jdbcType="DECIMAL" property="hue" />
+		<result column="CONTRAST" jdbcType="DECIMAL" property="contrast" />
+		<result column="SATURATION" jdbcType="DECIMAL" property="saturation" />
+		<result column="VIDEO_INPUT_CHANNEL_MODEL_ID" jdbcType="VARCHAR"
+			property="videoInputChannelModelId" />
+		<result column="VIDEO_INPUT_SERVER_ID" jdbcType="VARCHAR"
+			property="videoInputServerId" />
+		<result column="IMAGE_QUALITY_LEVEL_ID" jdbcType="VARCHAR"
+			property="imageQualityLevelId" />
+		<result column="DISPATCH_SERVER_ID" jdbcType="VARCHAR"
+			property="dispatchServerId" />
+		<result column="REMOTE_STORAGE_SERVER_ID" jdbcType="VARCHAR"
+			property="remoteStorageServerId" />
+		<result column="ORGAN_ID" jdbcType="VARCHAR" property="organId" />
+		<result column="DEVICE_PHYSICAL_RELATION_ID" jdbcType="VARCHAR"
+			property="devicePhysicalRelationId" />
+		<result column="IS_SUSPENDED" jdbcType="DECIMAL" property="isSuspended" />
+		<result column="STD_ID" jdbcType="VARCHAR" property="stdId" />
+		<result column="IS_SUPPORT_SCHEME" jdbcType="DECIMAL" property="isSupportScheme" />
+		<result column="PRE_RECORD_TIME" jdbcType="DECIMAL" property="preRecordTime" />
+		<result column="REMOTE_STORE_PLAN_HOUR_FLAG" jdbcType="VARCHAR"
+			property="remoteStorePlanHourFlag" />
+		<result column="STORE_TYPE" jdbcType="DECIMAL" property="storeType" />
+		<result column="PATH" jdbcType="VARCHAR" property="path" />
+		<result column="LONGITUDE" jdbcType="VARCHAR" property="longitude" />
+		<result column="LATITUDE" jdbcType="VARCHAR" property="latitude" />
+		<result column="PULL_MODE" jdbcType="DECIMAL" property="pullMode" />
+		<result column="IS_SHARE" jdbcType="DECIMAL" property="isShare" />
+		<result column="CHANNEL_ID" jdbcType="DECIMAL" property="channelId" />
+		<result column="OVER_WRITE_FLAG" jdbcType="DECIMAL" property="overWriteFlag" />
+		<result column="LOCAL_STORE_CYCLE" jdbcType="DECIMAL" property="localStoreCycle" />
+		<result column="SCHEME_TYPE" jdbcType="DECIMAL" property="schemeType" />
+		<result column="LOCAL_SCHEME_TYPE" jdbcType="DECIMAL" property="localSchemeType" />
+		<result column="STREAM_TYPE" jdbcType="DECIMAL" property="streamType" />
+	</resultMap>
+	<resultMap class="com.megaeyes.persistence.ibatis.vo.ListVideoInputChannelVO"
+		id="listVideoInputChannelVO">
+		<result column="ID" jdbcType="VARCHAR" property="id" />
+		<result column="OPTIMISTIC_LOCK" jdbcType="DECIMAL" property="optimisticLock" />
+		<result column="F_NAME" jdbcType="VARCHAR" property="name" />
+		<result column="NAMING" jdbcType="VARCHAR" property="naming" />
+		<result column="INSTALL_LOCATION" jdbcType="VARCHAR" property="installLocation" />
+		<result column="NOTE" jdbcType="VARCHAR" property="note" />
+		<result column="HAS_PAN" jdbcType="DECIMAL" property="hasPan" />
+		<result column="PTZ_DECODE_TYPE" jdbcType="VARCHAR" property="ptzDecodeType" />
+		<result column="VIDEO_FORMAT" jdbcType="VARCHAR" property="videoFormat" />
+		<result column="STORE_CYCLE" jdbcType="DECIMAL" property="storeCycle" />
+		<result column="STORE_PLAN_HOUR_FLAG" jdbcType="VARCHAR"
+			property="storePlanHourFlag" />
+		<result column="FRAME_RATE" jdbcType="DECIMAL" property="frameRate" />
+		<result column="MAX_BPS" jdbcType="DECIMAL" property="maxBps" />
+		<result column="BRIGHTNESS" jdbcType="DECIMAL" property="brightness" />
+		<result column="HUE" jdbcType="DECIMAL" property="hue" />
+		<result column="CONTRAST" jdbcType="DECIMAL" property="contrast" />
+		<result column="SATURATION" jdbcType="DECIMAL" property="saturation" />
+		<result column="VIDEO_INPUT_CHANNEL_MODEL_ID" jdbcType="VARCHAR"
+			property="videoInputChannelModelId" />
+		<result column="VIDEO_INPUT_SERVER_ID" jdbcType="VARCHAR"
+			property="videoInputServerId" />
+		<result column="IMAGE_QUALITY_LEVEL_ID" jdbcType="VARCHAR"
+			property="imageQualityLevelId" />
+		<result column="DISPATCH_SERVER_ID" jdbcType="VARCHAR"
+			property="dispatchServerId" />
+		<result column="REMOTE_STORAGE_SERVER_ID" jdbcType="VARCHAR"
+			property="remoteStorageServerId" />
+		<result column="ORGAN_ID" jdbcType="VARCHAR" property="organId" />
+		<result column="DEVICE_PHYSICAL_RELATION_ID" jdbcType="VARCHAR"
+			property="devicePhysicalRelationId" />
+		<result column="IS_SUSPENDED" jdbcType="DECIMAL" property="isSuspended" />
+		<result column="STD_ID" jdbcType="VARCHAR" property="stdId" />
+		<result column="IS_SUPPORT_SCHEME" jdbcType="DECIMAL" property="isSupportScheme" />
+		<result column="PRE_RECORD_TIME" jdbcType="DECIMAL" property="preRecordTime" />
+		<result column="REMOTE_STORE_PLAN_HOUR_FLAG" jdbcType="VARCHAR"
+			property="remoteStorePlanHourFlag" />
+		<result column="STORE_TYPE" jdbcType="DECIMAL" property="storeType" />
+		<result column="PATH" jdbcType="VARCHAR" property="path" />
+		<result column="LONGITUDE" jdbcType="VARCHAR" property="longitude" />
+		<result column="LATITUDE" jdbcType="VARCHAR" property="latitude" />
+		<result column="PULL_MODE" jdbcType="DECIMAL" property="pullMode" />
+		<result column="IS_SHARE" jdbcType="DECIMAL" property="isShare" />
+		<result column="CHANNEL_ID" jdbcType="DECIMAL" property="channelId" />
+		<result column="OVER_WRITE_FLAG" jdbcType="DECIMAL" property="overWriteFlag" />
+		<result column="LOCAL_STORE_CYCLE" jdbcType="DECIMAL" property="localStoreCycle" />
+		<result column="SCHEME_TYPE" jdbcType="DECIMAL" property="schemeType" />
+		<result column="LOCAL_SCHEME_TYPE" jdbcType="DECIMAL" property="localSchemeType" />
+		<result column="STREAM_TYPE" jdbcType="DECIMAL" property="streamType" />
+		<result column="SIP_CODE" jdbcType="DECIMAL" property="sipCode" />
+		<result column="ALARM_STORAGE_SERVER_ID" jdbcType="VARCHAR" property="alarmStorageServerId" />
+	</resultMap>
+
+	<select id="listGenVicByVisId" resultMap="ibatorgenerated_BaseResultMap">
+		select ID, OPTIMISTIC_LOCK, F_NAME, NAMING, INSTALL_LOCATION, NOTE, HAS_PAN,
+		PTZ_DECODE_TYPE,
+		VIDEO_FORMAT, STORE_CYCLE, STORE_PLAN_HOUR_FLAG, FRAME_RATE, MAX_BPS, BRIGHTNESS,
+		HUE,
+		CONTRAST, SATURATION, VIDEO_INPUT_CHANNEL_MODEL_ID, VIDEO_INPUT_SERVER_ID,
+		IMAGE_QUALITY_LEVEL_ID, DISPATCH_SERVER_ID, REMOTE_STORAGE_SERVER_ID,
+		ORGAN_ID,
+		DEVICE_PHYSICAL_RELATION_ID, IS_SUSPENDED, STD_ID, IS_SUPPORT_SCHEME, PRE_RECORD_TIME,
+		REMOTE_STORE_PLAN_HOUR_FLAG, STORE_TYPE, PATH, LONGITUDE, LATITUDE,
+		PULL_MODE, IS_SHARE,
+		CHANNEL_ID, OVER_WRITE_FLAG, LOCAL_STORE_CYCLE, SCHEME_TYPE, LOCAL_SCHEME_TYPE,
+		STREAM_TYPE
+		from VIDEO_INPUT_CHANNEL 
+		where VIDEO_INPUT_SERVER_ID = #visId:VARCHAR#
+		 
+		order by CHANNEL_ID
+	</select>
+	<select id="listVicByVisId" resultMap="listVideoInputChannelVO">
+		select
+		a.*,b.sip_code,b.longitude,b.latitude from (select ID,
+		OPTIMISTIC_LOCK, F_NAME, NAMING, INSTALL_LOCATION, NOTE, HAS_PAN,
+		PTZ_DECODE_TYPE,
+		VIDEO_FORMAT, STORE_CYCLE, STORE_PLAN_HOUR_FLAG,
+		FRAME_RATE, MAX_BPS, BRIGHTNESS,
+		HUE,
+		CONTRAST, SATURATION,
+		VIDEO_INPUT_CHANNEL_MODEL_ID, VIDEO_INPUT_SERVER_ID,
+		IMAGE_QUALITY_LEVEL_ID, DISPATCH_SERVER_ID, REMOTE_STORAGE_SERVER_ID,
+		ORGAN_ID,
+		DEVICE_PHYSICAL_RELATION_ID, IS_SUSPENDED, STD_ID,
+		IS_SUPPORT_SCHEME, PRE_RECORD_TIME,
+		REMOTE_STORE_PLAN_HOUR_FLAG,
+		STORE_TYPE, PATH,
+		PULL_MODE, IS_SHARE,
+		CHANNEL_ID, OVER_WRITE_FLAG,
+		LOCAL_STORE_CYCLE, SCHEME_TYPE, LOCAL_SCHEME_TYPE,
+		STREAM_TYPE,ALARM_STORAGE_SERVER_ID
+		from
+		VIDEO_INPUT_CHANNEL, GENERAL_CAMERA_VIC g
+		where VIDEO_INPUT_SERVER_ID =
+		#visId:VARCHAR#
+		and ID = g.VIDEO_INPUT_CHANNEL_ID
+		order by CHANNEL_ID) a
+		left join platform_resources b on a.id=b.resource_id and b.type='vic'
+	</select>
+
+	<select id="listRegisteredGenVicByVisId" resultMap="ibatorgenerated_BaseResultMap">
+		select ID,
+		OPTIMISTIC_LOCK, F_NAME, NAMING, INSTALL_LOCATION, NOTE, HAS_PAN,
+		PTZ_DECODE_TYPE,
+		VIDEO_FORMAT, STORE_CYCLE, STORE_PLAN_HOUR_FLAG,
+		FRAME_RATE, MAX_BPS, BRIGHTNESS,
+		HUE,
+		CONTRAST, SATURATION,
+		VIDEO_INPUT_CHANNEL_MODEL_ID, VIDEO_INPUT_SERVER_ID,
+		IMAGE_QUALITY_LEVEL_ID, DISPATCH_SERVER_ID, REMOTE_STORAGE_SERVER_ID,
+		ORGAN_ID,
+		DEVICE_PHYSICAL_RELATION_ID, IS_SUSPENDED, STD_ID,
+		IS_SUPPORT_SCHEME, PRE_RECORD_TIME,
+		REMOTE_STORE_PLAN_HOUR_FLAG,
+		STORE_TYPE, PATH, LONGITUDE, LATITUDE,
+		PULL_MODE, IS_SHARE,
+		CHANNEL_ID,
+		OVER_WRITE_FLAG, LOCAL_STORE_CYCLE, SCHEME_TYPE, LOCAL_SCHEME_TYPE,
+		STREAM_TYPE
+		from VIDEO_INPUT_CHANNEL, GENERAL_CAMERA_VIC g
+		where
+		VIDEO_INPUT_SERVER_ID = #visId:VARCHAR#
+		and ID =
+		g.VIDEO_INPUT_CHANNEL_ID
+		and NAMING is not null
+		order by CHANNEL_ID
+	</select>
+
+	<resultMap id="ipvicVO" class="com.megaeyes.persistence.ibatis.vo.IpVICVO">
+		<result column="ID" property="id" jdbcType="VARCHAR" />
+		<result column="F_NAME" property="name" jdbcType="VARCHAR" />
+		<result column="NAMING" property="naming" jdbcType="VARCHAR" />
+		<result column="INSTALL_LOCATION" property="installLocation"
+			jdbcType="VARCHAR" />
+		<result column="PASSWORD" property="password" jdbcType="VARCHAR" />
+		<result column="HAS_PAN" property="hasPan" jdbcType="VARCHAR" />
+		<result column="HOST" property="host" jdbcType="VARCHAR" />
+		<result column="PORT" property="port" jdbcType="VARCHAR" />
+		<result column="STORE_TYPE" property="storeType" jdbcType="VARCHAR" />
+		<result column="REMOTE_STORAGE_SERVER_ID" property="remoteStorageServerId"
+			jdbcType="VARCHAR" />
+		<result column="DISPATCH_SERVER_ID" property="dispatchServerId"
+			jdbcType="VARCHAR" />
+		<result column="STORE_CYCLE" property="storeCycle" jdbcType="VARCHAR" />
+		<result column="STORE_PLAN_HOUR_FLAG" property="storePlanHourFlag"
+			jdbcType="VARCHAR" />
+		<result column="REMOTE_STORE_PLAN_HOUR_FLAG" property="remoteStorePlanHourFlag"
+			jdbcType="VARCHAR" />
+		<result column="LOCAL_STORE_CYCLE" jdbcType="VARCHAR" property="localStoreCycle" />
+		<result column="NOTE" property="note" jdbcType="VARCHAR" />
+		<result column="IS_SUSPENDED" property="isSuspended" jdbcType="VARCHAR" />
+		<result column="ORGAN_ID" property="organId" jdbcType="VARCHAR" />
+		<result column="LONGITUDE" jdbcType="VARCHAR" property="longitude" />
+		<result column="LATITUDE" jdbcType="VARCHAR" property="latitude" />
+		<result column="SIP_CODE" jdbcType="DECIMAL" property="sipCode" />
+		<result column="IS_SHARE" jdbcType="DECIMAL" property="isShare" />
+		<result column="ALARM_STORAGE_SERVER_ID" jdbcType="VARCHAR" property="alarmStorageServerId" />
+	</resultMap>
+
+	<resultMap id="allVicMap" class="com.megaeyes.persistence.ibatis.vo.VicVO">
+		<result column="ID" property="id" jdbcType="VARCHAR" />
+		<result column="NAME" property="name" jdbcType="VARCHAR" />
+		<result column="HAS_PAN" property="hasPan" jdbcType="VARCHAR" />
+		<result column="STORE_CYCLE" property="storeCycle" jdbcType="VARCHAR" />
+		<result column="LOCAL_STORE_CYCLE" property="localStoreCycle"
+			jdbcType="VARCHAR" />
+		<result column="VIDEO_INPUT_CHANNEL_MODEL_ID" property="vicModelId"
+			jdbcType="VARCHAR" />
+		<result column="DISPATCH_SERVER_ID" property="dispatchServerId"
+			jdbcType="VARCHAR" />
+		<result column="REMOTE_STORAGE_SERVER_ID" property="remoteStorageServerId"
+			jdbcType="VARCHAR" />
+		<result column="STORE_TYPE" property="storeType" jdbcType="VARCHAR" />
+		<result column="VIS_NAME" property="visName" jdbcType="VARCHAR" />
+		<result column="VIS_TYPE" property="visType" jdbcType="VARCHAR" />
+		<result column="ORGAN_NAME" property="organName" jdbcType="VARCHAR" />
+		<result column="NOTE" property="note" jdbcType="VARCHAR" />
+	</resultMap>
+
+
+	<resultMap id="listVICMAP" class="com.megaeyes.persistence.ibatis.vo.VicVO">
+		<result column="ID" property="id" jdbcType="VARCHAR" />
+		<result column="F_NAME" property="name" jdbcType="VARCHAR" />
+		<result column="NAMING" jdbcType="VARCHAR" property="naming" />
+	</resultMap>
+
+	<select id="listIpVicByVisId" resultMap="ipvicVO">
+		select
+		a.*,b.sip_code,b.longitude,b.latitude,b.is_share  from (select v.ID, v.F_NAME,
+		v.NAMING, v.INSTALL_LOCATION, i.PASSWORD, v.HAS_PAN,
+		i.HOST, i.PORT,
+		v.STORE_TYPE, v.REMOTE_STORAGE_SERVER_ID, v.DISPATCH_SERVER_ID,v.ALARM_STORAGE_SERVER_ID,
+		v.STORE_CYCLE,
+		v.STORE_PLAN_HOUR_FLAG,
+		v.NOTE, v.IS_SUSPENDED,
+		v.REMOTE_STORE_PLAN_HOUR_FLAG, v.LOCAL_STORE_CYCLE,
+		v.ORGAN_ID
+		from
+		VIDEO_INPUT_CHANNEL v, IP_CAMERA_VIC i
+		where v.ID =
+		i.VIDEO_INPUT_CHANNEL_ID
+		and v.VIDEO_INPUT_SERVER_ID = #visId:VARCHAR#)
+		a
+		left join platform_resources b on a.id=b.resource_id and b.type='vic'
+	</select>
+
+	<select id="listRegisteredIpVicByVisId" resultMap="ibatorgenerated_BaseResultMap">
+		select v.*
+		from VIDEO_INPUT_CHANNEL v, IP_CAMERA_VIC i
+		where v.ID =
+		i.VIDEO_INPUT_CHANNEL_ID
+		and v.VIDEO_INPUT_SERVER_ID = #visId:VARCHAR#
+		and NAMING is not null
+	</select>
+
+	<select id="countVICByRssId" resultClass="java.lang.Integer">
+		select count (*) from
+		VIDEO_INPUT_CHANNEL where REMOTE_STORAGE_SERVER_ID =
+		#rssId:VARCHAR#
+	</select>
+
+	<select id="listVIC" resultMap="listVICMAP">
+		select
+		vic.id,vic.f_name,vic.naming from video_input_channel
+		vic,video_input_server vis where vic.video_input_server_id = vis.id
+		and vis.company_id = #organId:VARCHAR# order by vic.channel_id
+	</select>
+
+	<select id="getIpVicById" resultMap="ipvicVO">
+		select v.ID, v.F_NAME,
+		v.NAMING, v.INSTALL_LOCATION, i.PASSWORD, v.HAS_PAN,
+		i.HOST, i.PORT,
+		v.STORE_TYPE, v.REMOTE_STORAGE_SERVER_ID, v.DISPATCH_SERVER_ID,
+		v.STORE_CYCLE,
+		v.STORE_PLAN_HOUR_FLAG,
+		v.NOTE, v.IS_SUSPENDED,
+		v.REMOTE_STORE_PLAN_HOUR_FLAG, v.LOCAL_STORE_CYCLE,
+		v.ORGAN_ID
+		from
+		VIDEO_INPUT_CHANNEL v, IP_CAMERA_VIC i
+		where v.ID =
+		i.VIDEO_INPUT_CHANNEL_ID
+		and v.ID = #id:VARCHAR#
+	</select>
+
+
+	<select id="listAllVic" resultMap="allVicMap">
+		select * from (
+		select temp.*, rownum rid from (
+		select vic.id,
+		vic.f_name as name, vic.has_pan, vic.store_cycle,
+		vic.local_store_cycle,
+		vic.video_input_channel_model_id,
+		vic.dispatch_server_id, vic.remote_storage_server_id,
+		vic.store_type,
+		vis.f_name as vis_name, vis.vis_type, o.f_name as organ_name,
+		vic.note
+		from video_input_channel vic, video_input_server vis, organ o
+		where
+		vic.video_input_server_id = vis.id
+		and vic.organ_id = o.id (+)
+		<isNotEmpty prepend="and" property="name">
+			vic.f_name like
+			'%$name$%'
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="organName">
+			o.f_name = #organName#
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="dispatchServerId">
+			vic.dispatch_server_id =
+			#dispatchServerId#
+		</isNotEmpty>
+		<isNull prepend="and" property="dispatchServerId">
+			vic.dispatch_server_id is null
+		</isNull>
+		<isNotEmpty prepend="and" property="storageServerId">
+			vic.remote_storage_server_id = #storageServerId#
+		</isNotEmpty>
+		<isNull prepend="and" property="storageServerId">
+			vic.remote_storage_server_id is
+			null
+		</isNull>
+		<isNotEmpty prepend="and" property="storeType">
+			vic.store_type =
+			#storeType#
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="visType">
+			vis.vis_type = #visType#
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="hasPan">
+			vic.has_pan = #hasPan#
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="vicModelId">
+			vic.video_input_channel_model_id = #vicModelId#
+		</isNotEmpty>
+		and rownum <![CDATA[ <]]>=
+		#end# ) temp )
+		where rid > #start#
+	</select>
+
+	<select id="countAllVic" resultClass="java.lang.Integer">
+		select count(*)
+		from video_input_channel vic, video_input_server vis,
+		organ o
+		where vic.video_input_server_id = vis.id
+		and vic.organ_id = o.id
+		(+)
+		<isNotEmpty prepend="and" property="name">
+			vic.f_name like
+			'%$name$%'
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="organName">
+			o.f_name = #organName#
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="dispatchServerId">
+			vic.dispatch_server_id =
+			#dispatchServerId#
+		</isNotEmpty>
+		<isNull prepend="and" property="dispatchServerId">
+			vic.dispatch_server_id is null
+		</isNull>
+		<isNotEmpty prepend="and" property="storageServerId">
+			vic.remote_storage_server_id = #storageServerId#
+		</isNotEmpty>
+		<isNull prepend="and" property="storageServerId">
+			vic.remote_storage_server_id is
+			null
+		</isNull>
+		<isNotEmpty prepend="and" property="storeType">
+			vic.store_type =
+			#storeType#
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="visType">
+			vis.vis_type = #visType#
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="hasPan">
+			vic.has_pan = #hasPan#
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="vicModelId">
+			vic.video_input_channel_model_id = #vicModelId#
+		</isNotEmpty>
+	</select>
+
+	<resultMap class="com.megaeyes.persistence.ibatis.vo.VideoInputChannelVO"
+		id="VICVO" extends="VIDEO_INPUT_CHANNEL_VIEW.ibatorgenerated_BaseResultMap">
+		<result column="subdivision_name" property="subdivision_name"
+			jdbcType="DECIMAL" />
+		<result column="ep_codeid" property="ep_codeid" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<select id="getVICVO" resultMap="VICVO">
+		select v.*,c.id as ep_codeid
+		,c.name as subdivision_name
+		from video_input_channel v, ep_code c,
+		object_systemcode o
+		where v.id=o.objectid and o.ep_codeid=c.id and
+		v.id=#id:VARCHAR#
+	</select>
+
+
+	<resultMap class="com.megaeyes.persistence.ibatis.vo.Ip_VIC"
+		id="ip_vic" extends="VIDEO_INPUT_CHANNEL_VIEW.ipvicVO">
+		<result column="subdivision_name" property="subdivision_name"
+			jdbcType="DECIMAL" />
+		<result column="ep_codeid" property="ep_codeid" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<select id="getIpVic" resultMap="ip_vic">
+		select v.ID, v.F_NAME, v.NAMING,
+		v.INSTALL_LOCATION, i.PASSWORD, v.HAS_PAN,
+		i.HOST, i.PORT,
+		v.STORE_TYPE, v.REMOTE_STORAGE_SERVER_ID, v.DISPATCH_SERVER_ID,
+		v.STORE_CYCLE,
+		v.STORE_PLAN_HOUR_FLAG,
+		v.NOTE, v.IS_SUSPENDED,
+		v.REMOTE_STORE_PLAN_HOUR_FLAG, v.LOCAL_STORE_CYCLE,
+		v.ORGAN_ID,c.id as
+		ep_codeid ,c.name as subdivision_name
+		from VIDEO_INPUT_CHANNEL v,
+		IP_CAMERA_VIC i,ep_code c, object_systemcode o
+		where v.ID =
+		i.VIDEO_INPUT_CHANNEL_ID and v.ID=o.objectid and
+		o.ep_codeid=c.id
+		and
+		v.ID = #id:VARCHAR#
+	</select>
+
+	<select id="listOpenDoorVIC" resultMap="ibatorgenerated_BaseResultMap">
+		select vic.* from
+		VIDEO_INPUT_CHANNEL vic,r_ac_vic rav where rav.vic_id =
+		vic.id and
+		rav.access_control_id = #doorId:VARCHAR#
+	</select>
+
+	<select id="listGenVicByOrganId" resultMap="ibatorgenerated_BaseResultMap">
+		select t.*, t.rowid from video_input_channel t where 1=1
+		<isEqual property="isQueryReg" compareValue="true">
+			and naming is not
+			null
+		</isEqual>
+
+		and t.organ_id in (select id from organ org where org.path like
+		'%$organId$%')
+	</select>
+
+	<select id="getVicListOfRemoteStorageServer" resultMap="ibatorgenerated_BaseResultMap">
+		SELECT * FROM VIDEO_INPUT_CHANNEL  
+		WHERE REMOTE_STORAGE_SERVER_ID  = #remoteStorageServerId:VARCHAR#    
+		ORDER BY ID ASC 
+	</select>
+	
+	<resultMap id="vicRsOfRegister" class="com.megaeyes.persistence.ibatis.vo.VideoInputChannelVO"
+		extends="VIDEO_INPUT_CHANNEL_VIEW.ibatorgenerated_BaseResultMap">
+		<result column="IsIPCamera" property="vicType" jdbcType="DECIMAL" />
+		<result column="HOST" property="host" jdbcType="VARCHAR" />
+		<result column="PORT" property="port" jdbcType="DECIMAL" />
+		<result column="IP" property="remoteIp" jdbcType="VARCHAR" />
+		<result column="FTP_PORT" property="remotePort" jdbcType="VARCHAR" />
+		<result column="NAME" property="ftpUser" jdbcType="VARCHAR" />
+		<result column="PASSWORD" property="ftpPwd" jdbcType="VARCHAR" />
+		<result column="HasVod" property="hasVod" jdbcType="DECIMAL" />
+	</resultMap>
+	
+	<select id="getVicListByVisId" resultMap="vicRsOfRegister">
+		select vic.*,
+       		   case when exists (select *  from IP_CAMERA_VIC ipvc 
+       		   					where ipvc.video_input_channel_id = vic.id) 
+         			then
+          			 1
+         			else
+          			 0
+       		   end IsIPCamera,
+		       ipvic.HOST HOST,
+		       ipvic.PORT PORT,
+		       ss.IP IP,
+		       ss.FTP_PORT FTP_PORT,
+		       ss.FTP_USER_NAME NAME,
+		       ss.FTP_PASSWORD PASSWORD,
+		       rss.HAS_VOD HasVod
+		  from VIDEO_INPUT_CHANNEL vic
+		  LEFT OUTER JOIN IP_CAMERA_VIC ipvic
+		    on vic.ID = ipvic.VIDEO_INPUT_CHANNEL_ID
+		  LEFT OUTER JOIN STORAGE_SERVER ss
+		    on vic.REMOTE_STORAGE_SERVER_ID = ss.ID
+		  LEFT OUTER JOIN REMOTE_STORAGE_SERVER rss
+		    on rss.STORAGE_SERVER_ID = ss.ID
+		 where vic.video_input_server_id = #visId:VARCHAR#
+		 order by vic.channel_id
+	</select>
+	
+	<resultMap id="ipVicRsOfRegister" class="com.megaeyes.persistence.ibatis.vo.VideoInputChannelVO"
+		extends="VIDEO_INPUT_CHANNEL_VIEW.ibatorgenerated_BaseResultMap">
+		<result column="IsIPCamera" property="vicType" jdbcType="DECIMAL" />
+		<result column="HOST" property="host" jdbcType="VARCHAR" />
+		<result column="PORT" property="port" jdbcType="DECIMAL" />
+		<result column="IP" property="remoteIp" jdbcType="VARCHAR" />
+		<result column="FTP_PORT" property="remotePort" jdbcType="VARCHAR" />
+		<result column="NAME" property="ftpUser" jdbcType="VARCHAR" />
+		<result column="PASSWORD" property="ftpPwd" jdbcType="VARCHAR" />
+		<result column="HasVod" property="hasVod" jdbcType="DECIMAL" />
+		<result column="ACCESS_PASSWORD" property="password" jdbcType="VARCHAR" />
+	</resultMap>
+	
+	<select id="getIpVicListByVisId" resultMap="ipVicRsOfRegister">
+		select vic.*,
+			   case
+		         when exists (select *
+		                 from IP_CAMERA_VIC ipvic
+		                where ipvic.video_input_channel_id = vic.id) then
+		          1
+		         else
+		          0
+		       end IsIPCamera,
+		       ipvic.HOST HOST,
+		       ipvic.PORT PORT,
+		       ipvic.PASSWORD ACCESS_PASSWORD,
+		       ss.IP IP,
+		       ss.FTP_PORT FTP_PORT,
+		       ss.FTP_USER_NAME NAME,
+		       ss.FTP_PASSWORD PASSWORD,
+		       rss.HAS_VOD HasVod
+		  from VIDEO_INPUT_CHANNEL vic
+		  LEFT OUTER JOIN IP_CAMERA_VIC ipvic
+		    on vc.ID = ipvic.VIDEO_INPUT_CHANNEL_ID
+		  LEFT OUTER JOIN STORAGE_SERVER ss
+		    on vc.REMOTE_STORAGE_SERVER_ID = ss.ID
+		  LEFT OUTER JOIN REMOTE_STORAGE_SERVER rss
+		    on rss.STORAGE_SERVER_ID = ss.ID
+		 where vc.video_input_server_id = #visId:VARCHAR#
+		 order by vc.id
+	</select>
+	
+	<select id="getVicListByRemoteStorageId" resultMap="ibatorgenerated_BaseResultMap">
+		select * from (
+		  select temp.*, rownum rid from (
+			select vic.*  from video_input_channel vic, remote_storage_server rss
+ 			where vic.naming is not null and vic.store_type != 0 
+ 				and vic.remote_storage_server_id = rss.storage_server_id
+   				and rss.storage_server_id = #rssId:VARCHAR#
+   			and rownum <![CDATA[ <]]>=
+			#end:DECIMAL# ) temp )
+		where rid > #start:DECIMAL#
+	</select>
+	
+	<select id="getVicCountByRemoteStorageId" resultClass="java.lang.Integer">
+		select count(vic.id)
+		  from video_input_channel vic, remote_storage_server rss
+		 where vic.naming is not null
+		   and vic.store_type != 0
+		   and vic.remote_storage_server_id = rss.storage_server_id
+		   and rss.storage_server_id = #rssId:VARCHAR#
+	</select>
+</sqlMap>

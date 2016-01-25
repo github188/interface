@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="EP_SCHEME_VIEW">
+  <resultMap class="com.megaeyes.persistence.ibatis.model.EpScheme" id="_EpSchemeResult">
+    <result column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+    <result column="ORGAN_ID" jdbcType="VARCHAR" property="organId" />
+    <result column="NOTE" jdbcType="VARCHAR" property="note" />
+    <result column="TYPE" jdbcType="VARCHAR" property="type" />
+  </resultMap>
+  
+  
+   <resultMap class="com.megaeyes.persistence.ibatis.vo.VideoInputChannelAndSchemeVO" id="_VicAndEpSchemeResult">
+    <result column="VICID" jdbcType="VARCHAR" property="vicId" />
+    <result column="VICNAME" jdbcType="VARCHAR" property="vicName" />
+    <result column="INSTALLLOCATION" jdbcType="VARCHAR" property="installLocation" />
+    <result column="SCHEMEID" jdbcType="VARCHAR" property="schemeId" />
+    <result column="SCHEMENAME" jdbcType="VARCHAR" property="schemeName" />
+  </resultMap>
+  
+  <select id="listESByOrganId" resultMap="_EpSchemeResult">
+  	SELECT * FROM EP_SCHEME WHERE ORGAN_ID = #organId#
+  </select>
+  	<select id="getSchemesLastUpdateTime" resultClass="java.lang.Long">
+		select
+		max(last_update_time) from ep_scheme
+	</select>
+	
+	<select id="listVICAndScheme" resultMap="_VicAndEpSchemeResult">
+  	select distinct  a.id as vicId,a.f_name as vicName,a.install_location as installLocation,b.id as schemeId,b.name as schemeName from video_input_channel a left join ep_r_scheme_alarm_source c on a.id
+		=c.source_id left join ep_scheme b on c.ep_scheme_id=b.id where a.organ_id=#organId#
+  </select>
+  </sqlMap>

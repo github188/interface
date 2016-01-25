@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="EP_MONITOR_DEVICE_VIEW" >
+  <resultMap id="_EpMonitorDeviceResult" class="com.megaeyes.persistence.ibatis.model.EpMonitorDevice" >
+    <result column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="TYPE" property="type" jdbcType="DECIMAL" />
+    <result column="NAMING" property="naming" jdbcType="VARCHAR" />
+    <result column="ORGAN_ID" property="organId" jdbcType="VARCHAR" />
+  </resultMap>
+   <select id="listEMD" resultMap="_EpMonitorDeviceResult">
+  	select * from EP_MONITOR_DEVICE
+  </select>
+  
+ </sqlMap>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="IP_CAMERA_VIS_VIEW">
+  <update id="updateIpCameraVIC">
+  	update IP_CAMERA_VIS set SD_CARD_EXIST_FLAG=0 WHERE VIDEO_INPUT_SERVER_ID=#VIDEO_INPUT_SERVER_ID# 
+  </update>
+</sqlMap>

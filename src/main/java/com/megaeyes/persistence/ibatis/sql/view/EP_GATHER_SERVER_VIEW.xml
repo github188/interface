@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="EP_GATHER_SERVER_VIEW">
+  <resultMap class="com.megaeyes.persistence.ibatis.model.EpGatherServer" id="abatorgenerated_EpGatherServerResult">
+    <result column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="ORGAN_ID" jdbcType="VARCHAR" property="organId" />
+    <result column="IP" jdbcType="VARCHAR" property="ip" />
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+    <result column="NOTE" jdbcType="VARCHAR" property="note" />
+    <result column="HEART_CYCLE" jdbcType="DECIMAL" property="heartCycle" />
+    <result column="EVENT_SERVER_ID" jdbcType="VARCHAR" property="eventServerId" />
+    <result column="EVENT_PORT" jdbcType="VARCHAR" property="eventPort" />
+    <result column="CLIENT_PORT" jdbcType="VARCHAR" property="clientPort" />
+    <result column="CONSOLE_LISTENER_IP" jdbcType="VARCHAR" property="consoleListenerIp" />
+    <result column="CONSOLE_LISTENER_PORT" jdbcType="VARCHAR" property="consoleListenerPort" />
+    <result column="CONSOLE_PASSWORD" jdbcType="VARCHAR" property="consolePassword" />
+    <result column="CLIENT_IP" jdbcType="VARCHAR" property="clientIp" />
+    <result column="EVENT_IP" jdbcType="VARCHAR" property="eventIp" />
+    <result column="DEVICE_NUMBER" jdbcType="VARCHAR" property="deviceNumber" />
+  </resultMap>
+  
+   <select id="listEpGatherServer" resultMap="abatorgenerated_EpGatherServerResult">
+  	select * from EP_GATHER_SERVER
+  </select>
+  
+  <select id="getByDeviceNumber" resultMap="abatorgenerated_EpGatherServerResult">
+  	select ID, ORGAN_ID, IP, NAME, NOTE, HEART_CYCLE, EVENT_SERVER_ID, EVENT_PORT, CLIENT_PORT,
+      CONSOLE_LISTENER_IP, CONSOLE_LISTENER_PORT, CONSOLE_PASSWORD, CLIENT_IP, EVENT_IP,
+      DEVICE_NUMBER
+    from EP_GATHER_SERVER
+    where DEVICE_NUMBER = #deviceNumber:VARCHAR#
+  </select>
+  
+  </sqlMap>

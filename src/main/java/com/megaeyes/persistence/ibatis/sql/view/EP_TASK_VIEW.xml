@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="EP_TASK_VIEW">
+	<resultMap id="EpTaskResultbyOrganId" class="com.megaeyes.persistence.ibatis.vo.EpTaskVO">
+		<result column="ID" property="id" jdbcType="VARCHAR" />
+		<result column="NAME" property="name" jdbcType="VARCHAR" />
+		<result column="ORGAN_ID" property="organId" jdbcType="VARCHAR" />
+		<result column="TYPE" property="type" jdbcType="DECIMAL" />
+		<result column="NOTE" property="note" jdbcType="VARCHAR" />
+		<result column="CREATE_TIME" property="createTime" jdbcType="DECIMAL" />
+		<result column="BRANCH_ID" property="branchId" jdbcType="VARCHAR" />
+		<result column="SUPPORT_EMPLOYEE" property="supportEmployee"
+			jdbcType="VARCHAR" />
+		<result column="EMPLOYEE_ID" property="employeeId" jdbcType="VARCHAR" />
+		<result column="USER_ID" property="userId" jdbcType="VARCHAR" />
+		<result column="task_employee_id" property="taskEmployeeId"
+			jdbcType="VARCHAR" />
+		<result column="execute_time" property="executeTime" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<select id="listEpTaskByOrganId" resultMap="EpTaskResultbyOrganId">
+		select
+		a.ID,a.NAME,a.ORGAN_ID,a.TYPE,a.NOTE,a.CREATE_TIME,a.BRANCH_ID,b.SUPPORT_EMPLOYEE,b.EMPLOYEE_ID,b.USER_ID,b.id
+		task_employee_id,b.execute_time
+		from ep_task a left join
+		ep_r_task_employee b on a.id=b.TASK_ID and
+		a.ORGAN_ID=#organId#
+	</select>
+
+</sqlMap>

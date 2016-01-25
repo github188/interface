@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="EP_R_MONITOR_DEVICE" >
+  <resultMap id="_EpRMonitorDeviceResult" class="com.megaeyes.persistence.ibatis.model.EpRMonitorDevice" >
+    <result column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="MONITOR_ID" property="monitorId" jdbcType="VARCHAR" />
+    <result column="DEVICE_ID" property="deviceId" jdbcType="VARCHAR" />
+    <result column="MONITOR_TYPE" property="monitorType" jdbcType="DECIMAL" />
+    <result column="DEVICE_TYPE" property="deviceType" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="_Example_Where_Clause" >
+    <iterate property="oredCriteria" conjunction="or" prepend="where" removeFirstPrepend="iterate" >
+      <isEqual property="oredCriteria[].valid" compareValue="true" >
+        (
+        <iterate prepend="and" property="oredCriteria[].criteriaWithoutValue" conjunction="and" >
+          $oredCriteria[].criteriaWithoutValue[]$
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithSingleValue" conjunction="and" >
+          $oredCriteria[].criteriaWithSingleValue[].condition$
+            #oredCriteria[].criteriaWithSingleValue[].value#
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithListValue" conjunction="and" >
+          $oredCriteria[].criteriaWithListValue[].condition$
+          <iterate property="oredCriteria[].criteriaWithListValue[].values" open="(" close=")" conjunction="," >
+            #oredCriteria[].criteriaWithListValue[].values[]#
+          </iterate>
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithBetweenValue" conjunction="and" >
+          $oredCriteria[].criteriaWithBetweenValue[].condition$
+          #oredCriteria[].criteriaWithBetweenValue[].values[0]# and
+          #oredCriteria[].criteriaWithBetweenValue[].values[1]#
+        </iterate>
+        )
+      </isEqual>
+    </iterate>
+  </sql>
+  <select id="_selectByPrimaryKey" resultMap="_EpRMonitorDeviceResult" parameterClass="com.megaeyes.persistence.ibatis.model.EpRMonitorDevice" >
+    select ID, MONITOR_ID, DEVICE_ID, MONITOR_TYPE, DEVICE_TYPE
+    from EP_R_MONITOR_DEVICE
+    where ID = #id:VARCHAR#
+  </select>
+  <select id="_selectByExample" resultMap="_EpRMonitorDeviceResult" parameterClass="com.megaeyes.persistence.ibatis.model.EpRMonitorDeviceExample" >
+    select ID, MONITOR_ID, DEVICE_ID, MONITOR_TYPE, DEVICE_TYPE
+    from EP_R_MONITOR_DEVICE
+    <isParameterPresent >
+      <include refid="EP_R_MONITOR_DEVICE._Example_Where_Clause" />
+      <isNotNull property="orderByClause" >
+        order by $orderByClause$
+      </isNotNull>
+    </isParameterPresent>
+  </select>
+  <delete id="_deleteByPrimaryKey" parameterClass="com.megaeyes.persistence.ibatis.model.EpRMonitorDevice" >
+    delete from EP_R_MONITOR_DEVICE
+    where ID = #id:VARCHAR#
+  </delete>
+  <delete id="_deleteByExample" parameterClass="com.megaeyes.persistence.ibatis.model.EpRMonitorDeviceExample" >
+    delete from EP_R_MONITOR_DEVICE
+    <include refid="EP_R_MONITOR_DEVICE._Example_Where_Clause" />
+  </delete>
+  <insert id="_insert" parameterClass="com.megaeyes.persistence.ibatis.model.EpRMonitorDevice" >
+    insert into EP_R_MONITOR_DEVICE (ID, MONITOR_ID, DEVICE_ID, MONITOR_TYPE, DEVICE_TYPE)
+    values (#id:VARCHAR#, #monitorId:VARCHAR#, #deviceId:VARCHAR#, #monitorType:DECIMAL#,
+      #deviceType:DECIMAL#)
+  </insert>
+  <update id="_updateByPrimaryKey" parameterClass="com.megaeyes.persistence.ibatis.model.EpRMonitorDevice" >
+    update EP_R_MONITOR_DEVICE
+    set MONITOR_ID = #monitorId:VARCHAR#,
+      DEVICE_ID = #deviceId:VARCHAR#,
+      MONITOR_TYPE = #monitorType:DECIMAL#,
+      DEVICE_TYPE = #deviceType:DECIMAL#
+    where ID = #id:VARCHAR#
+  </update>
+  <update id="_updateByPrimaryKeySelective" parameterClass="com.megaeyes.persistence.ibatis.model.EpRMonitorDevice" >
+    update EP_R_MONITOR_DEVICE
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="monitorId" >
+        MONITOR_ID = #monitorId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="deviceId" >
+        DEVICE_ID = #deviceId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="monitorType" >
+        MONITOR_TYPE = #monitorType:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="deviceType" >
+        DEVICE_TYPE = #deviceType:DECIMAL#
+      </isNotNull>
+    </dynamic>
+    where ID = #id:VARCHAR#
+  </update>
+  <select id="_countByExample" parameterClass="com.megaeyes.persistence.ibatis.model.EpRMonitorDeviceExample" resultClass="java.lang.Integer" >
+    select count(*) from EP_R_MONITOR_DEVICE
+    <include refid="EP_R_MONITOR_DEVICE._Example_Where_Clause" />
+  </select>
+  <update id="_updateByExampleSelective" >
+    update EP_R_MONITOR_DEVICE
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="record.id" >
+        ID = #record.id:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.monitorId" >
+        MONITOR_ID = #record.monitorId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.deviceId" >
+        DEVICE_ID = #record.deviceId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.monitorType" >
+        MONITOR_TYPE = #record.monitorType:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.deviceType" >
+        DEVICE_TYPE = #record.deviceType:DECIMAL#
+      </isNotNull>
+    </dynamic>
+    <isParameterPresent >
+      <include refid="EP_R_MONITOR_DEVICE._Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="_updateByExample" >
+    update EP_R_MONITOR_DEVICE
+    set ID = #record.id:VARCHAR#,
+      MONITOR_ID = #record.monitorId:VARCHAR#,
+      DEVICE_ID = #record.deviceId:VARCHAR#,
+      MONITOR_TYPE = #record.monitorType:DECIMAL#,
+      DEVICE_TYPE = #record.deviceType:DECIMAL#
+    <isParameterPresent >
+      <include refid="EP_R_MONITOR_DEVICE._Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+</sqlMap>

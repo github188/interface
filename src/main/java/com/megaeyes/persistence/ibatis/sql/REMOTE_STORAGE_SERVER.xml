@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="REMOTE_STORAGE_SERVER">
+  <resultMap class="com.megaeyes.persistence.ibatis.model.RemoteStorageServer" id="_RemoteStorageServerResult">
+    <result column="STORAGE_SERVER_ID" jdbcType="VARCHAR" property="storageServerId" />
+    <result column="O_ORGAN_ID" jdbcType="VARCHAR" property="oOrganId" />
+    <result column="HAS_VOD" jdbcType="DECIMAL" property="hasVod" />
+  </resultMap>
+  <sql id="_Example_Where_Clause">
+    <iterate conjunction="or" prepend="where" property="oredCriteria" removeFirstPrepend="iterate">
+      <isEqual compareValue="true" property="oredCriteria[].valid">
+        (
+        <iterate conjunction="and" prepend="and" property="oredCriteria[].criteriaWithoutValue">
+          $oredCriteria[].criteriaWithoutValue[]$
+        </iterate>
+        <iterate conjunction="and" prepend="and" property="oredCriteria[].criteriaWithSingleValue">
+          $oredCriteria[].criteriaWithSingleValue[].condition$
+            #oredCriteria[].criteriaWithSingleValue[].value#
+        </iterate>
+        <iterate conjunction="and" prepend="and" property="oredCriteria[].criteriaWithListValue">
+          $oredCriteria[].criteriaWithListValue[].condition$
+          <iterate close=")" conjunction="," open="(" property="oredCriteria[].criteriaWithListValue[].values">
+            #oredCriteria[].criteriaWithListValue[].values[]#
+          </iterate>
+        </iterate>
+        <iterate conjunction="and" prepend="and" property="oredCriteria[].criteriaWithBetweenValue">
+          $oredCriteria[].criteriaWithBetweenValue[].condition$
+          #oredCriteria[].criteriaWithBetweenValue[].values[0]# and
+          #oredCriteria[].criteriaWithBetweenValue[].values[1]#
+        </iterate>
+        )
+      </isEqual>
+    </iterate>
+  </sql>
+  <select id="_selectByPrimaryKey" parameterClass="com.megaeyes.persistence.ibatis.model.RemoteStorageServer" resultMap="_RemoteStorageServerResult">
+    select STORAGE_SERVER_ID, O_ORGAN_ID, HAS_VOD
+    from REMOTE_STORAGE_SERVER
+    where STORAGE_SERVER_ID = #storageServerId:VARCHAR#
+  </select>
+  <select id="_selectByExample" parameterClass="com.megaeyes.persistence.ibatis.model.RemoteStorageServerExample" resultMap="_RemoteStorageServerResult">
+    select STORAGE_SERVER_ID, O_ORGAN_ID, HAS_VOD
+    from REMOTE_STORAGE_SERVER
+    <isParameterPresent>
+      <include refid="REMOTE_STORAGE_SERVER._Example_Where_Clause" />
+      <isNotNull property="orderByClause">
+        order by $orderByClause$
+      </isNotNull>
+    </isParameterPresent>
+  </select>
+  <delete id="_deleteByPrimaryKey" parameterClass="com.megaeyes.persistence.ibatis.model.RemoteStorageServer">
+    delete from REMOTE_STORAGE_SERVER
+    where STORAGE_SERVER_ID = #storageServerId:VARCHAR#
+  </delete>
+  <delete id="_deleteByExample" parameterClass="com.megaeyes.persistence.ibatis.model.RemoteStorageServerExample">
+    delete from REMOTE_STORAGE_SERVER
+    <include refid="REMOTE_STORAGE_SERVER._Example_Where_Clause" />
+  </delete>
+  <insert id="_insert" parameterClass="com.megaeyes.persistence.ibatis.model.RemoteStorageServer">
+    insert into REMOTE_STORAGE_SERVER (STORAGE_SERVER_ID, O_ORGAN_ID, HAS_VOD)
+    values (#storageServerId:VARCHAR#, #oOrganId:VARCHAR#, #hasVod:DECIMAL#)
+  </insert>
+  <update id="_updateByPrimaryKey" parameterClass="com.megaeyes.persistence.ibatis.model.RemoteStorageServer">
+    update REMOTE_STORAGE_SERVER
+    set O_ORGAN_ID = #oOrganId:VARCHAR#,
+      HAS_VOD = #hasVod:DECIMAL#
+    where STORAGE_SERVER_ID = #storageServerId:VARCHAR#
+  </update>
+  <update id="_updateByPrimaryKeySelective" parameterClass="com.megaeyes.persistence.ibatis.model.RemoteStorageServer">
+    update REMOTE_STORAGE_SERVER
+    <dynamic prepend="set">
+      <isNotNull prepend="," property="oOrganId">
+        O_ORGAN_ID = #oOrganId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="hasVod">
+        HAS_VOD = #hasVod:DECIMAL#
+      </isNotNull>
+    </dynamic>
+    where STORAGE_SERVER_ID = #storageServerId:VARCHAR#
+  </update>
+  <select id="_countByExample" parameterClass="com.megaeyes.persistence.ibatis.model.RemoteStorageServerExample" resultClass="java.lang.Integer">
+    select count(*) from REMOTE_STORAGE_SERVER
+    <include refid="REMOTE_STORAGE_SERVER._Example_Where_Clause" />
+  </select>
+  <update id="_updateByExampleSelective">
+    update REMOTE_STORAGE_SERVER
+    <dynamic prepend="set">
+      <isNotNull prepend="," property="record.storageServerId">
+        STORAGE_SERVER_ID = #record.storageServerId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.oOrganId">
+        O_ORGAN_ID = #record.oOrganId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.hasVod">
+        HAS_VOD = #record.hasVod:DECIMAL#
+      </isNotNull>
+    </dynamic>
+    <isParameterPresent>
+      <include refid="REMOTE_STORAGE_SERVER._Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="_updateByExample">
+    update REMOTE_STORAGE_SERVER
+    set STORAGE_SERVER_ID = #record.storageServerId:VARCHAR#,
+      O_ORGAN_ID = #record.oOrganId:VARCHAR#,
+      HAS_VOD = #record.hasVod:DECIMAL#
+    <isParameterPresent>
+      <include refid="REMOTE_STORAGE_SERVER._Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+</sqlMap>

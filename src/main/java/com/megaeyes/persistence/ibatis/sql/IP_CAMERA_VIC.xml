@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="IP_CAMERA_VIC">
+  <resultMap class="com.megaeyes.persistence.ibatis.model.IpCameraVic" id="_IpCameraVicResult">
+    <result column="VIDEO_INPUT_CHANNEL_ID" jdbcType="VARCHAR" property="videoInputChannelId" />
+    <result column="HOST" jdbcType="VARCHAR" property="host" />
+    <result column="PORT" jdbcType="DECIMAL" property="port" />
+    <result column="PASSWORD" jdbcType="VARCHAR" property="password" />
+    <result column="MOBILEPHONE1" jdbcType="VARCHAR" property="mobilephone1" />
+    <result column="MOBILEPHONE2" jdbcType="VARCHAR" property="mobilephone2" />
+    <result column="EMAIL" jdbcType="VARCHAR" property="email" />
+    <result column="DEVICE_TYPE" jdbcType="VARCHAR" property="deviceType" />
+    <result column="SD_SUPPORT" jdbcType="DECIMAL" property="sdSupport" />
+  </resultMap>
+  <sql id="_Example_Where_Clause">
+    <iterate conjunction="or" prepend="where" property="oredCriteria" removeFirstPrepend="iterate">
+      <isEqual compareValue="true" property="oredCriteria[].valid">
+        (
+        <iterate conjunction="and" prepend="and" property="oredCriteria[].criteriaWithoutValue">
+          $oredCriteria[].criteriaWithoutValue[]$
+        </iterate>
+        <iterate conjunction="and" prepend="and" property="oredCriteria[].criteriaWithSingleValue">
+          $oredCriteria[].criteriaWithSingleValue[].condition$
+            #oredCriteria[].criteriaWithSingleValue[].value#
+        </iterate>
+        <iterate conjunction="and" prepend="and" property="oredCriteria[].criteriaWithListValue">
+          $oredCriteria[].criteriaWithListValue[].condition$
+          <iterate close=")" conjunction="," open="(" property="oredCriteria[].criteriaWithListValue[].values">
+            #oredCriteria[].criteriaWithListValue[].values[]#
+          </iterate>
+        </iterate>
+        <iterate conjunction="and" prepend="and" property="oredCriteria[].criteriaWithBetweenValue">
+          $oredCriteria[].criteriaWithBetweenValue[].condition$
+          #oredCriteria[].criteriaWithBetweenValue[].values[0]# and
+          #oredCriteria[].criteriaWithBetweenValue[].values[1]#
+        </iterate>
+        )
+      </isEqual>
+    </iterate>
+  </sql>
+  <select id="_selectByPrimaryKey" parameterClass="com.megaeyes.persistence.ibatis.model.IpCameraVic" resultMap="_IpCameraVicResult">
+    select VIDEO_INPUT_CHANNEL_ID, HOST, PORT, PASSWORD, MOBILEPHONE1, MOBILEPHONE2, EMAIL,
+      DEVICE_TYPE, SD_SUPPORT
+    from IP_CAMERA_VIC
+    where VIDEO_INPUT_CHANNEL_ID = #videoInputChannelId:VARCHAR#
+  </select>
+  <select id="_selectByExample" parameterClass="com.megaeyes.persistence.ibatis.model.IpCameraVicExample" resultMap="_IpCameraVicResult">
+    select VIDEO_INPUT_CHANNEL_ID, HOST, PORT, PASSWORD, MOBILEPHONE1, MOBILEPHONE2, EMAIL,
+      DEVICE_TYPE, SD_SUPPORT
+    from IP_CAMERA_VIC
+    <isParameterPresent>
+      <include refid="IP_CAMERA_VIC._Example_Where_Clause" />
+      <isNotNull property="orderByClause">
+        order by $orderByClause$
+      </isNotNull>
+    </isParameterPresent>
+  </select>
+  <delete id="_deleteByPrimaryKey" parameterClass="com.megaeyes.persistence.ibatis.model.IpCameraVic">
+    delete from IP_CAMERA_VIC
+    where VIDEO_INPUT_CHANNEL_ID = #videoInputChannelId:VARCHAR#
+  </delete>
+  <delete id="_deleteByExample" parameterClass="com.megaeyes.persistence.ibatis.model.IpCameraVicExample">
+    delete from IP_CAMERA_VIC
+    <include refid="IP_CAMERA_VIC._Example_Where_Clause" />
+  </delete>
+  <insert id="_insert" parameterClass="com.megaeyes.persistence.ibatis.model.IpCameraVic">
+    insert into IP_CAMERA_VIC (VIDEO_INPUT_CHANNEL_ID, HOST, PORT, PASSWORD, MOBILEPHONE1,
+      MOBILEPHONE2, EMAIL, DEVICE_TYPE, SD_SUPPORT)
+    values (#videoInputChannelId:VARCHAR#, #host:VARCHAR#, #port:DECIMAL#, #password:VARCHAR#,
+      #mobilephone1:VARCHAR#, #mobilephone2:VARCHAR#, #email:VARCHAR#, #deviceType:VARCHAR#,
+      #sdSupport:DECIMAL#)
+  </insert>
+  <update id="_updateByPrimaryKey" parameterClass="com.megaeyes.persistence.ibatis.model.IpCameraVic">
+    update IP_CAMERA_VIC
+    set HOST = #host:VARCHAR#,
+      PORT = #port:DECIMAL#,
+      PASSWORD = #password:VARCHAR#,
+      MOBILEPHONE1 = #mobilephone1:VARCHAR#,
+      MOBILEPHONE2 = #mobilephone2:VARCHAR#,
+      EMAIL = #email:VARCHAR#,
+      DEVICE_TYPE = #deviceType:VARCHAR#,
+      SD_SUPPORT = #sdSupport:DECIMAL#
+    where VIDEO_INPUT_CHANNEL_ID = #videoInputChannelId:VARCHAR#
+  </update>
+  <update id="_updateByPrimaryKeySelective" parameterClass="com.megaeyes.persistence.ibatis.model.IpCameraVic">
+    update IP_CAMERA_VIC
+    <dynamic prepend="set">
+      <isNotNull prepend="," property="host">
+        HOST = #host:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="port">
+        PORT = #port:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="password">
+        PASSWORD = #password:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mobilephone1">
+        MOBILEPHONE1 = #mobilephone1:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="mobilephone2">
+        MOBILEPHONE2 = #mobilephone2:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="email">
+        EMAIL = #email:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="deviceType">
+        DEVICE_TYPE = #deviceType:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="sdSupport">
+        SD_SUPPORT = #sdSupport:DECIMAL#
+      </isNotNull>
+    </dynamic>
+    where VIDEO_INPUT_CHANNEL_ID = #videoInputChannelId:VARCHAR#
+  </update>
+  <select id="_countByExample" parameterClass="com.megaeyes.persistence.ibatis.model.IpCameraVicExample" resultClass="java.lang.Integer">
+    select count(*) from IP_CAMERA_VIC
+    <include refid="IP_CAMERA_VIC._Example_Where_Clause" />
+  </select>
+  <update id="_updateByExampleSelective">
+    update IP_CAMERA_VIC
+    <dynamic prepend="set">
+      <isNotNull prepend="," property="record.videoInputChannelId">
+        VIDEO_INPUT_CHANNEL_ID = #record.videoInputChannelId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.host">
+        HOST = #record.host:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.port">
+        PORT = #record.port:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.password">
+        PASSWORD = #record.password:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.mobilephone1">
+        MOBILEPHONE1 = #record.mobilephone1:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.mobilephone2">
+        MOBILEPHONE2 = #record.mobilephone2:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.email">
+        EMAIL = #record.email:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.deviceType">
+        DEVICE_TYPE = #record.deviceType:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.sdSupport">
+        SD_SUPPORT = #record.sdSupport:DECIMAL#
+      </isNotNull>
+    </dynamic>
+    <isParameterPresent>
+      <include refid="IP_CAMERA_VIC._Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="_updateByExample">
+    update IP_CAMERA_VIC
+    set VIDEO_INPUT_CHANNEL_ID = #record.videoInputChannelId:VARCHAR#,
+      HOST = #record.host:VARCHAR#,
+      PORT = #record.port:DECIMAL#,
+      PASSWORD = #record.password:VARCHAR#,
+      MOBILEPHONE1 = #record.mobilephone1:VARCHAR#,
+      MOBILEPHONE2 = #record.mobilephone2:VARCHAR#,
+      EMAIL = #record.email:VARCHAR#,
+      DEVICE_TYPE = #record.deviceType:VARCHAR#,
+      SD_SUPPORT = #record.sdSupport:DECIMAL#
+    <isParameterPresent>
+      <include refid="IP_CAMERA_VIC._Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  
+  <!-- 修改IPVIC信息 -->	
+  <update id="updateIpCameraVicByVisId" parameterClass="java.util.Map">
+  	update IP_CAMERA_VIC 
+  		set PASSWORD = #password:VARCHAR#,
+  			DEVICE_TYPE = #deviceType:VARCHAR#,
+  			SD_SUPPORT = #sdSupport:DECIMAL# 
+  	WHERE VIDEO_INPUT_CHANNEL_ID 
+  		in (select id from VIDEO_INPUT_CHANNEL where VIDEO_INPUT_SERVER_ID=#visId:VARCHAR#) 
+  </update>
+</sqlMap>

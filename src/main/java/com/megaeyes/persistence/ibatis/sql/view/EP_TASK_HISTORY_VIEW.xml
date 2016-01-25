@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="EP_TASK_HISTORY_VIEW">
+	<resultMap id="listEpTaskHistoryResult"
+		class="com.megaeyes.persistence.ibatis.model.EpTaskHistory">
+
+		<result column="ID" property="id" jdbcType="VARCHAR" />
+		<result column="TASK_ID" property="taskId" jdbcType="VARCHAR" />
+		<result column="TASK_NAME" property="taskName" jdbcType="VARCHAR" />
+		<result column="ORGAN_NAME" property="organName" jdbcType="VARCHAR" />
+		<result column="TYPE" property="type" jdbcType="DECIMAL" />
+		<result column="NOTE" property="note" jdbcType="VARCHAR" />
+		<result column="BRANCH_NAME" property="branchName" jdbcType="VARCHAR" />
+		<result column="EMPLOYEE_NAME" property="employeeName"
+			jdbcType="VARCHAR" />
+		<result column="USER_ID" property="userId" jdbcType="VARCHAR" />
+		<result column="ALLOT_USER_ID" property="allotUserId" jdbcType="VARCHAR" />
+		<result column="EXECUTE_TIME" property="executeTime" jdbcType="VARCHAR" />
+		<result column="EXECUTE_TIME_TYPE" property="executeTimeType"
+			jdbcType="DECIMAL" />
+		<result column="TASK_TYPE" property="taskType" jdbcType="DECIMAL" />
+		<result column="RESULT" property="result" jdbcType="VARCHAR" />
+		<result column="END_TIME" property="endTime" jdbcType="VARCHAR" />
+		<result column="EMPLOYEE_ID" property="employeeId" jdbcType="VARCHAR" />
+		<result column="SUPPORT_EMPLOYEE" property="supportEmployee"
+			jdbcType="VARCHAR" />
+	</resultMap>
+
+	<select id="listEpTaskStepHistory" resultMap="listEpTaskHistoryResult">
+		select ID, TASK_ID, TASK_NAME, ORGAN_NAME, TYPE, NOTE, BRANCH_NAME,
+		EMPLOYEE_NAME, USER_ID,EMPLOYEE_ID,SUPPORT_EMPLOYEE,
+		ALLOT_USER_ID,
+		EXECUTE_TIME, EXECUTE_TIME_TYPE,
+		TASK_TYPE, RESULT, END_TIME
+		from
+		EP_TASK_HISTORY
+		<dynamic prepend="where">
+			<isNotEmpty prepend="and" property="startTime">
+  				  <![CDATA[END_TIME >=#startTime#]]>
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="endTime">
+  				  <![CDATA[END_TIME <=#endTime#]]>
+			</isNotEmpty>
+
+			<isNotNull prepend="and" property="taskId">
+				TASK_ID=#taskId#
+			</isNotNull>
+			<isNotNull prepend="and" property="organName">
+				ORGAN_NAME=#"organName"#
+			</isNotNull>
+			<isNotNull prepend="and" property="branchName">
+				BRANCH_NAME=#branchName#
+			</isNotNull>
+			<isNotNull prepend="and" property="employeeName">
+				EMPLOYEE_NAME=#employeeName#
+			</isNotNull>
+			<isNotNull prepend="and" property="employeeId">
+				EMPLOYEE_ID=#employeeId#
+			</isNotNull>
+			<isNotNull prepend="and" property="userId">
+				USER_ID=#userId#
+			</isNotNull>
+			<isNotNull prepend="and" property="allotUserId">
+				ALLOT_USER_ID=#allotUserId#
+			</isNotNull>
+
+		</dynamic>
+	</select>
+</sqlMap>

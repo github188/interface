@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="EP_R_MONITOR_DEVICE_VIEW" >
+  <resultMap id="_EpRMonitorDeviceResult" class="com.megaeyes.persistence.ibatis.model.EpRMonitorDevice" >
+    <result column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="MONITOR_ID" property="monitorId" jdbcType="VARCHAR" />
+    <result column="DEVICE_ID" property="deviceId" jdbcType="VARCHAR" />
+    <result column="MONITOR_TYPE" property="monitorType" jdbcType="DECIMAL" />
+    <result column="DEVICE_TYPE" property="deviceType" jdbcType="DECIMAL" />
+  </resultMap>
+  
+   <resultMap class="com.megaeyes.persistence.ibatis.model.EpDevice" id="_EpDeviceResult">
+    <result column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+    <result column="ORGAN_ID" jdbcType="VARCHAR" property="organId" />
+    <result column="PARENT_ID" jdbcType="VARCHAR" property="parentId" />
+    <result column="TYPE" jdbcType="DECIMAL" property="type" />
+    <result column="NOTE" jdbcType="VARCHAR" property="note" />
+  </resultMap>
+  
+    <resultMap id="_EpMonitorDeviceResult" class="com.megaeyes.persistence.ibatis.model.EpMonitorDevice" >
+    <result column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="TYPE" property="type" jdbcType="DECIMAL" />
+    <result column="NAMING" property="naming" jdbcType="VARCHAR" />
+    <result column="ORGAN_ID" property="organId" jdbcType="VARCHAR" />
+  </resultMap>
+   <delete id="deleteByDeviceId" parameterClass="java.lang.String">
+			delete from
+		EP_R_MONITOR_DEVICE where DEVICE_ID=#deviceId#
+	</delete>
+	
+	<select id="getDeviceType" resultClass="java.lang.String">
+		select type from EP_DEVICE where id = #deviceId#
+	</select>
+	
+	<select id="getMonitorType" resultClass="java.lang.String">
+		select type from EP_MONITOR_DEVICE where id = #monitorId#
+	</select>
+</sqlMap>

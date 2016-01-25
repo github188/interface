@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="EP_ROLE">
+  <resultMap class="com.megaeyes.persistence.ibatis.model.EpRole" id="_EpRoleResult">
+    <result column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+    <result column="NOTE" jdbcType="VARCHAR" property="note" />
+    <result column="ORGAN_ID" jdbcType="VARCHAR" property="organId" />
+    <result column="IS_SUSPENDED" jdbcType="DECIMAL" property="isSuspended" />
+    <result column="CREATE_USER_NAME" jdbcType="VARCHAR" property="createUserName" />
+    <result column="TYPE" jdbcType="DECIMAL" property="type" />
+  </resultMap>
+  <sql id="_Example_Where_Clause">
+    <iterate conjunction="or" prepend="where" property="oredCriteria" removeFirstPrepend="iterate">
+      <isEqual compareValue="true" property="oredCriteria[].valid">
+        (
+        <iterate conjunction="and" prepend="and" property="oredCriteria[].criteriaWithoutValue">
+          $oredCriteria[].criteriaWithoutValue[]$
+        </iterate>
+        <iterate conjunction="and" prepend="and" property="oredCriteria[].criteriaWithSingleValue">
+          $oredCriteria[].criteriaWithSingleValue[].condition$
+            #oredCriteria[].criteriaWithSingleValue[].value#
+        </iterate>
+        <iterate conjunction="and" prepend="and" property="oredCriteria[].criteriaWithListValue">
+          $oredCriteria[].criteriaWithListValue[].condition$
+          <iterate close=")" conjunction="," open="(" property="oredCriteria[].criteriaWithListValue[].values">
+            #oredCriteria[].criteriaWithListValue[].values[]#
+          </iterate>
+        </iterate>
+        <iterate conjunction="and" prepend="and" property="oredCriteria[].criteriaWithBetweenValue">
+          $oredCriteria[].criteriaWithBetweenValue[].condition$
+          #oredCriteria[].criteriaWithBetweenValue[].values[0]# and
+          #oredCriteria[].criteriaWithBetweenValue[].values[1]#
+        </iterate>
+        )
+      </isEqual>
+    </iterate>
+  </sql>
+  <select id="_selectByPrimaryKey" parameterClass="com.megaeyes.persistence.ibatis.model.EpRole" resultMap="_EpRoleResult">
+    select ID, NAME, NOTE, ORGAN_ID, IS_SUSPENDED, CREATE_USER_NAME, TYPE
+    from EP_ROLE
+    where ID = #id:VARCHAR#
+  </select>
+  <select id="_selectByExample" parameterClass="com.megaeyes.persistence.ibatis.model.EpRoleExample" resultMap="_EpRoleResult">
+    select ID, NAME, NOTE, ORGAN_ID, IS_SUSPENDED, CREATE_USER_NAME, TYPE
+    from EP_ROLE
+    <isParameterPresent>
+      <include refid="EP_ROLE._Example_Where_Clause" />
+      <isNotNull property="orderByClause">
+        order by $orderByClause$
+      </isNotNull>
+    </isParameterPresent>
+  </select>
+  <delete id="_deleteByPrimaryKey" parameterClass="com.megaeyes.persistence.ibatis.model.EpRole">
+    delete from EP_ROLE
+    where ID = #id:VARCHAR#
+  </delete>
+  <delete id="_deleteByExample" parameterClass="com.megaeyes.persistence.ibatis.model.EpRoleExample">
+    delete from EP_ROLE
+    <include refid="EP_ROLE._Example_Where_Clause" />
+  </delete>
+  <insert id="_insert" parameterClass="com.megaeyes.persistence.ibatis.model.EpRole">
+    insert into EP_ROLE (ID, NAME, NOTE, ORGAN_ID, IS_SUSPENDED, CREATE_USER_NAME, TYPE)
+    values (#id:VARCHAR#, #name:VARCHAR#, #note:VARCHAR#, #organId:VARCHAR#, #isSuspended:DECIMAL#,
+      #createUserName:VARCHAR#, #type:DECIMAL#)
+  </insert>
+  <update id="_updateByPrimaryKey" parameterClass="com.megaeyes.persistence.ibatis.model.EpRole">
+    update EP_ROLE
+    set NAME = #name:VARCHAR#,
+      NOTE = #note:VARCHAR#,
+      ORGAN_ID = #organId:VARCHAR#,
+      IS_SUSPENDED = #isSuspended:DECIMAL#,
+      CREATE_USER_NAME = #createUserName:VARCHAR#,
+      TYPE = #type:DECIMAL#
+    where ID = #id:VARCHAR#
+  </update>
+  <update id="_updateByPrimaryKeySelective" parameterClass="com.megaeyes.persistence.ibatis.model.EpRole">
+    update EP_ROLE
+    <dynamic prepend="set">
+      <isNotNull prepend="," property="name">
+        NAME = #name:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="note">
+        NOTE = #note:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="organId">
+        ORGAN_ID = #organId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="isSuspended">
+        IS_SUSPENDED = #isSuspended:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="createUserName">
+        CREATE_USER_NAME = #createUserName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="type">
+        TYPE = #type:DECIMAL#
+      </isNotNull>
+    </dynamic>
+    where ID = #id:VARCHAR#
+  </update>
+  <select id="_countByExample" parameterClass="com.megaeyes.persistence.ibatis.model.EpRoleExample" resultClass="java.lang.Integer">
+    select count(*) from EP_ROLE
+    <include refid="EP_ROLE._Example_Where_Clause" />
+  </select>
+  <update id="_updateByExampleSelective">
+    update EP_ROLE
+    <dynamic prepend="set">
+      <isNotNull prepend="," property="record.id">
+        ID = #record.id:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.name">
+        NAME = #record.name:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.note">
+        NOTE = #record.note:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.organId">
+        ORGAN_ID = #record.organId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.isSuspended">
+        IS_SUSPENDED = #record.isSuspended:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.createUserName">
+        CREATE_USER_NAME = #record.createUserName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.type">
+        TYPE = #record.type:DECIMAL#
+      </isNotNull>
+    </dynamic>
+    <isParameterPresent>
+      <include refid="EP_ROLE._Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="_updateByExample">
+    update EP_ROLE
+    set ID = #record.id:VARCHAR#,
+      NAME = #record.name:VARCHAR#,
+      NOTE = #record.note:VARCHAR#,
+      ORGAN_ID = #record.organId:VARCHAR#,
+      IS_SUSPENDED = #record.isSuspended:DECIMAL#,
+      CREATE_USER_NAME = #record.createUserName:VARCHAR#,
+      TYPE = #record.type:DECIMAL#
+    <isParameterPresent>
+      <include refid="EP_ROLE._Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+</sqlMap>

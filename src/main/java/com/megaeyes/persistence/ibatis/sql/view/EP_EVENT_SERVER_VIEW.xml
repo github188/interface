@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="EP_EVENT_SERVER_VIEW">
+	<resultMap id="abatorgenerated_EpEventServerResult"
+		class="com.megaeyes.persistence.ibatis.model.EpEventServer">
+		<result column="ID" property="id" jdbcType="VARCHAR" />
+		<result column="DEVICE_NUMBER" property="deviceNumber"
+			jdbcType="VARCHAR" />
+		<result column="NAME" property="name" jdbcType="VARCHAR" />
+		<result column="INSTALL_LOCATION" property="installLocation"
+			jdbcType="VARCHAR" />
+		<result column="IP1" property="ip1" jdbcType="VARCHAR" />
+		<result column="IP2" property="ip2" jdbcType="VARCHAR" />
+		<result column="NAMING" property="naming" jdbcType="VARCHAR" />
+		<result column="NOTE" property="note" jdbcType="VARCHAR" />
+		<result column="PORT" property="port" jdbcType="DECIMAL" />
+		<result column="HEARTBEAT_CYCLE" property="heartbeatCycle"
+			jdbcType="DECIMAL" />
+		<result column="HEARTBEAT_TIME" property="heartbeatTime"
+			jdbcType="DECIMAL" />
+		<result column="ALARM_FREQUENCY" property="alarmFrequency"
+			jdbcType="DECIMAL" />
+	</resultMap>
+	<select id="listEpEventServer" resultMap="abatorgenerated_EpEventServerResult">
+		select * from
+		EP_EVENT_SERVER
+	</select>
+	<update id="updateEventServerByDeviceNumber">
+		update EP_EVENT_SERVER t set t.ip1=#ip1# ,t.ip2=#ip2#
+		,t.port=#port#,t.heartbeat_time=#heartbeatTime# where
+		t.device_number=#deviceNumber#
+	</update>
+</sqlMap>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="EP_R_DEVICE_VIC_VIEW" >
+  <resultMap class="com.megaeyes.persistence.ibatis.model.EpRDeviceVic" id="abatorgenerated_EpRDeviceVicResult">
+    <result column="DEVICE_ID" jdbcType="VARCHAR" property="deviceId" />
+    <result column="VIC_ID" jdbcType="VARCHAR" property="vicId" />
+    <result column="PRESET_ID" jdbcType="VARCHAR" property="presetId" />
+    <result column="TASK_TYPE" jdbcType="DECIMAL" property="taskType" />
+    <result column="STEP_ID" jdbcType="VARCHAR" property="stepId" />
+    <result column="IS_DEFAULT" jdbcType="DECIMAL" property="isDefault" />
+  </resultMap>  
+   <resultMap class="com.megaeyes.persistence.ibatis.vo.EpRDeviceVicVO" id="epRDeviceVicVO">
+    <result column="DEVICE_ID" jdbcType="VARCHAR" property="deviceId" />
+    <result column="VIC_ID" jdbcType="VARCHAR" property="vicId" />
+    <result column="PRESET_ID" jdbcType="VARCHAR" property="presetId" />
+    <result column="TASK_TYPE" jdbcType="DECIMAL" property="taskType" />
+    <result column="STEP_ID" jdbcType="VARCHAR" property="stepId" />
+    <result column="IS_DEFAULT" jdbcType="DECIMAL" property="isDefault" />
+    <result column="NAME" jdbcType="VARCHAR" property="presetName" />
+    <result column="PRESET_NUMBER" jdbcType="DECIMAL" property="presetNumber" />
+  </resultMap>  
+  <delete id="deleteByDeviceId" >
+    delete from EP_R_DEVICE_VIC where device_id = #deviceId#
+  </delete>
+    <delete id="deleteByPresetId" >
+    delete from EP_R_DEVICE_VIC where preset_id = #presetId#
+  </delete>
+  
+   <delete id="deleteByDeviceIdAndType" >
+    delete from EP_R_DEVICE_VIC where device_id = #deviceId# and TASK_TYPE=#type#
+  </delete>
+  
+  <delete id="deleteByDeviceIdAndTypeAndVicId" >
+    delete from EP_R_DEVICE_VIC where device_id = #deviceId# and TASK_TYPE=#type# and vic_id = #vicId#
+  </delete>
+  <delete id="deleteByStepId" >
+    delete from EP_R_DEVICE_VIC where step_id = #stepId#
+  </delete>
+   <select id="listEpRDeviceVICByDeviceAndType" resultMap="epRDeviceVicVO">
+		select erdv.*,ep.name,ep.PRESET_NUMBER from EP_R_DEVICE_VIC erdv,EP_PRESET ep where erdv.preset_id = ep.id and device_id = #deviceId# and TASK_TYPE=#type#
+	</select>
+	 <select id="getDeviceIdByStepId" resultMap="abatorgenerated_EpRDeviceVicResult">
+		select erdv.device_id,erdv.vic_id,erdv.preset_id,erdv.task_type,erdv.step_id,is_default from EP_R_DEVICE_VIC erdv where erdv.step_id = #stepId#
+	</select>
+	<select id="countVicRelation" resultClass="java.lang.Integer">
+		select count(*) from ep_r_device_vic where vic_id = #vicId#
+	</select>
+	
+</sqlMap>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" 
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="EP_OPERATION_VIEW">
+	<resultMap id="listEpOperationResult"
+		class="com.megaeyes.persistence.ibatis.model.EpOperation">
+		<result column="ID" property="id" jdbcType="VARCHAR" />
+		<result column="NAME" property="name" jdbcType="VARCHAR" />
+		<result column="NOTE" property="note" jdbcType="VARCHAR" />
+		<result column="PARENT_ID" property="parentId" jdbcType="VARCHAR" />
+		 <result column="OPERATION_NUMBER" property="operationNumber" jdbcType="VARCHAR" />
+	</resultMap>
+	<select id="listAllEpOperation" resultMap="listEpOperationResult">
+		select * from
+		ep_operation t
+	</select>
+	<select id="listEpOperationByUserId" resultMap="listEpOperationResult">
+		select
+		distinct(eo.operation_number), eo.id, eo.name, eo.note, eo.parent_id from ep_operation
+		eo,ep_r_role_operation ero,ep_role er,ep_r_user_role erur where
+		erur.user_id = #user_id# and erur.role_id = er.id and ero.role_id =
+		er.id and ero.operation_id = eo.id
+	</select>
+</sqlMap>

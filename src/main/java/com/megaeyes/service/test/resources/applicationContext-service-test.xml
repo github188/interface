@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans default-autowire="byName">
+	<bean id="txProxyTemplate" abstract="true"
+		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+		<property name="transactionManager" ref="transactionManager" />
+		<property name="transactionAttributes">
+			<props>
+				<prop key="update*">
+					PROPAGATION_REQUIRED
+				</prop>
+				<prop key="create*">
+					PROPAGATION_REQUIRED
+				</prop>
+				<prop key="delete*">
+					PROPAGATION_REQUIRES_NEW
+				</prop>
+			</props>
+		</property>
+	</bean>
+	<bean id="baseManager"
+		class="com.megaeyes.service.impl.BaseManagerImpl">
+		<property name="userSessionDAO" ref="userSessionDAO" />
+	</bean>
+
+
+
+
+</beans>

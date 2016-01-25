@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="LocalStorageServerView" >
+  <resultMap id="abatorgenerated_LocalStorageServerResult" class="com.megaeyes.persistence.ibatis.model.LocalStorageServer" >
+    <result column="STORAGE_SERVER_ID" property="storageServerId" jdbcType="VARCHAR" />
+    <result column="COMPANY_ID" property="companyId" jdbcType="VARCHAR" />
+    <result column="VIDEO_INPUT_SERVER_ID" property="videoInputServerId" jdbcType="VARCHAR" />
+    <result column="O_ORGAN_ID" property="oOrganId" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <select id="getLocalStorageServerByVisId" resultMap="abatorgenerated_LocalStorageServerResult">
+  	select STORAGE_SERVER_ID, COMPANY_ID, VIDEO_INPUT_SERVER_ID, O_ORGAN_ID
+	from LOCAL_STORAGE_SERVER
+	where VIDEO_INPUT_SERVER_ID=#visId#
+  </select>
+  
+  <select id="getVisIdByLocalStorageServerId" resultClass="java.lang.String">
+  	select VIDEO_INPUT_SERVER_ID from LOCAL_STORAGE_SERVER where storage_server_id=#id#
+  </select>
+</sqlMap>

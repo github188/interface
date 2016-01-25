@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="EP_R_ROLE_OPERATION_VIEW">
+	<resultMap id="EpRRoleOperationViewResult"
+		class="com.megaeyes.persistence.ibatis.model.EpRRoleOperation">
+		<result column="ID" property="id" jdbcType="VARCHAR" />
+		<result column="ROLE_ID" property="roleId" jdbcType="VARCHAR" />
+		<result column="OPERATION_ID" property="operationId" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<delete id="deleteByRoleId" parameterClass="java.lang.String">
+		delete from
+		ep_r_role_operation where role_id=#roleId#
+	</delete>
+	<insert id="createGeneralUser" parameterClass="java.lang.String">
+		<![CDATA[
+		insert into ep_r_role_operation select
+		lpad(EP_R_ROLE_OPERATION_SEQ.nextval, 31, '0') id ,a.id ,c.id
+		from
+		ep_role a,(select id from ep_operation b where b.id
+		!='0000000000200020000000004000010' ) c where a.name='普通用户'  and a.id=#id# 
+		    ]]>
+	</insert>
+	<insert id="createAdminUser" parameterClass="java.lang.String">
+		<![CDATA[
+			insert into ep_r_role_operation(id,ROLE_ID,OPERATION_ID) (select	lpad(EP_R_ROLE_OPERATION_SEQ.nextval,31, '0') id ,a.id ROLE_ID,c.id OPERATION_ID from ep_role a,(select id from ep_operation b) c where a.name='管理员'  and a.id=#id:VARCHAR#)
+	    ]]>
+	</insert>
+</sqlMap>

@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="VIDEO_INPUT_SERVER_MODEL">
+  <resultMap class="com.megaeyes.persistence.ibatis.model.VideoInputServerModel" id="_VideoInputServerModelResult">
+    <result column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="OPTIMISTIC_LOCK" jdbcType="DECIMAL" property="optimisticLock" />
+    <result column="F_NAME" jdbcType="VARCHAR" property="name" />
+    <result column="F_TYPE" jdbcType="VARCHAR" property="fType" />
+    <result column="ENCODE" jdbcType="VARCHAR" property="encode" />
+    <result column="NOTE" jdbcType="VARCHAR" property="note" />
+    <result column="MANUFACTURER_ID" jdbcType="VARCHAR" property="manufacturerId" />
+    <result column="DECODE" jdbcType="VARCHAR" property="decode" />
+    <result column="RTP_PAYLOAD" jdbcType="VARCHAR" property="rtpPayload" />
+  </resultMap>
+  <sql id="_Example_Where_Clause">
+    <iterate conjunction="or" prepend="where" property="oredCriteria" removeFirstPrepend="iterate">
+      <isEqual compareValue="true" property="oredCriteria[].valid">
+        (
+        <iterate conjunction="and" prepend="and" property="oredCriteria[].criteriaWithoutValue">
+          $oredCriteria[].criteriaWithoutValue[]$
+        </iterate>
+        <iterate conjunction="and" prepend="and" property="oredCriteria[].criteriaWithSingleValue">
+          $oredCriteria[].criteriaWithSingleValue[].condition$
+            #oredCriteria[].criteriaWithSingleValue[].value#
+        </iterate>
+        <iterate conjunction="and" prepend="and" property="oredCriteria[].criteriaWithListValue">
+          $oredCriteria[].criteriaWithListValue[].condition$
+          <iterate close=")" conjunction="," open="(" property="oredCriteria[].criteriaWithListValue[].values">
+            #oredCriteria[].criteriaWithListValue[].values[]#
+          </iterate>
+        </iterate>
+        <iterate conjunction="and" prepend="and" property="oredCriteria[].criteriaWithBetweenValue">
+          $oredCriteria[].criteriaWithBetweenValue[].condition$
+          #oredCriteria[].criteriaWithBetweenValue[].values[0]# and
+          #oredCriteria[].criteriaWithBetweenValue[].values[1]#
+        </iterate>
+        )
+      </isEqual>
+    </iterate>
+  </sql>
+  <select id="_selectByPrimaryKey" parameterClass="com.megaeyes.persistence.ibatis.model.VideoInputServerModel" resultMap="_VideoInputServerModelResult">
+    select ID, OPTIMISTIC_LOCK, F_NAME, F_TYPE, ENCODE, NOTE, MANUFACTURER_ID, DECODE, RTP_PAYLOAD
+    from VIDEO_INPUT_SERVER_MODEL
+    where ID = #id:VARCHAR#
+  </select>
+  <select id="_selectByExample" parameterClass="com.megaeyes.persistence.ibatis.model.VideoInputServerModelExample" resultMap="_VideoInputServerModelResult">
+    select ID, OPTIMISTIC_LOCK, F_NAME, F_TYPE, ENCODE, NOTE, MANUFACTURER_ID, DECODE, RTP_PAYLOAD
+    from VIDEO_INPUT_SERVER_MODEL
+    <isParameterPresent>
+      <include refid="VIDEO_INPUT_SERVER_MODEL._Example_Where_Clause" />
+      <isNotNull property="orderByClause">
+        order by $orderByClause$
+      </isNotNull>
+    </isParameterPresent>
+  </select>
+  <delete id="_deleteByPrimaryKey" parameterClass="com.megaeyes.persistence.ibatis.model.VideoInputServerModel">
+    delete from VIDEO_INPUT_SERVER_MODEL
+    where ID = #id:VARCHAR#
+  </delete>
+  <delete id="_deleteByExample" parameterClass="com.megaeyes.persistence.ibatis.model.VideoInputServerModelExample">
+    delete from VIDEO_INPUT_SERVER_MODEL
+    <include refid="VIDEO_INPUT_SERVER_MODEL._Example_Where_Clause" />
+  </delete>
+  <insert id="_insert" parameterClass="com.megaeyes.persistence.ibatis.model.VideoInputServerModel">
+    insert into VIDEO_INPUT_SERVER_MODEL (ID, OPTIMISTIC_LOCK, F_NAME, F_TYPE, ENCODE, NOTE,
+      MANUFACTURER_ID, DECODE, RTP_PAYLOAD)
+    values (#id:VARCHAR#, #optimisticLock:DECIMAL#, #name:VARCHAR#, #fType:VARCHAR#,
+      #encode:VARCHAR#, #note:VARCHAR#, #manufacturerId:VARCHAR#, #decode:VARCHAR#,
+      #rtpPayload:VARCHAR#)
+  </insert>
+  <update id="_updateByPrimaryKey" parameterClass="com.megaeyes.persistence.ibatis.model.VideoInputServerModel">
+    update VIDEO_INPUT_SERVER_MODEL
+    set OPTIMISTIC_LOCK = #optimisticLock:DECIMAL#,
+      F_NAME = #name:VARCHAR#,
+      F_TYPE = #fType:VARCHAR#,
+      ENCODE = #encode:VARCHAR#,
+      NOTE = #note:VARCHAR#,
+      MANUFACTURER_ID = #manufacturerId:VARCHAR#,
+      DECODE = #decode:VARCHAR#,
+      RTP_PAYLOAD = #rtpPayload:VARCHAR#
+    where ID = #id:VARCHAR#
+  </update>
+  <update id="_updateByPrimaryKeySelective" parameterClass="com.megaeyes.persistence.ibatis.model.VideoInputServerModel">
+    update VIDEO_INPUT_SERVER_MODEL
+    <dynamic prepend="set">
+      <isNotNull prepend="," property="optimisticLock">
+        OPTIMISTIC_LOCK = #optimisticLock:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="name">
+        F_NAME = #name:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="fType">
+        F_TYPE = #fType:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="encode">
+        ENCODE = #encode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="note">
+        NOTE = #note:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="manufacturerId">
+        MANUFACTURER_ID = #manufacturerId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="decode">
+        DECODE = #decode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="rtpPayload">
+        RTP_PAYLOAD = #rtpPayload:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    where ID = #id:VARCHAR#
+  </update>
+  <select id="_countByExample" parameterClass="com.megaeyes.persistence.ibatis.model.VideoInputServerModelExample" resultClass="java.lang.Integer">
+    select count(*) from VIDEO_INPUT_SERVER_MODEL
+    <include refid="VIDEO_INPUT_SERVER_MODEL._Example_Where_Clause" />
+  </select>
+  <update id="_updateByExampleSelective">
+    update VIDEO_INPUT_SERVER_MODEL
+    <dynamic prepend="set">
+      <isNotNull prepend="," property="record.id">
+        ID = #record.id:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.optimisticLock">
+        OPTIMISTIC_LOCK = #record.optimisticLock:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.name">
+        F_NAME = #record.name:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.fType">
+        F_TYPE = #record.fType:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.encode">
+        ENCODE = #record.encode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.note">
+        NOTE = #record.note:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.manufacturerId">
+        MANUFACTURER_ID = #record.manufacturerId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.decode">
+        DECODE = #record.decode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.rtpPayload">
+        RTP_PAYLOAD = #record.rtpPayload:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    <isParameterPresent>
+      <include refid="VIDEO_INPUT_SERVER_MODEL._Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="_updateByExample">
+    update VIDEO_INPUT_SERVER_MODEL
+    set ID = #record.id:VARCHAR#,
+      OPTIMISTIC_LOCK = #record.optimisticLock:DECIMAL#,
+      F_NAME = #record.name:VARCHAR#,
+      F_TYPE = #record.fType:VARCHAR#,
+      ENCODE = #record.encode:VARCHAR#,
+      NOTE = #record.note:VARCHAR#,
+      MANUFACTURER_ID = #record.manufacturerId:VARCHAR#,
+      DECODE = #record.decode:VARCHAR#,
+      RTP_PAYLOAD = #record.rtpPayload:VARCHAR#
+    <isParameterPresent>
+      <include refid="VIDEO_INPUT_SERVER_MODEL._Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+</sqlMap>

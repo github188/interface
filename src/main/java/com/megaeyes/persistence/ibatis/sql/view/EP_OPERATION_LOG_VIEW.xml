@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="EP_OPERATION_LOG_VIEW">
+	<resultMap id="listEpTaskHistoryResult"
+		class="com.megaeyes.persistence.ibatis.model.EpOperationLog">
+		<result column="ID" property="id" jdbcType="VARCHAR" />
+		<result column="USER_ID" property="userId" jdbcType="VARCHAR" />
+		<result column="USER_LOGIN_NAME" property="userLoginName"
+			jdbcType="VARCHAR" />
+		<result column="USER_SESSION_ID" property="userSessionId"
+			jdbcType="VARCHAR" />
+		<result column="OPERATE_TIME" property="operateTime" jdbcType="DECIMAL" />
+		<result column="OPERATE_DESCRIPTION" property="operateDescription"
+			jdbcType="VARCHAR" />
+		<result column="OPERATEOR_IP" property="operateorIp" jdbcType="VARCHAR" />
+		<result column="INTERFACE_NAME" property="interfaceName"
+			jdbcType="VARCHAR" />
+	</resultMap>
+	<select id="listEpOperationLog" resultMap="listEpTaskHistoryResult">
+		select ID, USER_ID, USER_LOGIN_NAME, USER_SESSION_ID, OPERATE_TIME,
+		OPERATE_DESCRIPTION,
+		OPERATEOR_IP, INTERFACE_NAME
+		from EP_OPERATION_LOG
+		<dynamic prepend="where">
+			<isNotEmpty prepend="and" property="startTime">
+  				  <![CDATA[OPERATE_TIME >=#startTime#]]>
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="endTime">
+  				  <![CDATA[OPERATE_TIME <=#endTime#]]>
+			</isNotEmpty>
+
+			<isNotEmpty prepend="and" property="userLoginName">
+				USER_LOGIN_NAME like 
+				'%$userLoginName$%'
+			</isNotEmpty>
+		</dynamic>
+		order by ID desc
+	</select>
+</sqlMap>

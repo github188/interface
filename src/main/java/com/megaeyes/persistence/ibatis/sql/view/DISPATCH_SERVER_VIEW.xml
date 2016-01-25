@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="DISPATCH_SERVER_VIEW" >
+  <resultMap id="abatorgenerated_DispatchServerResult" class="com.megaeyes.persistence.ibatis.model.DispatchServer" >
+  	<result column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="OPTIMISTIC_LOCK" jdbcType="DECIMAL" property="optimisticLock" />
+    <result column="F_NAME" jdbcType="VARCHAR" property="name" />
+    <result column="NAMING" jdbcType="VARCHAR" property="naming" />
+    <result column="INSTALL_LOCATION" jdbcType="VARCHAR" property="installLocation" />
+    <result column="NOTE" jdbcType="VARCHAR" property="note" />
+    <result column="DEVICE_NUMBER" jdbcType="VARCHAR" property="deviceNumber" />
+    <result column="IP" jdbcType="VARCHAR" property="ip" />
+    <result column="IP2" jdbcType="VARCHAR" property="ip2" />
+    <result column="VIDEOPORT" jdbcType="DECIMAL" property="videoport" />
+    <result column="MSGPORT" jdbcType="DECIMAL" property="msgport" />
+    <result column="LINK_TYPE" jdbcType="VARCHAR" property="linkType" />
+    <result column="HEART_CYCLE" jdbcType="DECIMAL" property="heartCycle" />
+    <result column="MAX_OUTPUT_AMOUNT" jdbcType="DECIMAL" property="maxOutputAmount" />
+    <result column="MAX_INPUT_AMOUNT" jdbcType="DECIMAL" property="maxInputAmount" />
+    <result column="RESERVED_OUTPUT_AMOUNT" jdbcType="DECIMAL" property="reservedOutputAmount" />
+    <result column="O_ORGAN_ID" jdbcType="VARCHAR" property="oOrganId" />
+    <result column="WEIGHT" jdbcType="VARCHAR" property="weight" />
+    <result column="STD_ID" jdbcType="VARCHAR" property="stdId" />
+    <result column="OWNER_SHIP" jdbcType="VARCHAR" property="ownerShip" />
+  </resultMap>
+  <select id="listDispatchServer" resultMap="abatorgenerated_DispatchServerResult">
+  	select ID, OPTIMISTIC_LOCK, F_NAME, NAMING, INSTALL_LOCATION, NOTE, DEVICE_NUMBER, IP, IP2,
+      VIDEOPORT, MSGPORT, LINK_TYPE, HEART_CYCLE, MAX_OUTPUT_AMOUNT, MAX_INPUT_AMOUNT,
+      RESERVED_OUTPUT_AMOUNT, O_ORGAN_ID, WEIGHT, STD_ID, OWNER_SHIP
+    from DISPATCH_SERVER
+  </select>
+</sqlMap>

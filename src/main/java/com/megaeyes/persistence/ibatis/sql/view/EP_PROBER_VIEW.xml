@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="EP_PROBER_VIEW">
+
+	<resultMap id="_EpRMonitorDeviceResult"
+		class="com.megaeyes.persistence.ibatis.vo.ListEpMonitorDeviceAndEpProberVO">
+		<result column="SERVERID" property="serverId" jdbcType="VARCHAR" />
+		<result column="ID" property="id" jdbcType="VARCHAR" />
+		<result column="CONTROL_SERVER_ID" property="controlServerId" jdbcType="VARCHAR" />
+		<result column="NAME" property="name" jdbcType="VARCHAR" />
+		<result column="CYCLE" property="cycle" jdbcType="DECIMAL" />
+		<result column="URL" property="url" jdbcType="VARCHAR" />
+		<result column="IS_WARN" property="isWarn" jdbcType="DECIMAL" />
+		<result column="PLC_IO_SAVE_CYCLE" property="plcIoSaveCycle"
+			jdbcType="DECIMAL" />
+		<result column="PLC_IO_SAVE_TYPE" property="plcIoSaveType"
+			jdbcType="VARCHAR" />
+	</resultMap>
+
+	<resultMap id="epProberVO" class="com.megaeyes.persistence.ibatis.vo.EpProberVO">
+		<result column="ID" property="id" jdbcType="VARCHAR" />
+		<result column="NAME" property="name" jdbcType="VARCHAR" />
+		<result column="GATHER_SERVER_ID" property="gatherServerId"
+			jdbcType="VARCHAR" />
+		<result column="GATHER_SERVER_IP" property="gatherServerIp"
+			jdbcType="VARCHAR" />
+		<result column="ORGAN_ID" property="organId" jdbcType="VARCHAR" />
+		<result column="TYPE" property="type" jdbcType="VARCHAR" />
+		<result column="PLC_IO_TYPE" property="typeId" jdbcType="VARCHAR" />
+		<result column="DEVICE_ID" property="deviceId" jdbcType="VARCHAR" />
+	</resultMap>
+
+
+	<resultMap class="com.megaeyes.persistence.ibatis.vo.ListVicIdVO"
+		id="_ListVicVOResult">
+		<result column="VIC_ID" jdbcType="VARCHAR" property="vicId" />
+	</resultMap>
+
+	<delete id="deleteEpProberByECSId" parameterClass="java.lang.String">
+		delete from
+		EP_PROBER where CONTROL_SERVER_ID=#id#
+	</delete>
+	<update id="updateEpControlServerByControlServerId">
+		update ep_control_server a set
+		a.ip = #ip:VARCHAR#,
+		a.port = #port:VARCHAR#
+		where a.id = #id:VARCHAR#
+	</update>
+
+	<update id="updateECSurlByProberId">
+		update ep_control_server a set
+		a.url = #url:VARCHAR#
+		where a.id = #id:VARCHAR#
+	</update>
+
+	<select id="selectControlServerIdByProberId" resultClass="java.lang.String">
+		select
+		a.CONTROL_SERVER_ID from ep_prober a where a.id = #id#
+	</select>
+
+	<select id="listEMDandEpProber" resultMap="_EpRMonitorDeviceResult">
+		select server.id as
+		serverId,prober.id,prober.CONTROL_SERVER_ID,prober.name,prober.cycle,ecs.url,prober.IS_WARN,prober.PLC_IO_SAVE_CYCLE,prober.PLC_IO_SAVE_TYPE
+		from ep_gather_server server,ep_prober prober,ep_r_monitor_device
+		ermd,ep_control_server ecs
+		where ermd.device_id = #deviceId# and ermd.monitor_id = prober.id and
+		prober.control_server_id = ecs.id
+		and ecs.gather_server_id = server.id
+	</select>
+
+
+
+	<select id="listProberByOrganId" resultMap="epProberVO">
+		select t.id,t.plc_io_type,t.organ_id,t.name,g.id as GATHER_SERVER_ID,g.ip as
+		GATHER_SERVER_IP,tt.type as TYPE, ermd.device_id as DEVICE_ID from ep_prober t,ep_gather_server g,ep_control_server
+		ecs,ep_prober_type tt, ep_r_monitor_device ermd  where
+		t.organ_id in (select id from organ org where org.path like
+		'%$organId$%') and
+		t.control_server_id = ecs.id and ecs.gather_server_id = g.id and t.EP_PROBER_TYPE_ID=tt.id
+    and ermd.monitor_id = t.id
+	</select>
+
+
+	<select id="listVicIdByProberId" resultMap="_ListVicVOResult">
+		select b.vic_id from EP_PROBER a,EP_R_PROBER_VIC b where a.id=b.prober_id
+		and b.prober_id=#proberId#
+	</select>
+
+</sqlMap>

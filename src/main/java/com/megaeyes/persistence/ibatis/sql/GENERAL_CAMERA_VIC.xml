@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="GENERAL_CAMERA_VIC">
+  <resultMap class="com.megaeyes.persistence.ibatis.model.GeneralCameraVic" id="_GeneralCameraVicResult">
+    <result column="VIDEO_INPUT_CHANNEL_ID" jdbcType="VARCHAR" property="videoInputChannelId" />
+    <result column="ADDRESS_NUMBER" jdbcType="VARCHAR" property="addressNumber" />
+  </resultMap>
+  <sql id="_Example_Where_Clause">
+    <iterate conjunction="or" prepend="where" property="oredCriteria" removeFirstPrepend="iterate">
+      <isEqual compareValue="true" property="oredCriteria[].valid">
+        (
+        <iterate conjunction="and" prepend="and" property="oredCriteria[].criteriaWithoutValue">
+          $oredCriteria[].criteriaWithoutValue[]$
+        </iterate>
+        <iterate conjunction="and" prepend="and" property="oredCriteria[].criteriaWithSingleValue">
+          $oredCriteria[].criteriaWithSingleValue[].condition$
+            #oredCriteria[].criteriaWithSingleValue[].value#
+        </iterate>
+        <iterate conjunction="and" prepend="and" property="oredCriteria[].criteriaWithListValue">
+          $oredCriteria[].criteriaWithListValue[].condition$
+          <iterate close=")" conjunction="," open="(" property="oredCriteria[].criteriaWithListValue[].values">
+            #oredCriteria[].criteriaWithListValue[].values[]#
+          </iterate>
+        </iterate>
+        <iterate conjunction="and" prepend="and" property="oredCriteria[].criteriaWithBetweenValue">
+          $oredCriteria[].criteriaWithBetweenValue[].condition$
+          #oredCriteria[].criteriaWithBetweenValue[].values[0]# and
+          #oredCriteria[].criteriaWithBetweenValue[].values[1]#
+        </iterate>
+        )
+      </isEqual>
+    </iterate>
+  </sql>
+  <select id="_selectByPrimaryKey" parameterClass="com.megaeyes.persistence.ibatis.model.GeneralCameraVic" resultMap="_GeneralCameraVicResult">
+    select VIDEO_INPUT_CHANNEL_ID, ADDRESS_NUMBER
+    from GENERAL_CAMERA_VIC
+    where VIDEO_INPUT_CHANNEL_ID = #videoInputChannelId:VARCHAR#
+  </select>
+  <select id="_selectByExample" parameterClass="com.megaeyes.persistence.ibatis.model.GeneralCameraVicExample" resultMap="_GeneralCameraVicResult">
+    select VIDEO_INPUT_CHANNEL_ID, ADDRESS_NUMBER
+    from GENERAL_CAMERA_VIC
+    <isParameterPresent>
+      <include refid="GENERAL_CAMERA_VIC._Example_Where_Clause" />
+      <isNotNull property="orderByClause">
+        order by $orderByClause$
+      </isNotNull>
+    </isParameterPresent>
+  </select>
+  <delete id="_deleteByPrimaryKey" parameterClass="com.megaeyes.persistence.ibatis.model.GeneralCameraVic">
+    delete from GENERAL_CAMERA_VIC
+    where VIDEO_INPUT_CHANNEL_ID = #videoInputChannelId:VARCHAR#
+  </delete>
+  <delete id="_deleteByExample" parameterClass="com.megaeyes.persistence.ibatis.model.GeneralCameraVicExample">
+    delete from GENERAL_CAMERA_VIC
+    <include refid="GENERAL_CAMERA_VIC._Example_Where_Clause" />
+  </delete>
+  <insert id="_insert" parameterClass="com.megaeyes.persistence.ibatis.model.GeneralCameraVic">
+    insert into GENERAL_CAMERA_VIC (VIDEO_INPUT_CHANNEL_ID, ADDRESS_NUMBER)
+    values (#videoInputChannelId:VARCHAR#, #addressNumber:VARCHAR#)
+  </insert>
+  <update id="_updateByPrimaryKey" parameterClass="com.megaeyes.persistence.ibatis.model.GeneralCameraVic">
+    update GENERAL_CAMERA_VIC
+    set ADDRESS_NUMBER = #addressNumber:VARCHAR#
+    where VIDEO_INPUT_CHANNEL_ID = #videoInputChannelId:VARCHAR#
+  </update>
+  <update id="_updateByPrimaryKeySelective" parameterClass="com.megaeyes.persistence.ibatis.model.GeneralCameraVic">
+    update GENERAL_CAMERA_VIC
+    <dynamic prepend="set">
+      <isNotNull prepend="," property="addressNumber">
+        ADDRESS_NUMBER = #addressNumber:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    where VIDEO_INPUT_CHANNEL_ID = #videoInputChannelId:VARCHAR#
+  </update>
+  <select id="_countByExample" parameterClass="com.megaeyes.persistence.ibatis.model.GeneralCameraVicExample" resultClass="java.lang.Integer">
+    select count(*) from GENERAL_CAMERA_VIC
+    <include refid="GENERAL_CAMERA_VIC._Example_Where_Clause" />
+  </select>
+  <update id="_updateByExampleSelective">
+    update GENERAL_CAMERA_VIC
+    <dynamic prepend="set">
+      <isNotNull prepend="," property="record.videoInputChannelId">
+        VIDEO_INPUT_CHANNEL_ID = #record.videoInputChannelId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.addressNumber">
+        ADDRESS_NUMBER = #record.addressNumber:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    <isParameterPresent>
+      <include refid="GENERAL_CAMERA_VIC._Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="_updateByExample">
+    update GENERAL_CAMERA_VIC
+    set VIDEO_INPUT_CHANNEL_ID = #record.videoInputChannelId:VARCHAR#,
+      ADDRESS_NUMBER = #record.addressNumber:VARCHAR#
+    <isParameterPresent>
+      <include refid="GENERAL_CAMERA_VIC._Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+</sqlMap>

@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="VIDEO_INPUT_CHANNEL_MODEL">
+  <resultMap class="com.megaeyes.persistence.ibatis.model.VideoInputChannelModel" id="_VideoInputChannelModelResult">
+    <result column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="OPTIMISTIC_LOCK" jdbcType="DECIMAL" property="optimisticLock" />
+    <result column="MANUFACTURER_ID" jdbcType="VARCHAR" property="manufacturerId" />
+    <result column="F_NAME" jdbcType="VARCHAR" property="name" />
+    <result column="HAS_PTZ" jdbcType="DECIMAL" property="hasPtz" />
+    <result column="HAS_PTZ_APERTURE" jdbcType="DECIMAL" property="hasPtzAperture" />
+    <result column="HAS_PTZ_FOCI" jdbcType="DECIMAL" property="hasPtzFoci" />
+    <result column="HAS_PTZ_ZOOM" jdbcType="DECIMAL" property="hasPtzZoom" />
+    <result column="HAS_PTZ_ASW_1" jdbcType="DECIMAL" property="hasPtzAsw1" />
+    <result column="HAS_PTZ_ASW_2" jdbcType="DECIMAL" property="hasPtzAsw2" />
+    <result column="HAS_PTZ_ASW_3" jdbcType="DECIMAL" property="hasPtzAsw3" />
+    <result column="HAS_PTZ_ASW_4" jdbcType="DECIMAL" property="hasPtzAsw4" />
+    <result column="HAS_PTZ_AUTO" jdbcType="DECIMAL" property="hasPtzAuto" />
+    <result column="HAS_SENSE" jdbcType="DECIMAL" property="hasSense" />
+    <result column="HAS_SHELTER" jdbcType="DECIMAL" property="hasShelter" />
+    <result column="HAS_TIME_LABEL" jdbcType="DECIMAL" property="hasTimeLabel" />
+    <result column="HAS_TEXT_LABEL" jdbcType="DECIMAL" property="hasTextLabel" />
+    <result column="NOTE" jdbcType="VARCHAR" property="note" />
+  </resultMap>
+  <sql id="_Example_Where_Clause">
+    <iterate conjunction="or" prepend="where" property="oredCriteria" removeFirstPrepend="iterate">
+      <isEqual compareValue="true" property="oredCriteria[].valid">
+        (
+        <iterate conjunction="and" prepend="and" property="oredCriteria[].criteriaWithoutValue">
+          $oredCriteria[].criteriaWithoutValue[]$
+        </iterate>
+        <iterate conjunction="and" prepend="and" property="oredCriteria[].criteriaWithSingleValue">
+          $oredCriteria[].criteriaWithSingleValue[].condition$
+            #oredCriteria[].criteriaWithSingleValue[].value#
+        </iterate>
+        <iterate conjunction="and" prepend="and" property="oredCriteria[].criteriaWithListValue">
+          $oredCriteria[].criteriaWithListValue[].condition$
+          <iterate close=")" conjunction="," open="(" property="oredCriteria[].criteriaWithListValue[].values">
+            #oredCriteria[].criteriaWithListValue[].values[]#
+          </iterate>
+        </iterate>
+        <iterate conjunction="and" prepend="and" property="oredCriteria[].criteriaWithBetweenValue">
+          $oredCriteria[].criteriaWithBetweenValue[].condition$
+          #oredCriteria[].criteriaWithBetweenValue[].values[0]# and
+          #oredCriteria[].criteriaWithBetweenValue[].values[1]#
+        </iterate>
+        )
+      </isEqual>
+    </iterate>
+  </sql>
+  <select id="_selectByPrimaryKey" parameterClass="com.megaeyes.persistence.ibatis.model.VideoInputChannelModel" resultMap="_VideoInputChannelModelResult">
+    select ID, OPTIMISTIC_LOCK, MANUFACTURER_ID, F_NAME, HAS_PTZ, HAS_PTZ_APERTURE, HAS_PTZ_FOCI,
+      HAS_PTZ_ZOOM, HAS_PTZ_ASW_1, HAS_PTZ_ASW_2, HAS_PTZ_ASW_3, HAS_PTZ_ASW_4, HAS_PTZ_AUTO,
+      HAS_SENSE, HAS_SHELTER, HAS_TIME_LABEL, HAS_TEXT_LABEL, NOTE
+    from VIDEO_INPUT_CHANNEL_MODEL
+    where ID = #id:VARCHAR#
+  </select>
+  <select id="_selectByExample" parameterClass="com.megaeyes.persistence.ibatis.model.VideoInputChannelModelExample" resultMap="_VideoInputChannelModelResult">
+    select ID, OPTIMISTIC_LOCK, MANUFACTURER_ID, F_NAME, HAS_PTZ, HAS_PTZ_APERTURE, HAS_PTZ_FOCI,
+      HAS_PTZ_ZOOM, HAS_PTZ_ASW_1, HAS_PTZ_ASW_2, HAS_PTZ_ASW_3, HAS_PTZ_ASW_4, HAS_PTZ_AUTO,
+      HAS_SENSE, HAS_SHELTER, HAS_TIME_LABEL, HAS_TEXT_LABEL, NOTE
+    from VIDEO_INPUT_CHANNEL_MODEL
+    <isParameterPresent>
+      <include refid="VIDEO_INPUT_CHANNEL_MODEL._Example_Where_Clause" />
+      <isNotNull property="orderByClause">
+        order by $orderByClause$
+      </isNotNull>
+    </isParameterPresent>
+  </select>
+  <delete id="_deleteByPrimaryKey" parameterClass="com.megaeyes.persistence.ibatis.model.VideoInputChannelModel">
+    delete from VIDEO_INPUT_CHANNEL_MODEL
+    where ID = #id:VARCHAR#
+  </delete>
+  <delete id="_deleteByExample" parameterClass="com.megaeyes.persistence.ibatis.model.VideoInputChannelModelExample">
+    delete from VIDEO_INPUT_CHANNEL_MODEL
+    <include refid="VIDEO_INPUT_CHANNEL_MODEL._Example_Where_Clause" />
+  </delete>
+  <insert id="_insert" parameterClass="com.megaeyes.persistence.ibatis.model.VideoInputChannelModel">
+    insert into VIDEO_INPUT_CHANNEL_MODEL (ID, OPTIMISTIC_LOCK, MANUFACTURER_ID, F_NAME, HAS_PTZ,
+      HAS_PTZ_APERTURE, HAS_PTZ_FOCI, HAS_PTZ_ZOOM, HAS_PTZ_ASW_1, HAS_PTZ_ASW_2, HAS_PTZ_ASW_3,
+      HAS_PTZ_ASW_4, HAS_PTZ_AUTO, HAS_SENSE, HAS_SHELTER, HAS_TIME_LABEL, HAS_TEXT_LABEL, NOTE)
+    values (#id:VARCHAR#, #optimisticLock:DECIMAL#, #manufacturerId:VARCHAR#, #name:VARCHAR#,
+      #hasPtz:DECIMAL#, #hasPtzAperture:DECIMAL#, #hasPtzFoci:DECIMAL#, #hasPtzZoom:DECIMAL#,
+      #hasPtzAsw1:DECIMAL#, #hasPtzAsw2:DECIMAL#, #hasPtzAsw3:DECIMAL#, #hasPtzAsw4:DECIMAL#,
+      #hasPtzAuto:DECIMAL#, #hasSense:DECIMAL#, #hasShelter:DECIMAL#, #hasTimeLabel:DECIMAL#,
+      #hasTextLabel:DECIMAL#, #note:VARCHAR#)
+  </insert>
+  <update id="_updateByPrimaryKey" parameterClass="com.megaeyes.persistence.ibatis.model.VideoInputChannelModel">
+    update VIDEO_INPUT_CHANNEL_MODEL
+    set OPTIMISTIC_LOCK = #optimisticLock:DECIMAL#,
+      MANUFACTURER_ID = #manufacturerId:VARCHAR#,
+      F_NAME = #name:VARCHAR#,
+      HAS_PTZ = #hasPtz:DECIMAL#,
+      HAS_PTZ_APERTURE = #hasPtzAperture:DECIMAL#,
+      HAS_PTZ_FOCI = #hasPtzFoci:DECIMAL#,
+      HAS_PTZ_ZOOM = #hasPtzZoom:DECIMAL#,
+      HAS_PTZ_ASW_1 = #hasPtzAsw1:DECIMAL#,
+      HAS_PTZ_ASW_2 = #hasPtzAsw2:DECIMAL#,
+      HAS_PTZ_ASW_3 = #hasPtzAsw3:DECIMAL#,
+      HAS_PTZ_ASW_4 = #hasPtzAsw4:DECIMAL#,
+      HAS_PTZ_AUTO = #hasPtzAuto:DECIMAL#,
+      HAS_SENSE = #hasSense:DECIMAL#,
+      HAS_SHELTER = #hasShelter:DECIMAL#,
+      HAS_TIME_LABEL = #hasTimeLabel:DECIMAL#,
+      HAS_TEXT_LABEL = #hasTextLabel:DECIMAL#,
+      NOTE = #note:VARCHAR#
+    where ID = #id:VARCHAR#
+  </update>
+  <update id="_updateByPrimaryKeySelective" parameterClass="com.megaeyes.persistence.ibatis.model.VideoInputChannelModel">
+    update VIDEO_INPUT_CHANNEL_MODEL
+    <dynamic prepend="set">
+      <isNotNull prepend="," property="optimisticLock">
+        OPTIMISTIC_LOCK = #optimisticLock:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="manufacturerId">
+        MANUFACTURER_ID = #manufacturerId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="name">
+        F_NAME = #name:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="hasPtz">
+        HAS_PTZ = #hasPtz:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="hasPtzAperture">
+        HAS_PTZ_APERTURE = #hasPtzAperture:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="hasPtzFoci">
+        HAS_PTZ_FOCI = #hasPtzFoci:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="hasPtzZoom">
+        HAS_PTZ_ZOOM = #hasPtzZoom:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="hasPtzAsw1">
+        HAS_PTZ_ASW_1 = #hasPtzAsw1:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="hasPtzAsw2">
+        HAS_PTZ_ASW_2 = #hasPtzAsw2:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="hasPtzAsw3">
+        HAS_PTZ_ASW_3 = #hasPtzAsw3:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="hasPtzAsw4">
+        HAS_PTZ_ASW_4 = #hasPtzAsw4:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="hasPtzAuto">
+        HAS_PTZ_AUTO = #hasPtzAuto:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="hasSense">
+        HAS_SENSE = #hasSense:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="hasShelter">
+        HAS_SHELTER = #hasShelter:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="hasTimeLabel">
+        HAS_TIME_LABEL = #hasTimeLabel:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="hasTextLabel">
+        HAS_TEXT_LABEL = #hasTextLabel:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="note">
+        NOTE = #note:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    where ID = #id:VARCHAR#
+  </update>
+  <select id="_countByExample" parameterClass="com.megaeyes.persistence.ibatis.model.VideoInputChannelModelExample" resultClass="java.lang.Integer">
+    select count(*) from VIDEO_INPUT_CHANNEL_MODEL
+    <include refid="VIDEO_INPUT_CHANNEL_MODEL._Example_Where_Clause" />
+  </select>
+  <update id="_updateByExampleSelective">
+    update VIDEO_INPUT_CHANNEL_MODEL
+    <dynamic prepend="set">
+      <isNotNull prepend="," property="record.id">
+        ID = #record.id:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.optimisticLock">
+        OPTIMISTIC_LOCK = #record.optimisticLock:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.manufacturerId">
+        MANUFACTURER_ID = #record.manufacturerId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.name">
+        F_NAME = #record.name:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.hasPtz">
+        HAS_PTZ = #record.hasPtz:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.hasPtzAperture">
+        HAS_PTZ_APERTURE = #record.hasPtzAperture:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.hasPtzFoci">
+        HAS_PTZ_FOCI = #record.hasPtzFoci:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.hasPtzZoom">
+        HAS_PTZ_ZOOM = #record.hasPtzZoom:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.hasPtzAsw1">
+        HAS_PTZ_ASW_1 = #record.hasPtzAsw1:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.hasPtzAsw2">
+        HAS_PTZ_ASW_2 = #record.hasPtzAsw2:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.hasPtzAsw3">
+        HAS_PTZ_ASW_3 = #record.hasPtzAsw3:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.hasPtzAsw4">
+        HAS_PTZ_ASW_4 = #record.hasPtzAsw4:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.hasPtzAuto">
+        HAS_PTZ_AUTO = #record.hasPtzAuto:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.hasSense">
+        HAS_SENSE = #record.hasSense:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.hasShelter">
+        HAS_SHELTER = #record.hasShelter:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.hasTimeLabel">
+        HAS_TIME_LABEL = #record.hasTimeLabel:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.hasTextLabel">
+        HAS_TEXT_LABEL = #record.hasTextLabel:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.note">
+        NOTE = #record.note:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    <isParameterPresent>
+      <include refid="VIDEO_INPUT_CHANNEL_MODEL._Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="_updateByExample">
+    update VIDEO_INPUT_CHANNEL_MODEL
+    set ID = #record.id:VARCHAR#,
+      OPTIMISTIC_LOCK = #record.optimisticLock:DECIMAL#,
+      MANUFACTURER_ID = #record.manufacturerId:VARCHAR#,
+      F_NAME = #record.name:VARCHAR#,
+      HAS_PTZ = #record.hasPtz:DECIMAL#,
+      HAS_PTZ_APERTURE = #record.hasPtzAperture:DECIMAL#,
+      HAS_PTZ_FOCI = #record.hasPtzFoci:DECIMAL#,
+      HAS_PTZ_ZOOM = #record.hasPtzZoom:DECIMAL#,
+      HAS_PTZ_ASW_1 = #record.hasPtzAsw1:DECIMAL#,
+      HAS_PTZ_ASW_2 = #record.hasPtzAsw2:DECIMAL#,
+      HAS_PTZ_ASW_3 = #record.hasPtzAsw3:DECIMAL#,
+      HAS_PTZ_ASW_4 = #record.hasPtzAsw4:DECIMAL#,
+      HAS_PTZ_AUTO = #record.hasPtzAuto:DECIMAL#,
+      HAS_SENSE = #record.hasSense:DECIMAL#,
+      HAS_SHELTER = #record.hasShelter:DECIMAL#,
+      HAS_TIME_LABEL = #record.hasTimeLabel:DECIMAL#,
+      HAS_TEXT_LABEL = #record.hasTextLabel:DECIMAL#,
+      NOTE = #record.note:VARCHAR#
+    <isParameterPresent>
+      <include refid="VIDEO_INPUT_CHANNEL_MODEL._Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+</sqlMap>

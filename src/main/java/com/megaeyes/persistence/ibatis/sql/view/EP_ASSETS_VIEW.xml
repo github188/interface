@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="EP_ASSETS_VIEW" >
+  <resultMap id="_EpAssetsResult" class="com.megaeyes.persistence.ibatis.vo.EpAssetsAndDeviceVO" >
+    <result column="ID" property="id" jdbcType="VARCHAR" />
+     <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="TYPE" property="type" jdbcType="DECIMAL" />
+	<!-- <result column="TYPE" property="type_device" jdbcType="DECIMAL" /> -->
+    <result column="USE_TIME" property="useTime" jdbcType="DECIMAL" />
+    <result column="EXPIRATION_TIME" property="expirationTime" jdbcType="DECIMAL" />
+    <result column="SIGNIFICANT_LEVEL" property="significantLevel" jdbcType="DECIMAL" />
+    <result column="DEVICE_NUMBER" property="deviceNumber" jdbcType="VARCHAR" />
+    <result column="ORGAN_ID" property="organId" jdbcType="VARCHAR" />
+     <result column="NOTE" property="note" jdbcType="VARCHAR" />
+     <result column="PARENT_ID" property="parentId" jdbcType="VARCHAR" />
+     <result column="INSTALL_LOCATION" property="installLocation" jdbcType="VARCHAR" />
+ </resultMap>
+  
+  <resultMap class="com.megaeyes.persistence.ibatis.vo.ListVicVO" id="_ListVicVOResult">
+    <result column="MONITOR_ID" jdbcType="VARCHAR" property="monitorId" />
+  </resultMap>
+  
+  <select id="listEpAssets" resultMap="_EpAssetsResult">
+		select b.ID,b.NAME,b.ORGAN_ID,b.PARENT_ID,b.NOTE,a.TYPE ,a.USE_TIME,a.EXPIRATION_TIME,a.INSTALL_LOCATION,
+		a.SIGNIFICANT_LEVEL,a.DEVICE_NUMBER from EP_ASSETS a,EP_DEVICE b where b.ID = a.ID and b.TYPE = 1
+	</select>
+	
+	<select id="listEAByOrganId" resultMap="_EpAssetsResult">
+			select b.ID,b.NAME,b.ORGAN_ID,b.PARENT_ID,b.NOTE,a.TYPE,a.USE_TIME,a.EXPIRATION_TIME,a.INSTALL_LOCATION,
+		a.SIGNIFICANT_LEVEL,a.DEVICE_NUMBER from EP_ASSETS a,EP_DEVICE b where b.ID = a.ID and b.ORGAN_ID = #organId# and b.TYPE = 1
+	</select>
+	
+	<select id="listVicByAssetsId" resultMap="_ListVicVOResult">
+			select b.monitor_id from EP_MONITOR_DEVICE a, EP_R_MONITOR_DEVICE b where a.id=b.monitor_id and b.device_id=#assetsId#
+	</select>
+</sqlMap>
+  

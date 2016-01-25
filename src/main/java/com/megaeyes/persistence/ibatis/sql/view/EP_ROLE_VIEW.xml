@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="EP_ROLE_VIEW">
+	<resultMap class="com.megaeyes.persistence.ibatis.model.EpRole"
+		id="roleresult">
+		<result column="ID" jdbcType="VARCHAR" property="id" />
+		<result column="NAME" jdbcType="VARCHAR" property="name" />
+		<result column="NOTE" jdbcType="VARCHAR" property="note" />
+		<result column="ORGAN_ID" jdbcType="VARCHAR" property="organId" />
+		<result column="IS_SUSPENDED" jdbcType="DECIMAL" property="isSuspended" />
+		<result column="CREATE_USER_NAME" jdbcType="VARCHAR" property="createUserName" />
+		<result column="TYPE" jdbcType="DECIMAL" property="type" />
+	</resultMap>
+	<resultMap class="com.megaeyes.persistence.ibatis.vo.ListOperationByRoleId"
+		id="OperationByRoleId">
+		<result column="operation_id" jdbcType="VARCHAR" property="operationId" />
+		<result column="role_id" jdbcType="VARCHAR" property="roleId" />
+		<result column="role_name" jdbcType="VARCHAR" property="roleName" />
+		<result column="organ_id" jdbcType="VARCHAR" property="organId" />
+		<result column="create_user_name" jdbcType="VARCHAR" property="createUserName" />
+		<result column="operation_name" jdbcType="VARCHAR" property="operationName" />
+		<result column="note" jdbcType="DECIMAL" property="note" />
+		<result column="operation_parent_id" jdbcType="VARCHAR"
+			property="operationParentId" />
+
+	</resultMap>
+	<select id="ListRoleByOrganId" resultMap="roleresult">
+		select * from ep_role
+		where organ_id=#organId#
+	</select>
+	<select id="listRoleByUserId" resultMap="roleresult">
+		select
+		a.ID,a.NAME,a.NOTE,a.ORGAN_ID,a.IS_SUSPENDED,a.CREATE_USER_NAME,a.TYPE
+		from ep_role
+		a where a.id in(select b.role_id from ep_r_user_role b
+		where b.user_id=#userId#)
+	</select>
+	<select id="listOperationByRoleId" resultMap="OperationByRoleId">
+			select  b.id operation_id, a.id
+		role_id,a.name role_Name,a.organ_id
+		,a.create_user_name,b.name
+		operation_name
+		,b.note,b.parent_id operation_parent_id from ep_role
+		a,ep_operation
+		b,ep_r_role_operation c where a.id=c.role_id and
+		b.id=c.operation_id and a.id=#roleId#  order by c.operation_id
+ 
+  <!--  union  all 
+		select  b.id operation_id, a.id
+		role_id,a.name role_Name,a.organ_id
+		,a.create_user_name,b.name
+		operation_name
+		,b.note,b.parent_id operation_parent_id from ep_role
+		a,ep_operation
+		b,ep_r_role_operation c where a.id=c.role_id and
+		b.parent_id=c.operation_id and  a.id=#roleId#
+ -->
+	</select>
+</sqlMap>

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="EP_R_MAP_DEVICE_VIEW">
+	<resultMap class="com.megaeyes.persistence.ibatis.vo.EpRMapDeviceVO" id="listMapDevices">
+		<result column="DEVICE_ID" jdbcType="VARCHAR" property="deviceId" />
+		<result column="NAME" jdbcType="VARCHAR" property="name" />
+		<result column="DEVICE_TYPE" jdbcType="VARCHAR" property="deviceType" />
+		<result column="COORDINATE_X" jdbcType="VARCHAR" property="x" />
+		<result column="COORDINATE_Y" jdbcType="VARCHAR" property="y" />
+		<result column="LEFT" jdbcType="VARCHAR" property="left" />
+		<result column="RIGHT" jdbcType="VARCHAR" property="right" />
+		<result column="TOP" jdbcType="VARCHAR" property="top" />
+		<result column="BOTTOM" jdbcType="VARCHAR" property="bottom" />
+		<result column="NOTE" jdbcType="VARCHAR" property="note" />
+	</resultMap>
+	
+	<select id="listMapEpDevices" resultMap="listMapDevices">		
+		select r.device_id,r.left,r.right,r.top,r.bottom, d.name, d.note,r.device_type, r.coordinate_x, r.coordinate_y 
+		from ep_r_map_device r, ep_device d
+		where r.device_id = d.id
+		and r.device_type = '5'
+		and r.ep_map_id = #mapId:VARCHAR#
+	</select>
+	
+	<select id="listMapVics" resultMap="listMapDevices">
+		select r.device_id,r.left,r.right,r.top,r.bottom, v.f_name as name,v.note, r.device_type, r.coordinate_x, r.coordinate_y 
+		from ep_r_map_device r, video_input_channel v
+		where r.device_id = v.id
+		and r.device_type = '1'
+		and r.ep_map_id = #mapId:VARCHAR#
+	</select>
+	
+	<select id="listMapOrgans" resultMap="listMapDevices">
+		select r.device_id,r.left,r.right,r.top,r.bottom, v.f_name as name,'' as note, r.device_type, r.coordinate_x, r.coordinate_y 
+		from ep_r_map_device r, organ v
+		where r.device_id = v.id
+		and r.device_type = '0'
+		and r.ep_map_id = #mapId:VARCHAR#
+	</select>
+	
+	<select id="listMapProbers" resultMap="listMapDevices">
+		select r.device_id,r.left,r.right,r.top,r.bottom, v.name as name, v.note, r.device_type, r.coordinate_x, r.coordinate_y 
+		from ep_r_map_device r, ep_prober v
+		where r.device_id = v.id
+		and r.device_type in ('2','3','4')
+		and r.ep_map_id = #mapId:VARCHAR#
+	</select>
+	
+	<select id="listMapAics" resultMap="listMapDevices">
+		select r.device_id,r.left,r.right,r.top,r.bottom, v.f_name as name,v.note, r.device_type, r.coordinate_x, r.coordinate_y 
+		from ep_r_map_device r, alarm_input_channel v
+		where r.device_id = v.id
+		and r.device_type = '6'
+		and r.ep_map_id = #mapId:VARCHAR#
+	</select>
+	
+	<select id="listMapAocs" resultMap="listMapDevices">
+		select r.device_id,r.left,r.right,r.top,r.bottom, v.f_name as name,v.note, r.device_type, r.coordinate_x, r.coordinate_y 
+		from ep_r_map_device r, alarm_output_channel v
+		where r.device_id = v.id
+		and r.device_type = '7'
+		and r.ep_map_id = #mapId:VARCHAR#
+	</select>
+	
+	<select id="listMapDvss" resultMap="listMapDevices">
+		select r.device_id,r.left,r.right,r.top,r.bottom, v.f_name as name,v.note, r.device_type, r.coordinate_x, r.coordinate_y 
+		from ep_r_map_device r, video_input_server v
+		where r.device_id = v.id
+		and r.device_type = '9'
+		and r.ep_map_id = #mapId:VARCHAR#
+	</select>
+	
+	<select id="selectCount" resultClass="java.lang.Integer">
+		select count(1) from ep_r_map_device
+		where ep_map_id = #mapId:VARCHAR#
+		and device_id = #deviceId:VARCHAR#
+		and device_type = #deviceType:VARCHAR#
+	</select>
+	
+	<insert id="insert">
+		insert into ep_r_map_device (ep_map_id, device_id, device_type, coordinate_x, coordinate_y,left,right,top,bottom) 
+		values (#mapId:VARCHAR#, #deviceId:VARCHAR#, #deviceType:VARCHAR#, #x:VARCHAR#, #y:VARCHAR#, #left:VARCHAR#, #right:VARCHAR#, #top:VARCHAR#, #bottom:VARCHAR#)
+	</insert>
+	
+	<update id="update">
+		update ep_r_map_device set
+		left = #left:VARCHAR#,
+		right = #right:VARCHAR#,
+		top = #top:VARCHAR#,
+		bottom = #bottom:VARCHAR#,
+		coordinate_x = #x:VARCHAR#,
+		coordinate_y = #y:VARCHAR#
+		where ep_map_id = #mapId:VARCHAR#
+		and device_id = #deviceId:VARCHAR#		
+		and device_type = #deviceType:VARCHAR#
+	</update>
+	<delete id="deleteEpRMapDeviceByDeviceId" >
+    	delete from ep_r_map_device where device_id = #deviceId# and device_type = #deviceType# 
+    	<isNotNull property="mapId">
+			and ep_map_id = #mapId#    	
+    	</isNotNull>
+  	</delete>
+  	
+  	<delete id="deleteEpRMapDeviceByMapId" >
+    	delete from ep_r_map_device where ep_map_id = #mapId#
+  	</delete>
+</sqlMap>

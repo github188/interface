@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="R_USER_VIS">
+  <resultMap class="com.megaeyes.persistence.ibatis.model.RUserVis" id="_RUserVisResult">
+    <result column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="USERID" jdbcType="VARCHAR" property="userid" />
+    <result column="VISID" jdbcType="VARCHAR" property="visid" />
+    <result column="TYPE" jdbcType="DECIMAL" property="type" />
+    <result column="PERMISSION" jdbcType="VARCHAR" property="permission" />
+  </resultMap>
+  <sql id="_Example_Where_Clause">
+    <iterate conjunction="or" prepend="where" property="oredCriteria" removeFirstPrepend="iterate">
+      <isEqual compareValue="true" property="oredCriteria[].valid">
+        (
+        <iterate conjunction="and" prepend="and" property="oredCriteria[].criteriaWithoutValue">
+          $oredCriteria[].criteriaWithoutValue[]$
+        </iterate>
+        <iterate conjunction="and" prepend="and" property="oredCriteria[].criteriaWithSingleValue">
+          $oredCriteria[].criteriaWithSingleValue[].condition$
+            #oredCriteria[].criteriaWithSingleValue[].value#
+        </iterate>
+        <iterate conjunction="and" prepend="and" property="oredCriteria[].criteriaWithListValue">
+          $oredCriteria[].criteriaWithListValue[].condition$
+          <iterate close=")" conjunction="," open="(" property="oredCriteria[].criteriaWithListValue[].values">
+            #oredCriteria[].criteriaWithListValue[].values[]#
+          </iterate>
+        </iterate>
+        <iterate conjunction="and" prepend="and" property="oredCriteria[].criteriaWithBetweenValue">
+          $oredCriteria[].criteriaWithBetweenValue[].condition$
+          #oredCriteria[].criteriaWithBetweenValue[].values[0]# and
+          #oredCriteria[].criteriaWithBetweenValue[].values[1]#
+        </iterate>
+        )
+      </isEqual>
+    </iterate>
+  </sql>
+  <select id="_selectByPrimaryKey" parameterClass="com.megaeyes.persistence.ibatis.model.RUserVis" resultMap="_RUserVisResult">
+    select ID, USERID, VISID, TYPE, PERMISSION
+    from R_USER_VIS
+    where ID = #id:VARCHAR#
+  </select>
+  <select id="_selectByExample" parameterClass="com.megaeyes.persistence.ibatis.model.RUserVisExample" resultMap="_RUserVisResult">
+    select ID, USERID, VISID, TYPE, PERMISSION
+    from R_USER_VIS
+    <isParameterPresent>
+      <include refid="R_USER_VIS._Example_Where_Clause" />
+      <isNotNull property="orderByClause">
+        order by $orderByClause$
+      </isNotNull>
+    </isParameterPresent>
+  </select>
+  <delete id="_deleteByPrimaryKey" parameterClass="com.megaeyes.persistence.ibatis.model.RUserVis">
+    delete from R_USER_VIS
+    where ID = #id:VARCHAR#
+  </delete>
+  <delete id="_deleteByExample" parameterClass="com.megaeyes.persistence.ibatis.model.RUserVisExample">
+    delete from R_USER_VIS
+    <include refid="R_USER_VIS._Example_Where_Clause" />
+  </delete>
+  <insert id="_insert" parameterClass="com.megaeyes.persistence.ibatis.model.RUserVis">
+    insert into R_USER_VIS (ID, USERID, VISID, TYPE, PERMISSION)
+    values (#id:VARCHAR#, #userid:VARCHAR#, #visid:VARCHAR#, #type:DECIMAL#, #permission:VARCHAR#)
+  </insert>
+  <update id="_updateByPrimaryKey" parameterClass="com.megaeyes.persistence.ibatis.model.RUserVis">
+    update R_USER_VIS
+    set USERID = #userid:VARCHAR#,
+      VISID = #visid:VARCHAR#,
+      TYPE = #type:DECIMAL#,
+      PERMISSION = #permission:VARCHAR#
+    where ID = #id:VARCHAR#
+  </update>
+  <update id="_updateByPrimaryKeySelective" parameterClass="com.megaeyes.persistence.ibatis.model.RUserVis">
+    update R_USER_VIS
+    <dynamic prepend="set">
+      <isNotNull prepend="," property="userid">
+        USERID = #userid:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="visid">
+        VISID = #visid:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="type">
+        TYPE = #type:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="permission">
+        PERMISSION = #permission:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    where ID = #id:VARCHAR#
+  </update>
+  <select id="_countByExample" parameterClass="com.megaeyes.persistence.ibatis.model.RUserVisExample" resultClass="java.lang.Integer">
+    select count(*) from R_USER_VIS
+    <include refid="R_USER_VIS._Example_Where_Clause" />
+  </select>
+  <update id="_updateByExampleSelective">
+    update R_USER_VIS
+    <dynamic prepend="set">
+      <isNotNull prepend="," property="record.id">
+        ID = #record.id:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.userid">
+        USERID = #record.userid:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.visid">
+        VISID = #record.visid:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.type">
+        TYPE = #record.type:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.permission">
+        PERMISSION = #record.permission:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    <isParameterPresent>
+      <include refid="R_USER_VIS._Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="_updateByExample">
+    update R_USER_VIS
+    set ID = #record.id:VARCHAR#,
+      USERID = #record.userid:VARCHAR#,
+      VISID = #record.visid:VARCHAR#,
+      TYPE = #record.type:DECIMAL#,
+      PERMISSION = #record.permission:VARCHAR#
+    <isParameterPresent>
+      <include refid="R_USER_VIS._Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+</sqlMap>

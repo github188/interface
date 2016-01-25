@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="VIDEO_DISPLAY_DEVICE">
+  <resultMap class="com.megaeyes.persistence.ibatis.model.VideoDisplayDevice" id="_VideoDisplayDeviceResult">
+    <result column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="OPTIMISTIC_LOCK" jdbcType="DECIMAL" property="optimisticLock" />
+    <result column="F_NAME" jdbcType="VARCHAR" property="name" />
+    <result column="NAMING" jdbcType="VARCHAR" property="naming" />
+    <result column="INSTALL_LOCATION" jdbcType="VARCHAR" property="installLocation" />
+    <result column="NOTE" jdbcType="VARCHAR" property="note" />
+    <result column="DEVICE_NUMBER" jdbcType="VARCHAR" property="deviceNumber" />
+    <result column="IP" jdbcType="VARCHAR" property="ip" />
+    <result column="LINK_TYPE" jdbcType="VARCHAR" property="linkType" />
+    <result column="HEART_CYCLE" jdbcType="DECIMAL" property="heartCycle" />
+    <result column="REBOOT_TIME" jdbcType="VARCHAR" property="rebootTime" />
+    <result column="REBOOT_CYCLE" jdbcType="DECIMAL" property="rebootCycle" />
+    <result column="VIDEO_INTPUT_AMOUNT" jdbcType="DECIMAL" property="videoIntputAmount" />
+    <result column="VIDEO_OUTPUT_AMOUNT" jdbcType="DECIMAL" property="videoOutputAmount" />
+    <result column="COMPANY_ID" jdbcType="VARCHAR" property="companyId" />
+    <result column="O_ORGAN_ID" jdbcType="VARCHAR" property="oOrganId" />
+  </resultMap>
+  <sql id="_Example_Where_Clause">
+    <iterate conjunction="or" prepend="where" property="oredCriteria" removeFirstPrepend="iterate">
+      <isEqual compareValue="true" property="oredCriteria[].valid">
+        (
+        <iterate conjunction="and" prepend="and" property="oredCriteria[].criteriaWithoutValue">
+          $oredCriteria[].criteriaWithoutValue[]$
+        </iterate>
+        <iterate conjunction="and" prepend="and" property="oredCriteria[].criteriaWithSingleValue">
+          $oredCriteria[].criteriaWithSingleValue[].condition$
+            #oredCriteria[].criteriaWithSingleValue[].value#
+        </iterate>
+        <iterate conjunction="and" prepend="and" property="oredCriteria[].criteriaWithListValue">
+          $oredCriteria[].criteriaWithListValue[].condition$
+          <iterate close=")" conjunction="," open="(" property="oredCriteria[].criteriaWithListValue[].values">
+            #oredCriteria[].criteriaWithListValue[].values[]#
+          </iterate>
+        </iterate>
+        <iterate conjunction="and" prepend="and" property="oredCriteria[].criteriaWithBetweenValue">
+          $oredCriteria[].criteriaWithBetweenValue[].condition$
+          #oredCriteria[].criteriaWithBetweenValue[].values[0]# and
+          #oredCriteria[].criteriaWithBetweenValue[].values[1]#
+        </iterate>
+        )
+      </isEqual>
+    </iterate>
+  </sql>
+  <select id="_selectByPrimaryKey" parameterClass="com.megaeyes.persistence.ibatis.model.VideoDisplayDevice" resultMap="_VideoDisplayDeviceResult">
+    select ID, OPTIMISTIC_LOCK, F_NAME, NAMING, INSTALL_LOCATION, NOTE, DEVICE_NUMBER, IP,
+      LINK_TYPE, HEART_CYCLE, REBOOT_TIME, REBOOT_CYCLE, VIDEO_INTPUT_AMOUNT, VIDEO_OUTPUT_AMOUNT,
+      COMPANY_ID, O_ORGAN_ID
+    from VIDEO_DISPLAY_DEVICE
+    where ID = #id:VARCHAR#
+  </select>
+  <select id="_selectByExample" parameterClass="com.megaeyes.persistence.ibatis.model.VideoDisplayDeviceExample" resultMap="_VideoDisplayDeviceResult">
+    select ID, OPTIMISTIC_LOCK, F_NAME, NAMING, INSTALL_LOCATION, NOTE, DEVICE_NUMBER, IP,
+      LINK_TYPE, HEART_CYCLE, REBOOT_TIME, REBOOT_CYCLE, VIDEO_INTPUT_AMOUNT, VIDEO_OUTPUT_AMOUNT,
+      COMPANY_ID, O_ORGAN_ID
+    from VIDEO_DISPLAY_DEVICE
+    <isParameterPresent>
+      <include refid="VIDEO_DISPLAY_DEVICE._Example_Where_Clause" />
+      <isNotNull property="orderByClause">
+        order by $orderByClause$
+      </isNotNull>
+    </isParameterPresent>
+  </select>
+  <delete id="_deleteByPrimaryKey" parameterClass="com.megaeyes.persistence.ibatis.model.VideoDisplayDevice">
+    delete from VIDEO_DISPLAY_DEVICE
+    where ID = #id:VARCHAR#
+  </delete>
+  <delete id="_deleteByExample" parameterClass="com.megaeyes.persistence.ibatis.model.VideoDisplayDeviceExample">
+    delete from VIDEO_DISPLAY_DEVICE
+    <include refid="VIDEO_DISPLAY_DEVICE._Example_Where_Clause" />
+  </delete>
+  <insert id="_insert" parameterClass="com.megaeyes.persistence.ibatis.model.VideoDisplayDevice">
+    insert into VIDEO_DISPLAY_DEVICE (ID, OPTIMISTIC_LOCK, F_NAME, NAMING, INSTALL_LOCATION, NOTE,
+      DEVICE_NUMBER, IP, LINK_TYPE, HEART_CYCLE, REBOOT_TIME, REBOOT_CYCLE, VIDEO_INTPUT_AMOUNT,
+      VIDEO_OUTPUT_AMOUNT, COMPANY_ID, O_ORGAN_ID)
+    values (#id:VARCHAR#, #optimisticLock:DECIMAL#, #name:VARCHAR#, #naming:VARCHAR#,
+      #installLocation:VARCHAR#, #note:VARCHAR#, #deviceNumber:VARCHAR#, #ip:VARCHAR#,
+      #linkType:VARCHAR#, #heartCycle:DECIMAL#, #rebootTime:VARCHAR#, #rebootCycle:DECIMAL#,
+      #videoIntputAmount:DECIMAL#, #videoOutputAmount:DECIMAL#, #companyId:VARCHAR#,
+      #oOrganId:VARCHAR#)
+  </insert>
+  <update id="_updateByPrimaryKey" parameterClass="com.megaeyes.persistence.ibatis.model.VideoDisplayDevice">
+    update VIDEO_DISPLAY_DEVICE
+    set OPTIMISTIC_LOCK = #optimisticLock:DECIMAL#,
+      F_NAME = #name:VARCHAR#,
+      NAMING = #naming:VARCHAR#,
+      INSTALL_LOCATION = #installLocation:VARCHAR#,
+      NOTE = #note:VARCHAR#,
+      DEVICE_NUMBER = #deviceNumber:VARCHAR#,
+      IP = #ip:VARCHAR#,
+      LINK_TYPE = #linkType:VARCHAR#,
+      HEART_CYCLE = #heartCycle:DECIMAL#,
+      REBOOT_TIME = #rebootTime:VARCHAR#,
+      REBOOT_CYCLE = #rebootCycle:DECIMAL#,
+      VIDEO_INTPUT_AMOUNT = #videoIntputAmount:DECIMAL#,
+      VIDEO_OUTPUT_AMOUNT = #videoOutputAmount:DECIMAL#,
+      COMPANY_ID = #companyId:VARCHAR#,
+      O_ORGAN_ID = #oOrganId:VARCHAR#
+    where ID = #id:VARCHAR#
+  </update>
+  <update id="_updateByPrimaryKeySelective" parameterClass="com.megaeyes.persistence.ibatis.model.VideoDisplayDevice">
+    update VIDEO_DISPLAY_DEVICE
+    <dynamic prepend="set">
+      <isNotNull prepend="," property="optimisticLock">
+        OPTIMISTIC_LOCK = #optimisticLock:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="name">
+        F_NAME = #name:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="naming">
+        NAMING = #naming:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="installLocation">
+        INSTALL_LOCATION = #installLocation:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="note">
+        NOTE = #note:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="deviceNumber">
+        DEVICE_NUMBER = #deviceNumber:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="ip">
+        IP = #ip:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="linkType">
+        LINK_TYPE = #linkType:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="heartCycle">
+        HEART_CYCLE = #heartCycle:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="rebootTime">
+        REBOOT_TIME = #rebootTime:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="rebootCycle">
+        REBOOT_CYCLE = #rebootCycle:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="videoIntputAmount">
+        VIDEO_INTPUT_AMOUNT = #videoIntputAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="videoOutputAmount">
+        VIDEO_OUTPUT_AMOUNT = #videoOutputAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="companyId">
+        COMPANY_ID = #companyId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="oOrganId">
+        O_ORGAN_ID = #oOrganId:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    where ID = #id:VARCHAR#
+  </update>
+  <select id="_countByExample" parameterClass="com.megaeyes.persistence.ibatis.model.VideoDisplayDeviceExample" resultClass="java.lang.Integer">
+    select count(*) from VIDEO_DISPLAY_DEVICE
+    <include refid="VIDEO_DISPLAY_DEVICE._Example_Where_Clause" />
+  </select>
+  <update id="_updateByExampleSelective">
+    update VIDEO_DISPLAY_DEVICE
+    <dynamic prepend="set">
+      <isNotNull prepend="," property="record.id">
+        ID = #record.id:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.optimisticLock">
+        OPTIMISTIC_LOCK = #record.optimisticLock:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.name">
+        F_NAME = #record.name:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.naming">
+        NAMING = #record.naming:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.installLocation">
+        INSTALL_LOCATION = #record.installLocation:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.note">
+        NOTE = #record.note:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.deviceNumber">
+        DEVICE_NUMBER = #record.deviceNumber:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.ip">
+        IP = #record.ip:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.linkType">
+        LINK_TYPE = #record.linkType:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.heartCycle">
+        HEART_CYCLE = #record.heartCycle:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.rebootTime">
+        REBOOT_TIME = #record.rebootTime:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.rebootCycle">
+        REBOOT_CYCLE = #record.rebootCycle:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.videoIntputAmount">
+        VIDEO_INTPUT_AMOUNT = #record.videoIntputAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.videoOutputAmount">
+        VIDEO_OUTPUT_AMOUNT = #record.videoOutputAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.companyId">
+        COMPANY_ID = #record.companyId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.oOrganId">
+        O_ORGAN_ID = #record.oOrganId:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    <isParameterPresent>
+      <include refid="VIDEO_DISPLAY_DEVICE._Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="_updateByExample">
+    update VIDEO_DISPLAY_DEVICE
+    set ID = #record.id:VARCHAR#,
+      OPTIMISTIC_LOCK = #record.optimisticLock:DECIMAL#,
+      F_NAME = #record.name:VARCHAR#,
+      NAMING = #record.naming:VARCHAR#,
+      INSTALL_LOCATION = #record.installLocation:VARCHAR#,
+      NOTE = #record.note:VARCHAR#,
+      DEVICE_NUMBER = #record.deviceNumber:VARCHAR#,
+      IP = #record.ip:VARCHAR#,
+      LINK_TYPE = #record.linkType:VARCHAR#,
+      HEART_CYCLE = #record.heartCycle:DECIMAL#,
+      REBOOT_TIME = #record.rebootTime:VARCHAR#,
+      REBOOT_CYCLE = #record.rebootCycle:DECIMAL#,
+      VIDEO_INTPUT_AMOUNT = #record.videoIntputAmount:DECIMAL#,
+      VIDEO_OUTPUT_AMOUNT = #record.videoOutputAmount:DECIMAL#,
+      COMPANY_ID = #record.companyId:VARCHAR#,
+      O_ORGAN_ID = #record.oOrganId:VARCHAR#
+    <isParameterPresent>
+      <include refid="VIDEO_DISPLAY_DEVICE._Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+</sqlMap>

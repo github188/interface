@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="MANUFACTURER_VIEW">
+  <resultMap class="com.megaeyes.persistence.ibatis.model.Manufacturer" id="_ManufacturerResult">
+    <result column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="OPTIMISTIC_LOCK" jdbcType="DECIMAL" property="optimisticLock" />
+    <result column="F_NAME" jdbcType="VARCHAR" property="name" />
+    <result column="NOTE" jdbcType="VARCHAR" property="note" />
+  </resultMap>
+	
+ <!--  <select id="listManufacturer" resultMap="_ManufacturerResult">
+  
+  	select m.* from Manufacturer m
+  
+  </select> -->
+
+  
+</sqlMap>

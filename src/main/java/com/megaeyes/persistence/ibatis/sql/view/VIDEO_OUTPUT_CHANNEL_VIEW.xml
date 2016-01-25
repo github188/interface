@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="VIDEO_OUTPUT_CHANNEL_VIEW">
+	<resultMap class="com.megaeyes.persistence.ibatis.model.VideoOutputChannel"
+		id="_VideoOutputChannelResult">
+		<result column="ID" jdbcType="VARCHAR" property="id" />
+		<result column="OPTIMISTIC_LOCK" jdbcType="DECIMAL" property="optimisticLock" />
+		<result column="F_NAME" jdbcType="VARCHAR" property="name" />
+		<result column="NAMING" jdbcType="VARCHAR" property="naming" />
+		<result column="INSTALL_LOCATION" jdbcType="VARCHAR" property="installLocation" />
+		<result column="NOTE" jdbcType="VARCHAR" property="note" />
+		<result column="VIDEO_DISPLAY_DEVICE_ID" jdbcType="VARCHAR"
+			property="videoDisplayDeviceId" />
+		<result column="ADDRESS_NUMBER" jdbcType="VARCHAR" property="addressNumber" />
+		<result column="VIDEO_OUTPUT_CHANNEL_MODEL_ID" jdbcType="VARCHAR"
+			property="videoOutputChannelModelId" />
+		<result column="ORGAN_ID" jdbcType="VARCHAR" property="organId" />
+		<result column="DEVICE_PHYSICAL_RELATION_ID" jdbcType="VARCHAR"
+			property="devicePhysicalRelationId" />
+		<result column="STD_ID" jdbcType="VARCHAR" property="stdId" />
+		<result column="IS_SHARE" jdbcType="DECIMAL" property="isShare" />
+		<result column="DISPATCH_SERVER_ID" jdbcType="VARCHAR"
+			property="dispatchServerId" />
+	</resultMap>
+
+	<select id="listVocByDisplayId" resultMap="_VideoOutputChannelResult">
+		select * from VIDEO_OUTPUT_CHANNEL v where v.VIDEO_DISPLAY_DEVICE_ID =
+		#displayId#
+	</select>
+
+	<select id="listVocByOrganId" resultMap="_VideoOutputChannelResult">
+		select * from VIDEO_OUTPUT_CHANNEL v where v.ORGAN_ID = #organId#
+	</select>
+	
+	<select id="listVOCByOrganIdWithChild" resultMap="_VideoOutputChannelResult">
+		select t.*  from video_output_channel t where 
+		t.organ_id in (select id from organ org where org.path like
+		'%$organId$%')
+	</select>
+	
+</sqlMap>

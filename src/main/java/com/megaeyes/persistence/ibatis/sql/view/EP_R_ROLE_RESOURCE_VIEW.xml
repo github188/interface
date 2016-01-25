@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="EP_R_ROLE_RESOURCE_VIEW">
+	<resultMap id="EpRRoleResourceResult"
+		class="com.megaeyes.persistence.ibatis.model.EpRRoleResource">
+		<result column="ID" property="id" jdbcType="VARCHAR" />
+		<result column="ROLE_ID" property="roleId" jdbcType="VARCHAR" />
+		<result column="RESOURCE_ID" property="resourceId" jdbcType="VARCHAR" />
+		<result column="RESOURCE_TYPE" property="resourceType"
+			jdbcType="VARCHAR" />
+		<result column="RESOURCE_ORGAN_ID" property="resourceOrganId"
+			jdbcType="VARCHAR" />
+	</resultMap>
+
+	<delete id="deleteByRoleId" parameterClass="java.lang.String">
+		delete from
+		ep_r_role_resource where role_id=#roleId#
+	</delete>
+	<select id="listDeviceByRoleId" resultMap="EpRRoleResourceResult">
+		select * from
+		ep_r_role_resource where role_id=#roleId#
+	</select>
+	<resultMap class="com.megaeyes.persistence.ibatis.vo.ListDeviceByRoleId"
+		id="listDeviceByRoleId">
+		<result column="role_id" property="roleId" jdbcType="VARCHAR" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="naming" property="naming" jdbcType="VARCHAR" />
+		<result column="organ_id" property="organId" jdbcType="VARCHAR" />
+		<result column="resource_type" property="resourceType"
+			jdbcType="VARCHAR" />
+		<result column="resource_id" property="resourceId" jdbcType="VARCHAR" />
+	</resultMap>
+	<select id="listvicByRoleId" resultMap="listDeviceByRoleId">
+		select
+		a.role_id,a.resource_id,a.resource_type,a.resource_organ_id
+		organ_id,b.f_name name,b.naming from ep_r_role_resource a
+		,video_input_channel b where a.resource_id=b.id and a.resource_type=1
+		and a.role_id=#roleId#
+	</select>
+	<select id="listvisByRoleId" resultMap="listDeviceByRoleId">
+		select
+		a.role_id,a.resource_id,a.resource_type,a.resource_organ_id
+		organ_id,b.f_name name,b.naming
+		from ep_r_role_resource a ,video_input_server b where a.resource_id=b.id
+		and a.resource_type=9 and a.role_id=#roleId#
+	</select>
+</sqlMap>

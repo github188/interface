@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="EP_R_DEVICE_VIC">
+  <resultMap class="com.megaeyes.persistence.ibatis.model.EpRDeviceVic" id="_EpRDeviceVicResult">
+    <result column="DEVICE_ID" jdbcType="VARCHAR" property="deviceId" />
+    <result column="VIC_ID" jdbcType="VARCHAR" property="vicId" />
+    <result column="PRESET_ID" jdbcType="VARCHAR" property="presetId" />
+    <result column="TASK_TYPE" jdbcType="DECIMAL" property="taskType" />
+    <result column="STEP_ID" jdbcType="VARCHAR" property="stepId" />
+    <result column="IS_DEFAULT" jdbcType="DECIMAL" property="isDefault" />
+  </resultMap>
+  <sql id="_Example_Where_Clause">
+    <iterate conjunction="or" prepend="where" property="oredCriteria" removeFirstPrepend="iterate">
+      <isEqual compareValue="true" property="oredCriteria[].valid">
+        (
+        <iterate conjunction="and" prepend="and" property="oredCriteria[].criteriaWithoutValue">
+          $oredCriteria[].criteriaWithoutValue[]$
+        </iterate>
+        <iterate conjunction="and" prepend="and" property="oredCriteria[].criteriaWithSingleValue">
+          $oredCriteria[].criteriaWithSingleValue[].condition$
+            #oredCriteria[].criteriaWithSingleValue[].value#
+        </iterate>
+        <iterate conjunction="and" prepend="and" property="oredCriteria[].criteriaWithListValue">
+          $oredCriteria[].criteriaWithListValue[].condition$
+          <iterate close=")" conjunction="," open="(" property="oredCriteria[].criteriaWithListValue[].values">
+            #oredCriteria[].criteriaWithListValue[].values[]#
+          </iterate>
+        </iterate>
+        <iterate conjunction="and" prepend="and" property="oredCriteria[].criteriaWithBetweenValue">
+          $oredCriteria[].criteriaWithBetweenValue[].condition$
+          #oredCriteria[].criteriaWithBetweenValue[].values[0]# and
+          #oredCriteria[].criteriaWithBetweenValue[].values[1]#
+        </iterate>
+        )
+      </isEqual>
+    </iterate>
+  </sql>
+  <select id="_selectByExample" parameterClass="com.megaeyes.persistence.ibatis.model.EpRDeviceVicExample" resultMap="_EpRDeviceVicResult">
+    select DEVICE_ID, VIC_ID, PRESET_ID, TASK_TYPE, STEP_ID, IS_DEFAULT
+    from EP_R_DEVICE_VIC
+    <isParameterPresent>
+      <include refid="EP_R_DEVICE_VIC._Example_Where_Clause" />
+      <isNotNull property="orderByClause">
+        order by $orderByClause$
+      </isNotNull>
+    </isParameterPresent>
+  </select>
+  <delete id="_deleteByExample" parameterClass="com.megaeyes.persistence.ibatis.model.EpRDeviceVicExample">
+    delete from EP_R_DEVICE_VIC
+    <include refid="EP_R_DEVICE_VIC._Example_Where_Clause" />
+  </delete>
+  <insert id="_insert" parameterClass="com.megaeyes.persistence.ibatis.model.EpRDeviceVic">
+    insert into EP_R_DEVICE_VIC (DEVICE_ID, VIC_ID, PRESET_ID, TASK_TYPE, STEP_ID, IS_DEFAULT)
+    values (#deviceId:VARCHAR#, #vicId:VARCHAR#, #presetId:VARCHAR#, #taskType:DECIMAL#,
+      #stepId:VARCHAR#, #isDefault:DECIMAL#)
+  </insert>
+  <select id="_countByExample" parameterClass="com.megaeyes.persistence.ibatis.model.EpRDeviceVicExample" resultClass="java.lang.Integer">
+    select count(*) from EP_R_DEVICE_VIC
+    <include refid="EP_R_DEVICE_VIC._Example_Where_Clause" />
+  </select>
+  <update id="_updateByExampleSelective">
+    update EP_R_DEVICE_VIC
+    <dynamic prepend="set">
+      <isNotNull prepend="," property="record.deviceId">
+        DEVICE_ID = #record.deviceId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.vicId">
+        VIC_ID = #record.vicId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.presetId">
+        PRESET_ID = #record.presetId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.taskType">
+        TASK_TYPE = #record.taskType:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.stepId">
+        STEP_ID = #record.stepId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.isDefault">
+        IS_DEFAULT = #record.isDefault:DECIMAL#
+      </isNotNull>
+    </dynamic>
+    <isParameterPresent>
+      <include refid="EP_R_DEVICE_VIC._Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="_updateByExample">
+    update EP_R_DEVICE_VIC
+    set DEVICE_ID = #record.deviceId:VARCHAR#,
+      VIC_ID = #record.vicId:VARCHAR#,
+      PRESET_ID = #record.presetId:VARCHAR#,
+      TASK_TYPE = #record.taskType:DECIMAL#,
+      STEP_ID = #record.stepId:VARCHAR#,
+      IS_DEFAULT = #record.isDefault:DECIMAL#
+    <isParameterPresent>
+      <include refid="EP_R_DEVICE_VIC._Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+</sqlMap>

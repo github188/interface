@@ -1,0 +1,493 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="VIDEO_INPUT_CHANNEL">
+  <resultMap class="com.megaeyes.persistence.ibatis.model.VideoInputChannel" id="_VideoInputChannelResult">
+    <result column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="OPTIMISTIC_LOCK" jdbcType="DECIMAL" property="optimisticLock" />
+    <result column="F_NAME" jdbcType="VARCHAR" property="name" />
+    <result column="NAMING" jdbcType="VARCHAR" property="naming" />
+    <result column="INSTALL_LOCATION" jdbcType="VARCHAR" property="installLocation" />
+    <result column="NOTE" jdbcType="VARCHAR" property="note" />
+    <result column="HAS_PAN" jdbcType="DECIMAL" property="hasPan" />
+    <result column="PTZ_DECODE_TYPE" jdbcType="VARCHAR" property="ptzDecodeType" />
+    <result column="VIDEO_FORMAT" jdbcType="VARCHAR" property="videoFormat" />
+    <result column="STORE_CYCLE" jdbcType="DECIMAL" property="storeCycle" />
+    <result column="STORE_PLAN_HOUR_FLAG" jdbcType="VARCHAR" property="storePlanHourFlag" />
+    <result column="FRAME_RATE" jdbcType="DECIMAL" property="frameRate" />
+    <result column="MAX_BPS" jdbcType="DECIMAL" property="maxBps" />
+    <result column="BRIGHTNESS" jdbcType="DECIMAL" property="brightness" />
+    <result column="HUE" jdbcType="DECIMAL" property="hue" />
+    <result column="CONTRAST" jdbcType="DECIMAL" property="contrast" />
+    <result column="SATURATION" jdbcType="DECIMAL" property="saturation" />
+    <result column="VIDEO_INPUT_CHANNEL_MODEL_ID" jdbcType="VARCHAR" property="videoInputChannelModelId" />
+    <result column="VIDEO_INPUT_SERVER_ID" jdbcType="VARCHAR" property="videoInputServerId" />
+    <result column="IMAGE_QUALITY_LEVEL_ID" jdbcType="VARCHAR" property="imageQualityLevelId" />
+    <result column="DISPATCH_SERVER_ID" jdbcType="VARCHAR" property="dispatchServerId" />
+    <result column="REMOTE_STORAGE_SERVER_ID" jdbcType="VARCHAR" property="remoteStorageServerId" />
+    <result column="ORGAN_ID" jdbcType="VARCHAR" property="organId" />
+    <result column="DEVICE_PHYSICAL_RELATION_ID" jdbcType="VARCHAR" property="devicePhysicalRelationId" />
+    <result column="IS_SUSPENDED" jdbcType="DECIMAL" property="isSuspended" />
+    <result column="STD_ID" jdbcType="VARCHAR" property="stdId" />
+    <result column="IS_SUPPORT_SCHEME" jdbcType="DECIMAL" property="isSupportScheme" />
+    <result column="PRE_RECORD_TIME" jdbcType="DECIMAL" property="preRecordTime" />
+    <result column="REMOTE_STORE_PLAN_HOUR_FLAG" jdbcType="VARCHAR" property="remoteStorePlanHourFlag" />
+    <result column="STORE_TYPE" jdbcType="DECIMAL" property="storeType" />
+    <result column="PATH" jdbcType="VARCHAR" property="path" />
+    <result column="LONGITUDE" jdbcType="VARCHAR" property="longitude" />
+    <result column="LATITUDE" jdbcType="VARCHAR" property="latitude" />
+    <result column="PULL_MODE" jdbcType="DECIMAL" property="pullMode" />
+    <result column="IS_SHARE" jdbcType="DECIMAL" property="isShare" />
+    <result column="CHANNEL_ID" jdbcType="DECIMAL" property="channelId" />
+    <result column="OVER_WRITE_FLAG" jdbcType="DECIMAL" property="overWriteFlag" />
+    <result column="LOCAL_STORE_CYCLE" jdbcType="DECIMAL" property="localStoreCycle" />
+    <result column="SCHEME_TYPE" jdbcType="DECIMAL" property="schemeType" />
+    <result column="LOCAL_SCHEME_TYPE" jdbcType="DECIMAL" property="localSchemeType" />
+    <result column="STREAM_TYPE" jdbcType="DECIMAL" property="streamType" />
+    <result column="ALARM_STORAGE_SERVER_ID" jdbcType="VARCHAR" property="alarmStorageServerId" />
+  </resultMap>
+  <sql id="_Example_Where_Clause">
+    <iterate conjunction="or" prepend="where" property="oredCriteria" removeFirstPrepend="iterate">
+      <isEqual compareValue="true" property="oredCriteria[].valid">
+        (
+        <iterate conjunction="and" prepend="and" property="oredCriteria[].criteriaWithoutValue">
+          $oredCriteria[].criteriaWithoutValue[]$
+        </iterate>
+        <iterate conjunction="and" prepend="and" property="oredCriteria[].criteriaWithSingleValue">
+          $oredCriteria[].criteriaWithSingleValue[].condition$
+            #oredCriteria[].criteriaWithSingleValue[].value#
+        </iterate>
+        <iterate conjunction="and" prepend="and" property="oredCriteria[].criteriaWithListValue">
+          $oredCriteria[].criteriaWithListValue[].condition$
+          <iterate close=")" conjunction="," open="(" property="oredCriteria[].criteriaWithListValue[].values">
+            #oredCriteria[].criteriaWithListValue[].values[]#
+          </iterate>
+        </iterate>
+        <iterate conjunction="and" prepend="and" property="oredCriteria[].criteriaWithBetweenValue">
+          $oredCriteria[].criteriaWithBetweenValue[].condition$
+          #oredCriteria[].criteriaWithBetweenValue[].values[0]# and
+          #oredCriteria[].criteriaWithBetweenValue[].values[1]#
+        </iterate>
+        )
+      </isEqual>
+    </iterate>
+  </sql>
+  <select id="_selectByPrimaryKey" parameterClass="com.megaeyes.persistence.ibatis.model.VideoInputChannel" resultMap="_VideoInputChannelResult">
+    select ID, OPTIMISTIC_LOCK, F_NAME, NAMING, INSTALL_LOCATION, NOTE, HAS_PAN, PTZ_DECODE_TYPE,
+      VIDEO_FORMAT, STORE_CYCLE, STORE_PLAN_HOUR_FLAG, FRAME_RATE, MAX_BPS, BRIGHTNESS, HUE,
+      CONTRAST, SATURATION, VIDEO_INPUT_CHANNEL_MODEL_ID, VIDEO_INPUT_SERVER_ID,
+      IMAGE_QUALITY_LEVEL_ID, DISPATCH_SERVER_ID, REMOTE_STORAGE_SERVER_ID, ORGAN_ID,
+      DEVICE_PHYSICAL_RELATION_ID, IS_SUSPENDED, STD_ID, IS_SUPPORT_SCHEME, PRE_RECORD_TIME,
+      REMOTE_STORE_PLAN_HOUR_FLAG, STORE_TYPE, PATH, LONGITUDE, LATITUDE, PULL_MODE, IS_SHARE,
+      CHANNEL_ID, OVER_WRITE_FLAG, LOCAL_STORE_CYCLE, SCHEME_TYPE, LOCAL_SCHEME_TYPE, STREAM_TYPE,
+      ALARM_STORAGE_SERVER_ID
+    from VIDEO_INPUT_CHANNEL
+    where ID = #id:VARCHAR#
+  </select>
+  <select id="_selectByExample" parameterClass="com.megaeyes.persistence.ibatis.model.VideoInputChannelExample" resultMap="_VideoInputChannelResult">
+    select ID, OPTIMISTIC_LOCK, F_NAME, NAMING, INSTALL_LOCATION, NOTE, HAS_PAN, PTZ_DECODE_TYPE,
+      VIDEO_FORMAT, STORE_CYCLE, STORE_PLAN_HOUR_FLAG, FRAME_RATE, MAX_BPS, BRIGHTNESS, HUE,
+      CONTRAST, SATURATION, VIDEO_INPUT_CHANNEL_MODEL_ID, VIDEO_INPUT_SERVER_ID,
+      IMAGE_QUALITY_LEVEL_ID, DISPATCH_SERVER_ID, REMOTE_STORAGE_SERVER_ID, ORGAN_ID,
+      DEVICE_PHYSICAL_RELATION_ID, IS_SUSPENDED, STD_ID, IS_SUPPORT_SCHEME, PRE_RECORD_TIME,
+      REMOTE_STORE_PLAN_HOUR_FLAG, STORE_TYPE, PATH, LONGITUDE, LATITUDE, PULL_MODE, IS_SHARE,
+      CHANNEL_ID, OVER_WRITE_FLAG, LOCAL_STORE_CYCLE, SCHEME_TYPE, LOCAL_SCHEME_TYPE, STREAM_TYPE,
+      ALARM_STORAGE_SERVER_ID
+    from VIDEO_INPUT_CHANNEL
+    <isParameterPresent>
+      <include refid="VIDEO_INPUT_CHANNEL._Example_Where_Clause" />
+      <isNotNull property="orderByClause">
+        order by $orderByClause$
+      </isNotNull>
+    </isParameterPresent>
+  </select>
+  <delete id="_deleteByPrimaryKey" parameterClass="com.megaeyes.persistence.ibatis.model.VideoInputChannel">
+    delete from VIDEO_INPUT_CHANNEL
+    where ID = #id:VARCHAR#
+  </delete>
+  <delete id="_deleteByExample" parameterClass="com.megaeyes.persistence.ibatis.model.VideoInputChannelExample">
+    delete from VIDEO_INPUT_CHANNEL
+    <include refid="VIDEO_INPUT_CHANNEL._Example_Where_Clause" />
+  </delete>
+  <insert id="_insert" parameterClass="com.megaeyes.persistence.ibatis.model.VideoInputChannel">
+    insert into VIDEO_INPUT_CHANNEL (ID, OPTIMISTIC_LOCK, F_NAME, NAMING, INSTALL_LOCATION, NOTE,
+      HAS_PAN, PTZ_DECODE_TYPE, VIDEO_FORMAT, STORE_CYCLE, STORE_PLAN_HOUR_FLAG, FRAME_RATE,
+      MAX_BPS, BRIGHTNESS, HUE, CONTRAST, SATURATION, VIDEO_INPUT_CHANNEL_MODEL_ID,
+      VIDEO_INPUT_SERVER_ID, IMAGE_QUALITY_LEVEL_ID, DISPATCH_SERVER_ID, REMOTE_STORAGE_SERVER_ID,
+      ORGAN_ID, DEVICE_PHYSICAL_RELATION_ID, IS_SUSPENDED, STD_ID, IS_SUPPORT_SCHEME,
+      PRE_RECORD_TIME, REMOTE_STORE_PLAN_HOUR_FLAG, STORE_TYPE, PATH, LONGITUDE, LATITUDE,
+      PULL_MODE, IS_SHARE, CHANNEL_ID, OVER_WRITE_FLAG, LOCAL_STORE_CYCLE, SCHEME_TYPE,
+      LOCAL_SCHEME_TYPE, STREAM_TYPE, ALARM_STORAGE_SERVER_ID)
+    values (#id:VARCHAR#, #optimisticLock:DECIMAL#, #name:VARCHAR#, #naming:VARCHAR#,
+      #installLocation:VARCHAR#, #note:VARCHAR#, #hasPan:DECIMAL#, #ptzDecodeType:VARCHAR#,
+      #videoFormat:VARCHAR#, #storeCycle:DECIMAL#, #storePlanHourFlag:VARCHAR#, #frameRate:DECIMAL#,
+      #maxBps:DECIMAL#, #brightness:DECIMAL#, #hue:DECIMAL#, #contrast:DECIMAL#,
+      #saturation:DECIMAL#, #videoInputChannelModelId:VARCHAR#, #videoInputServerId:VARCHAR#,
+      #imageQualityLevelId:VARCHAR#, #dispatchServerId:VARCHAR#, #remoteStorageServerId:VARCHAR#,
+      #organId:VARCHAR#, #devicePhysicalRelationId:VARCHAR#, #isSuspended:DECIMAL#, #stdId:VARCHAR#,
+      #isSupportScheme:DECIMAL#, #preRecordTime:DECIMAL#, #remoteStorePlanHourFlag:VARCHAR#,
+      #storeType:DECIMAL#, #path:VARCHAR#, #longitude:VARCHAR#, #latitude:VARCHAR#,
+      #pullMode:DECIMAL#, #isShare:DECIMAL#, #channelId:DECIMAL#, #overWriteFlag:DECIMAL#,
+      #localStoreCycle:DECIMAL#, #schemeType:DECIMAL#, #localSchemeType:DECIMAL#,
+      #streamType:DECIMAL#, #alarmStorageServerId:VARCHAR#)
+  </insert>
+  <update id="_updateByPrimaryKey" parameterClass="com.megaeyes.persistence.ibatis.model.VideoInputChannel">
+    update VIDEO_INPUT_CHANNEL
+    set OPTIMISTIC_LOCK = #optimisticLock:DECIMAL#,
+      F_NAME = #name:VARCHAR#,
+      NAMING = #naming:VARCHAR#,
+      INSTALL_LOCATION = #installLocation:VARCHAR#,
+      NOTE = #note:VARCHAR#,
+      HAS_PAN = #hasPan:DECIMAL#,
+      PTZ_DECODE_TYPE = #ptzDecodeType:VARCHAR#,
+      VIDEO_FORMAT = #videoFormat:VARCHAR#,
+      STORE_CYCLE = #storeCycle:DECIMAL#,
+      STORE_PLAN_HOUR_FLAG = #storePlanHourFlag:VARCHAR#,
+      FRAME_RATE = #frameRate:DECIMAL#,
+      MAX_BPS = #maxBps:DECIMAL#,
+      BRIGHTNESS = #brightness:DECIMAL#,
+      HUE = #hue:DECIMAL#,
+      CONTRAST = #contrast:DECIMAL#,
+      SATURATION = #saturation:DECIMAL#,
+      VIDEO_INPUT_CHANNEL_MODEL_ID = #videoInputChannelModelId:VARCHAR#,
+      VIDEO_INPUT_SERVER_ID = #videoInputServerId:VARCHAR#,
+      IMAGE_QUALITY_LEVEL_ID = #imageQualityLevelId:VARCHAR#,
+      DISPATCH_SERVER_ID = #dispatchServerId:VARCHAR#,
+      REMOTE_STORAGE_SERVER_ID = #remoteStorageServerId:VARCHAR#,
+      ORGAN_ID = #organId:VARCHAR#,
+      DEVICE_PHYSICAL_RELATION_ID = #devicePhysicalRelationId:VARCHAR#,
+      IS_SUSPENDED = #isSuspended:DECIMAL#,
+      STD_ID = #stdId:VARCHAR#,
+      IS_SUPPORT_SCHEME = #isSupportScheme:DECIMAL#,
+      PRE_RECORD_TIME = #preRecordTime:DECIMAL#,
+      REMOTE_STORE_PLAN_HOUR_FLAG = #remoteStorePlanHourFlag:VARCHAR#,
+      STORE_TYPE = #storeType:DECIMAL#,
+      PATH = #path:VARCHAR#,
+      LONGITUDE = #longitude:VARCHAR#,
+      LATITUDE = #latitude:VARCHAR#,
+      PULL_MODE = #pullMode:DECIMAL#,
+      IS_SHARE = #isShare:DECIMAL#,
+      CHANNEL_ID = #channelId:DECIMAL#,
+      OVER_WRITE_FLAG = #overWriteFlag:DECIMAL#,
+      LOCAL_STORE_CYCLE = #localStoreCycle:DECIMAL#,
+      SCHEME_TYPE = #schemeType:DECIMAL#,
+      LOCAL_SCHEME_TYPE = #localSchemeType:DECIMAL#,
+      STREAM_TYPE = #streamType:DECIMAL#,
+      ALARM_STORAGE_SERVER_ID = #alarmStorageServerId:VARCHAR#
+    where ID = #id:VARCHAR#
+  </update>
+  <update id="_updateByPrimaryKeySelective" parameterClass="com.megaeyes.persistence.ibatis.model.VideoInputChannel">
+    update VIDEO_INPUT_CHANNEL
+    <dynamic prepend="set">
+      <isNotNull prepend="," property="optimisticLock">
+        OPTIMISTIC_LOCK = #optimisticLock:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="name">
+        F_NAME = #name:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="naming">
+        NAMING = #naming:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="installLocation">
+        INSTALL_LOCATION = #installLocation:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="note">
+        NOTE = #note:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="hasPan">
+        HAS_PAN = #hasPan:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="ptzDecodeType">
+        PTZ_DECODE_TYPE = #ptzDecodeType:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="videoFormat">
+        VIDEO_FORMAT = #videoFormat:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="storeCycle">
+        STORE_CYCLE = #storeCycle:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="storePlanHourFlag">
+        STORE_PLAN_HOUR_FLAG = #storePlanHourFlag:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="frameRate">
+        FRAME_RATE = #frameRate:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="maxBps">
+        MAX_BPS = #maxBps:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="brightness">
+        BRIGHTNESS = #brightness:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="hue">
+        HUE = #hue:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="contrast">
+        CONTRAST = #contrast:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="saturation">
+        SATURATION = #saturation:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="videoInputChannelModelId">
+        VIDEO_INPUT_CHANNEL_MODEL_ID = #videoInputChannelModelId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="videoInputServerId">
+        VIDEO_INPUT_SERVER_ID = #videoInputServerId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="imageQualityLevelId">
+        IMAGE_QUALITY_LEVEL_ID = #imageQualityLevelId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="dispatchServerId">
+        DISPATCH_SERVER_ID = #dispatchServerId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="remoteStorageServerId">
+        REMOTE_STORAGE_SERVER_ID = #remoteStorageServerId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="organId">
+        ORGAN_ID = #organId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="devicePhysicalRelationId">
+        DEVICE_PHYSICAL_RELATION_ID = #devicePhysicalRelationId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="isSuspended">
+        IS_SUSPENDED = #isSuspended:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="stdId">
+        STD_ID = #stdId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="isSupportScheme">
+        IS_SUPPORT_SCHEME = #isSupportScheme:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="preRecordTime">
+        PRE_RECORD_TIME = #preRecordTime:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="remoteStorePlanHourFlag">
+        REMOTE_STORE_PLAN_HOUR_FLAG = #remoteStorePlanHourFlag:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="storeType">
+        STORE_TYPE = #storeType:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="path">
+        PATH = #path:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="longitude">
+        LONGITUDE = #longitude:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="latitude">
+        LATITUDE = #latitude:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="pullMode">
+        PULL_MODE = #pullMode:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="isShare">
+        IS_SHARE = #isShare:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="channelId">
+        CHANNEL_ID = #channelId:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="overWriteFlag">
+        OVER_WRITE_FLAG = #overWriteFlag:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="localStoreCycle">
+        LOCAL_STORE_CYCLE = #localStoreCycle:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="schemeType">
+        SCHEME_TYPE = #schemeType:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="localSchemeType">
+        LOCAL_SCHEME_TYPE = #localSchemeType:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="streamType">
+        STREAM_TYPE = #streamType:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="alarmStorageServerId">
+        ALARM_STORAGE_SERVER_ID = #alarmStorageServerId:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    where ID = #id:VARCHAR#
+  </update>
+  <select id="_countByExample" parameterClass="com.megaeyes.persistence.ibatis.model.VideoInputChannelExample" resultClass="java.lang.Integer">
+    select count(*) from VIDEO_INPUT_CHANNEL
+    <include refid="VIDEO_INPUT_CHANNEL._Example_Where_Clause" />
+  </select>
+  <update id="_updateByExampleSelective">
+    update VIDEO_INPUT_CHANNEL
+    <dynamic prepend="set">
+      <isNotNull prepend="," property="record.id">
+        ID = #record.id:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.optimisticLock">
+        OPTIMISTIC_LOCK = #record.optimisticLock:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.name">
+        F_NAME = #record.name:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.naming">
+        NAMING = #record.naming:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.installLocation">
+        INSTALL_LOCATION = #record.installLocation:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.note">
+        NOTE = #record.note:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.hasPan">
+        HAS_PAN = #record.hasPan:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.ptzDecodeType">
+        PTZ_DECODE_TYPE = #record.ptzDecodeType:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.videoFormat">
+        VIDEO_FORMAT = #record.videoFormat:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.storeCycle">
+        STORE_CYCLE = #record.storeCycle:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.storePlanHourFlag">
+        STORE_PLAN_HOUR_FLAG = #record.storePlanHourFlag:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.frameRate">
+        FRAME_RATE = #record.frameRate:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.maxBps">
+        MAX_BPS = #record.maxBps:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.brightness">
+        BRIGHTNESS = #record.brightness:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.hue">
+        HUE = #record.hue:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.contrast">
+        CONTRAST = #record.contrast:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.saturation">
+        SATURATION = #record.saturation:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.videoInputChannelModelId">
+        VIDEO_INPUT_CHANNEL_MODEL_ID = #record.videoInputChannelModelId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.videoInputServerId">
+        VIDEO_INPUT_SERVER_ID = #record.videoInputServerId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.imageQualityLevelId">
+        IMAGE_QUALITY_LEVEL_ID = #record.imageQualityLevelId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.dispatchServerId">
+        DISPATCH_SERVER_ID = #record.dispatchServerId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.remoteStorageServerId">
+        REMOTE_STORAGE_SERVER_ID = #record.remoteStorageServerId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.organId">
+        ORGAN_ID = #record.organId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.devicePhysicalRelationId">
+        DEVICE_PHYSICAL_RELATION_ID = #record.devicePhysicalRelationId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.isSuspended">
+        IS_SUSPENDED = #record.isSuspended:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.stdId">
+        STD_ID = #record.stdId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.isSupportScheme">
+        IS_SUPPORT_SCHEME = #record.isSupportScheme:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.preRecordTime">
+        PRE_RECORD_TIME = #record.preRecordTime:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.remoteStorePlanHourFlag">
+        REMOTE_STORE_PLAN_HOUR_FLAG = #record.remoteStorePlanHourFlag:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.storeType">
+        STORE_TYPE = #record.storeType:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.path">
+        PATH = #record.path:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.longitude">
+        LONGITUDE = #record.longitude:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.latitude">
+        LATITUDE = #record.latitude:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.pullMode">
+        PULL_MODE = #record.pullMode:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.isShare">
+        IS_SHARE = #record.isShare:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.channelId">
+        CHANNEL_ID = #record.channelId:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.overWriteFlag">
+        OVER_WRITE_FLAG = #record.overWriteFlag:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.localStoreCycle">
+        LOCAL_STORE_CYCLE = #record.localStoreCycle:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.schemeType">
+        SCHEME_TYPE = #record.schemeType:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.localSchemeType">
+        LOCAL_SCHEME_TYPE = #record.localSchemeType:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.streamType">
+        STREAM_TYPE = #record.streamType:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.alarmStorageServerId">
+        ALARM_STORAGE_SERVER_ID = #record.alarmStorageServerId:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    <isParameterPresent>
+      <include refid="VIDEO_INPUT_CHANNEL._Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="_updateByExample">
+    update VIDEO_INPUT_CHANNEL
+    set ID = #record.id:VARCHAR#,
+      OPTIMISTIC_LOCK = #record.optimisticLock:DECIMAL#,
+      F_NAME = #record.name:VARCHAR#,
+      NAMING = #record.naming:VARCHAR#,
+      INSTALL_LOCATION = #record.installLocation:VARCHAR#,
+      NOTE = #record.note:VARCHAR#,
+      HAS_PAN = #record.hasPan:DECIMAL#,
+      PTZ_DECODE_TYPE = #record.ptzDecodeType:VARCHAR#,
+      VIDEO_FORMAT = #record.videoFormat:VARCHAR#,
+      STORE_CYCLE = #record.storeCycle:DECIMAL#,
+      STORE_PLAN_HOUR_FLAG = #record.storePlanHourFlag:VARCHAR#,
+      FRAME_RATE = #record.frameRate:DECIMAL#,
+      MAX_BPS = #record.maxBps:DECIMAL#,
+      BRIGHTNESS = #record.brightness:DECIMAL#,
+      HUE = #record.hue:DECIMAL#,
+      CONTRAST = #record.contrast:DECIMAL#,
+      SATURATION = #record.saturation:DECIMAL#,
+      VIDEO_INPUT_CHANNEL_MODEL_ID = #record.videoInputChannelModelId:VARCHAR#,
+      VIDEO_INPUT_SERVER_ID = #record.videoInputServerId:VARCHAR#,
+      IMAGE_QUALITY_LEVEL_ID = #record.imageQualityLevelId:VARCHAR#,
+      DISPATCH_SERVER_ID = #record.dispatchServerId:VARCHAR#,
+      REMOTE_STORAGE_SERVER_ID = #record.remoteStorageServerId:VARCHAR#,
+      ORGAN_ID = #record.organId:VARCHAR#,
+      DEVICE_PHYSICAL_RELATION_ID = #record.devicePhysicalRelationId:VARCHAR#,
+      IS_SUSPENDED = #record.isSuspended:DECIMAL#,
+      STD_ID = #record.stdId:VARCHAR#,
+      IS_SUPPORT_SCHEME = #record.isSupportScheme:DECIMAL#,
+      PRE_RECORD_TIME = #record.preRecordTime:DECIMAL#,
+      REMOTE_STORE_PLAN_HOUR_FLAG = #record.remoteStorePlanHourFlag:VARCHAR#,
+      STORE_TYPE = #record.storeType:DECIMAL#,
+      PATH = #record.path:VARCHAR#,
+      LONGITUDE = #record.longitude:VARCHAR#,
+      LATITUDE = #record.latitude:VARCHAR#,
+      PULL_MODE = #record.pullMode:DECIMAL#,
+      IS_SHARE = #record.isShare:DECIMAL#,
+      CHANNEL_ID = #record.channelId:DECIMAL#,
+      OVER_WRITE_FLAG = #record.overWriteFlag:DECIMAL#,
+      LOCAL_STORE_CYCLE = #record.localStoreCycle:DECIMAL#,
+      SCHEME_TYPE = #record.schemeType:DECIMAL#,
+      LOCAL_SCHEME_TYPE = #record.localSchemeType:DECIMAL#,
+      STREAM_TYPE = #record.streamType:DECIMAL#,
+      ALARM_STORAGE_SERVER_ID = #record.alarmStorageServerId:VARCHAR#
+    <isParameterPresent>
+      <include refid="VIDEO_INPUT_CHANNEL._Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+</sqlMap>

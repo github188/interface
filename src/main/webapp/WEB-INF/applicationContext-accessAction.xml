@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+	"http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	<!-- action bean config -->
+	<bean id="alarmConfirmAction" class="com.megaeyes.access.action.impl.AlarmConfirmAction" />
+	<bean id="alarmNotifyAction" class="com.megaeyes.access.action.impl.AlarmNotifyAction" />
+	<bean id="alarmStopAction" class="com.megaeyes.access.action.impl.AlarmStopAction" />
+	<bean id="alarmInfoAction" class="com.megaeyes.access.action.impl.AlarmInfoAction" />
+	<bean id="authorizationAction" class="com.megaeyes.access.action.impl.AuthorizationAction" />
+	<bean id="monitorAuthAction" class="com.megaeyes.access.action.impl.MonitorAuthAction" />
+	<bean id="deviceNotifyAction" class="com.megaeyes.access.action.impl.DeviceNotifyAction" />
+	<bean id="deviceNewNotifyAction" class="com.megaeyes.access.action.impl.DeviceNewNotifyAction" />
+	<bean id="noHeartBeatAction" class="com.megaeyes.access.action.impl.NoHeartBeatAction" />
+	<bean id="heartBeatAction" class="com.megaeyes.access.action.impl.HeartBeatAction" />
+	<bean id="protocolDownloadAction" class="com.megaeyes.access.action.impl.ProtocolDownloadAction" />
+	<bean id="accessRebootAction"  class="com.megaeyes.access.action.impl.AccessRebootAction"/>
+	<bean id="dispatchRegisterAction" class="com.megaeyes.access.action.impl.DispatchRegisterAction"/>
+	<bean id="displayRegisterAction" class="com.megaeyes.access.action.impl.DisplayRegisterAction"/>
+	<bean id="ipCameraRegisterAction" class="com.megaeyes.access.action.impl.IpCameraRegisterAction"/>
+	<bean id="ipCameraHeartBeatAction" class="com.megaeyes.access.action.impl.IpCameraHeartBeatAction" />
+	<bean id="sDLostReportAction" class="com.megaeyes.access.action.impl.SDLostReportAction" />
+	<bean id="ipCameraAlarmNotifyAction" class="com.megaeyes.access.action.impl.IpCameraAlarmNotifyAction" />
+	<bean id="emptyAction" class="com.megaeyes.access.action.impl.EmptyAction" />
+	<bean id="storageInfoQueryAction" class="com.megaeyes.access.action.impl.StorageInfoQueryAction" />
+	<bean id="storageQueryCameraTotalAction" class="com.megaeyes.access.action.impl.StorageQueryCameraTotalAction"/>
+	<bean id="storageQueryVicAction" class="com.megaeyes.access.action.impl.StorageQueryVicAction"/>
+	<bean id="storageRegisterAction" class="com.megaeyes.access.action.impl.StorageRegisterAction"/>
+	<bean id="termRegisterAction" class="com.megaeyes.access.action.impl.TermRegisterAction"/>
+	<bean id="findDeviceNamingAction" class="com.megaeyes.access.action.impl.FindDeviceNamingAction" />
+ 	<bean id="findDeviceNamingListAction" class="com.megaeyes.access.action.impl.FindDeviceNamingListAction" />
+ 	<bean id="storeSchemaAction" class="com.megaeyes.access.action.impl.StoreSchemaAction" />
+ 	<bean id="deleteDeviceAlarmAction" class="com.megaeyes.access.action.impl.DeleteDeviceAlarmAction" />
+ 	<bean id="userOperationLogAction" class="com.megaeyes.access.action.impl.UserOperationLogAction" />
+ 	<bean id="historyVideoAction" class="com.megaeyes.access.action.impl.HistoryVideoAction" />
+ 	<bean id="userVideoBillAction" class="com.megaeyes.access.action.impl.UserVideoBillAction"/>
+ 	<bean id="setDeviceAlarmAction" class="com.megaeyes.access.action.impl.SetDeviceAlarmAction"/>
+ 	
+ 	<bean id="videoParamAction" class="com.megaeyes.access.action.impl.VideoParamAction"/>
+ 	<bean id="getVideoParamAction" class="com.megaeyes.access.action.impl.GetVideoParamAction"/>
+ 	<bean id="defaulVideoParamAction" class="com.megaeyes.access.action.impl.DefaulVideoParamAction"/>
+ 	<bean id="createAlarmEventByManAction" class="com.megaeyes.access.action.impl.CreateAlarmEventByManAction"/>
+ 	<bean id="createAlarmEventAutoAction" class="com.megaeyes.access.action.impl.CreateAlarmEventAutoAction"/>
+ 	<!-- bean provider config -->
+	<bean id="actionProvider" class="com.megaeyes.access.ActionProvider">
+		<property name="actionMap">
+			<map>
+				<entry key="1012" value-ref="alarmConfirmAction" />
+				<entry key="2008" value-ref="alarmNotifyAction" />
+				<entry key="2010" value-ref="alarmStopAction" />
+				<entry key="5050" value-ref="alarmInfoAction" />
+				<entry key="1002" value-ref="authorizationAction" />
+				<entry key="1018" value-ref="monitorAuthAction" />
+				<entry key="1014" value-ref="deviceNotifyAction" />
+				<entry key="1100" value-ref="deviceNewNotifyAction" />
+				<entry key="1024" value-ref="noHeartBeatAction" />
+				<entry key="2" value-ref="heartBeatAction" />
+				<entry key="2004" value-ref="protocolDownloadAction" />
+				
+				<entry key="1026" value-ref="accessRebootAction" />
+				<entry key="2020" value-ref="ipCameraRegisterAction" />
+				<entry key="4012" value-ref="storageQueryCameraTotalAction" />
+				<entry key="6000" value-ref="displayRegisterAction" />
+				<entry key="4016" value-ref="storageQueryVicAction" />
+				<entry key="4002" value-ref="storageRegisterAction" />
+				<entry key="2002" value-ref="termRegisterAction" />
+				<entry key="3002" value-ref="dispatchRegisterAction" />
+				<entry key="1028" value-ref="findDeviceNamingAction" />
+				<entry key="1030" value-ref="findDeviceNamingListAction" />
+				<entry key="5014" value-ref="storeSchemaAction" />
+				<entry key="5210" value-ref="deleteDeviceAlarmAction" />
+				<entry key="1004" value-ref="userOperationLogAction" />
+				<entry key="5004" value-ref="historyVideoAction" />
+				<entry key="5072" value-ref="userVideoBillAction" />
+				<entry key="5208" value-ref="setDeviceAlarmAction" />
+				<entry key="5074" value-ref="videoParamAction" />
+				<entry key="5076" value-ref="getVideoParamAction" />
+				<entry key="5078" value-ref="defaulVideoParamAction" />
+				<entry key="5220" value-ref="createAlarmEventByManAction" />
+				<entry key="5214" value-ref="createAlarmEventAutoAction" />
+				
+				<entry key="1040" value-ref="ipCameraHeartBeatAction" />
+				<entry key="1042" value-ref="sDLostReportAction" />
+				<entry key="3000" value-ref="ipCameraAlarmNotifyAction" />
+				<entry key="20" value-ref="emptyAction" />
+				<entry key="22" value-ref="emptyAction" />
+				<entry key="1200" value-ref="storageInfoQueryAction" />
+			</map>
+		</property>
+	</bean>
+</beans>

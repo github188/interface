@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="AC_EMPLOYEE_ABSENT_RECORD_VIEW">
+	<resultMap class="com.megaeyes.persistence.ibatis.vo.AcEmployeeAbsentRecordVO" id="absentRecord">
+	    <result column="ID" property="id" jdbcType="VARCHAR" />
+    	<result column="TYPE" property="type" jdbcType="VARCHAR" />
+    	<result column="CREATOR_ID" property="creatorId" jdbcType="VARCHAR" />
+    	<result column="CREATE_TIME" property="createTime" jdbcType="DATE" />
+    	<result column="EMPLOYEE_ID" property="employeeId" jdbcType="VARCHAR" />
+    	<result column="EMPLOYEE_NAME" property="employeeName" jdbcType="VARCHAR" />
+    	<result column="BRANCH_ID" property="branchId" jdbcType="VARCHAR" />
+    	<result column="ORGAN_ID" property="organId" jdbcType="VARCHAR" />
+    	<result column="START_DATE" property="startDate" jdbcType="DATE" />
+    	<result column="START_TIME" property="startTime" jdbcType="VARCHAR" />
+    	<result column="END_DATE" property="endDate" jdbcType="DATE" />
+    	<result column="END_TIME" property="endTime" jdbcType="VARCHAR" />
+    	<result column="APPROVER" property="approver" jdbcType="VARCHAR" />
+   	 	<result column="NOTE" property="note" jdbcType="VARCHAR" />
+	</resultMap>
+
+	
+	<select id="getAbsentListByBranchId" resultMap="absentRecord">
+		select aea.*, ae.name as employee_name
+  		from ac_employee_absence_record aea, ac_employees ae
+ 		where aea.employee_id = ae.id and aea.branch_id = #branchId#
+	</select>
+
+</sqlMap>

@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="STORAGE_SERVER">
+  <resultMap class="com.megaeyes.persistence.ibatis.model.StorageServer" id="_StorageServerResult">
+    <result column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="OPTIMISTIC_LOCK" jdbcType="DECIMAL" property="optimisticLock" />
+    <result column="F_NAME" jdbcType="VARCHAR" property="name" />
+    <result column="NAMING" jdbcType="VARCHAR" property="naming" />
+    <result column="INSTALL_LOCATION" jdbcType="VARCHAR" property="installLocation" />
+    <result column="NOTE" jdbcType="VARCHAR" property="note" />
+    <result column="DEVICE_NUMBER" jdbcType="VARCHAR" property="deviceNumber" />
+    <result column="IP" jdbcType="VARCHAR" property="ip" />
+    <result column="LINK_TYPE" jdbcType="VARCHAR" property="linkType" />
+    <result column="HEART_CYCLE" jdbcType="DECIMAL" property="heartCycle" />
+    <result column="MAX_OUTPUT_AMOUNT" jdbcType="DECIMAL" property="maxOutputAmount" />
+    <result column="MAX_INPUT_AMOUNT" jdbcType="DECIMAL" property="maxInputAmount" />
+    <result column="FTP_PORT" jdbcType="DECIMAL" property="ftpPort" />
+    <result column="FTP_USER_NAME" jdbcType="VARCHAR" property="ftpUserName" />
+    <result column="FTP_PASSWORD" jdbcType="VARCHAR" property="ftpPassword" />
+    <result column="IP2" jdbcType="VARCHAR" property="ip2" />
+    <result column="MESSAGE_PORT" jdbcType="DECIMAL" property="messagePort" />
+    <result column="STD_ID" jdbcType="VARCHAR" property="stdId" />
+    <result column="IS_VIRTUAL_IP" jdbcType="DECIMAL" property="isVirtualIp" />
+  </resultMap>
+  <sql id="_Example_Where_Clause">
+    <iterate conjunction="or" prepend="where" property="oredCriteria" removeFirstPrepend="iterate">
+      <isEqual compareValue="true" property="oredCriteria[].valid">
+        (
+        <iterate conjunction="and" prepend="and" property="oredCriteria[].criteriaWithoutValue">
+          $oredCriteria[].criteriaWithoutValue[]$
+        </iterate>
+        <iterate conjunction="and" prepend="and" property="oredCriteria[].criteriaWithSingleValue">
+          $oredCriteria[].criteriaWithSingleValue[].condition$
+            #oredCriteria[].criteriaWithSingleValue[].value#
+        </iterate>
+        <iterate conjunction="and" prepend="and" property="oredCriteria[].criteriaWithListValue">
+          $oredCriteria[].criteriaWithListValue[].condition$
+          <iterate close=")" conjunction="," open="(" property="oredCriteria[].criteriaWithListValue[].values">
+            #oredCriteria[].criteriaWithListValue[].values[]#
+          </iterate>
+        </iterate>
+        <iterate conjunction="and" prepend="and" property="oredCriteria[].criteriaWithBetweenValue">
+          $oredCriteria[].criteriaWithBetweenValue[].condition$
+          #oredCriteria[].criteriaWithBetweenValue[].values[0]# and
+          #oredCriteria[].criteriaWithBetweenValue[].values[1]#
+        </iterate>
+        )
+      </isEqual>
+    </iterate>
+  </sql>
+  <select id="_selectByPrimaryKey" parameterClass="com.megaeyes.persistence.ibatis.model.StorageServer" resultMap="_StorageServerResult">
+    select ID, OPTIMISTIC_LOCK, F_NAME, NAMING, INSTALL_LOCATION, NOTE, DEVICE_NUMBER, IP,
+      LINK_TYPE, HEART_CYCLE, MAX_OUTPUT_AMOUNT, MAX_INPUT_AMOUNT, FTP_PORT, FTP_USER_NAME,
+      FTP_PASSWORD, IP2, MESSAGE_PORT, STD_ID, IS_VIRTUAL_IP
+    from STORAGE_SERVER
+    where ID = #id:VARCHAR#
+  </select>
+  <select id="_selectByExample" parameterClass="com.megaeyes.persistence.ibatis.model.StorageServerExample" resultMap="_StorageServerResult">
+    select ID, OPTIMISTIC_LOCK, F_NAME, NAMING, INSTALL_LOCATION, NOTE, DEVICE_NUMBER, IP,
+      LINK_TYPE, HEART_CYCLE, MAX_OUTPUT_AMOUNT, MAX_INPUT_AMOUNT, FTP_PORT, FTP_USER_NAME,
+      FTP_PASSWORD, IP2, MESSAGE_PORT, STD_ID, IS_VIRTUAL_IP
+    from STORAGE_SERVER
+    <isParameterPresent>
+      <include refid="STORAGE_SERVER._Example_Where_Clause" />
+      <isNotNull property="orderByClause">
+        order by $orderByClause$
+      </isNotNull>
+    </isParameterPresent>
+  </select>
+  <delete id="_deleteByPrimaryKey" parameterClass="com.megaeyes.persistence.ibatis.model.StorageServer">
+    delete from STORAGE_SERVER
+    where ID = #id:VARCHAR#
+  </delete>
+  <delete id="_deleteByExample" parameterClass="com.megaeyes.persistence.ibatis.model.StorageServerExample">
+    delete from STORAGE_SERVER
+    <include refid="STORAGE_SERVER._Example_Where_Clause" />
+  </delete>
+  <insert id="_insert" parameterClass="com.megaeyes.persistence.ibatis.model.StorageServer">
+    insert into STORAGE_SERVER (ID, OPTIMISTIC_LOCK, F_NAME, NAMING, INSTALL_LOCATION, NOTE,
+      DEVICE_NUMBER, IP, LINK_TYPE, HEART_CYCLE, MAX_OUTPUT_AMOUNT, MAX_INPUT_AMOUNT, FTP_PORT,
+      FTP_USER_NAME, FTP_PASSWORD, IP2, MESSAGE_PORT, STD_ID, IS_VIRTUAL_IP)
+    values (#id:VARCHAR#, #optimisticLock:DECIMAL#, #name:VARCHAR#, #naming:VARCHAR#,
+      #installLocation:VARCHAR#, #note:VARCHAR#, #deviceNumber:VARCHAR#, #ip:VARCHAR#,
+      #linkType:VARCHAR#, #heartCycle:DECIMAL#, #maxOutputAmount:DECIMAL#, #maxInputAmount:DECIMAL#,
+      #ftpPort:DECIMAL#, #ftpUserName:VARCHAR#, #ftpPassword:VARCHAR#, #ip2:VARCHAR#,
+      #messagePort:DECIMAL#, #stdId:VARCHAR#, #isVirtualIp:DECIMAL#)
+  </insert>
+  <update id="_updateByPrimaryKey" parameterClass="com.megaeyes.persistence.ibatis.model.StorageServer">
+    update STORAGE_SERVER
+    set OPTIMISTIC_LOCK = #optimisticLock:DECIMAL#,
+      F_NAME = #name:VARCHAR#,
+      NAMING = #naming:VARCHAR#,
+      INSTALL_LOCATION = #installLocation:VARCHAR#,
+      NOTE = #note:VARCHAR#,
+      DEVICE_NUMBER = #deviceNumber:VARCHAR#,
+      IP = #ip:VARCHAR#,
+      LINK_TYPE = #linkType:VARCHAR#,
+      HEART_CYCLE = #heartCycle:DECIMAL#,
+      MAX_OUTPUT_AMOUNT = #maxOutputAmount:DECIMAL#,
+      MAX_INPUT_AMOUNT = #maxInputAmount:DECIMAL#,
+      FTP_PORT = #ftpPort:DECIMAL#,
+      FTP_USER_NAME = #ftpUserName:VARCHAR#,
+      FTP_PASSWORD = #ftpPassword:VARCHAR#,
+      IP2 = #ip2:VARCHAR#,
+      MESSAGE_PORT = #messagePort:DECIMAL#,
+      STD_ID = #stdId:VARCHAR#,
+      IS_VIRTUAL_IP = #isVirtualIp:DECIMAL#
+    where ID = #id:VARCHAR#
+  </update>
+  <update id="_updateByPrimaryKeySelective" parameterClass="com.megaeyes.persistence.ibatis.model.StorageServer">
+    update STORAGE_SERVER
+    <dynamic prepend="set">
+      <isNotNull prepend="," property="optimisticLock">
+        OPTIMISTIC_LOCK = #optimisticLock:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="name">
+        F_NAME = #name:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="naming">
+        NAMING = #naming:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="installLocation">
+        INSTALL_LOCATION = #installLocation:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="note">
+        NOTE = #note:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="deviceNumber">
+        DEVICE_NUMBER = #deviceNumber:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="ip">
+        IP = #ip:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="linkType">
+        LINK_TYPE = #linkType:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="heartCycle">
+        HEART_CYCLE = #heartCycle:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="maxOutputAmount">
+        MAX_OUTPUT_AMOUNT = #maxOutputAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="maxInputAmount">
+        MAX_INPUT_AMOUNT = #maxInputAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="ftpPort">
+        FTP_PORT = #ftpPort:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="ftpUserName">
+        FTP_USER_NAME = #ftpUserName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="ftpPassword">
+        FTP_PASSWORD = #ftpPassword:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="ip2">
+        IP2 = #ip2:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="messagePort">
+        MESSAGE_PORT = #messagePort:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="stdId">
+        STD_ID = #stdId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="isVirtualIp">
+        IS_VIRTUAL_IP = #isVirtualIp:DECIMAL#
+      </isNotNull>
+    </dynamic>
+    where ID = #id:VARCHAR#
+  </update>
+  <select id="_countByExample" parameterClass="com.megaeyes.persistence.ibatis.model.StorageServerExample" resultClass="java.lang.Integer">
+    select count(*) from STORAGE_SERVER
+    <include refid="STORAGE_SERVER._Example_Where_Clause" />
+  </select>
+  <update id="_updateByExampleSelective">
+    update STORAGE_SERVER
+    <dynamic prepend="set">
+      <isNotNull prepend="," property="record.id">
+        ID = #record.id:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.optimisticLock">
+        OPTIMISTIC_LOCK = #record.optimisticLock:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.name">
+        F_NAME = #record.name:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.naming">
+        NAMING = #record.naming:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.installLocation">
+        INSTALL_LOCATION = #record.installLocation:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.note">
+        NOTE = #record.note:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.deviceNumber">
+        DEVICE_NUMBER = #record.deviceNumber:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.ip">
+        IP = #record.ip:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.linkType">
+        LINK_TYPE = #record.linkType:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.heartCycle">
+        HEART_CYCLE = #record.heartCycle:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.maxOutputAmount">
+        MAX_OUTPUT_AMOUNT = #record.maxOutputAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.maxInputAmount">
+        MAX_INPUT_AMOUNT = #record.maxInputAmount:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.ftpPort">
+        FTP_PORT = #record.ftpPort:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.ftpUserName">
+        FTP_USER_NAME = #record.ftpUserName:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.ftpPassword">
+        FTP_PASSWORD = #record.ftpPassword:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.ip2">
+        IP2 = #record.ip2:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.messagePort">
+        MESSAGE_PORT = #record.messagePort:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.stdId">
+        STD_ID = #record.stdId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.isVirtualIp">
+        IS_VIRTUAL_IP = #record.isVirtualIp:DECIMAL#
+      </isNotNull>
+    </dynamic>
+    <isParameterPresent>
+      <include refid="STORAGE_SERVER._Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="_updateByExample">
+    update STORAGE_SERVER
+    set ID = #record.id:VARCHAR#,
+      OPTIMISTIC_LOCK = #record.optimisticLock:DECIMAL#,
+      F_NAME = #record.name:VARCHAR#,
+      NAMING = #record.naming:VARCHAR#,
+      INSTALL_LOCATION = #record.installLocation:VARCHAR#,
+      NOTE = #record.note:VARCHAR#,
+      DEVICE_NUMBER = #record.deviceNumber:VARCHAR#,
+      IP = #record.ip:VARCHAR#,
+      LINK_TYPE = #record.linkType:VARCHAR#,
+      HEART_CYCLE = #record.heartCycle:DECIMAL#,
+      MAX_OUTPUT_AMOUNT = #record.maxOutputAmount:DECIMAL#,
+      MAX_INPUT_AMOUNT = #record.maxInputAmount:DECIMAL#,
+      FTP_PORT = #record.ftpPort:DECIMAL#,
+      FTP_USER_NAME = #record.ftpUserName:VARCHAR#,
+      FTP_PASSWORD = #record.ftpPassword:VARCHAR#,
+      IP2 = #record.ip2:VARCHAR#,
+      MESSAGE_PORT = #record.messagePort:DECIMAL#,
+      STD_ID = #record.stdId:VARCHAR#,
+      IS_VIRTUAL_IP = #record.isVirtualIp:DECIMAL#
+    <isParameterPresent>
+      <include refid="STORAGE_SERVER._Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+</sqlMap>

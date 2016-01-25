@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="VIDEO_INPUT_SERVER_VIEW">
+	<resultMap class="com.megaeyes.persistence.ibatis.vo.UserVisVO"
+		id="userVisVO">
+		<result column="ID" jdbcType="VARCHAR" property="id" />
+		<result column="OPTIMISTIC_LOCK" jdbcType="DECIMAL" property="optimisticLock" />
+		<result column="F_NAME" jdbcType="VARCHAR" property="name" />
+		<result column="NAMING" jdbcType="VARCHAR" property="naming" />
+		<result column="INSTALL_LOCATION" jdbcType="VARCHAR" property="installLocation" />
+		<result column="NOTE" jdbcType="VARCHAR" property="note" />
+		<result column="DEVICE_NUMBER" jdbcType="VARCHAR" property="deviceNumber" />
+		<result column="IP" jdbcType="VARCHAR" property="ip" />
+		<result column="LINK_TYPE" jdbcType="VARCHAR" property="linkType" />
+		<result column="HEART_CYCLE" jdbcType="DECIMAL" property="heartCycle" />
+		<result column="REBOOT_TIME" jdbcType="VARCHAR" property="rebootTime" />
+		<result column="REBOOT_CYCLE" jdbcType="DECIMAL" property="rebootCycle" />
+		<result column="MAX_CONNECT_AMOUNT" jdbcType="DECIMAL"
+			property="maxConnectAmount" />
+		<result column="VIDEO_INTPUT_AMOUNT" jdbcType="DECIMAL"
+			property="videoIntputAmount" />
+		<result column="VIDEO_INPUT_SERVER_MODEL_ID" jdbcType="VARCHAR"
+			property="videoInputServerModelId" />
+		<result column="COMPANY_ID" jdbcType="VARCHAR" property="companyId" />
+		<result column="STD_ID" jdbcType="VARCHAR" property="stdId" />
+		<result column="IS_SUPPORT_SCHEME" jdbcType="DECIMAL" property="isSupportScheme" />
+		<result column="O_ORGAN_ID" jdbcType="VARCHAR" property="organId" />
+		<result column="MAX_VIDEOINPUT_CHANNEL" jdbcType="DECIMAL"
+			property="maxVideoinputChannel" />
+		<result column="MAX_ALARMOUTPUT_CHANNEL" jdbcType="DECIMAL"
+			property="maxAlarmoutputChannel" />
+		<result column="MAX_ALARMINPUT_CHANNEL" jdbcType="DECIMAL"
+			property="maxAlarminputChannel" />
+		<result column="IS_SUSPENDED" jdbcType="DECIMAL" property="isSuspended" />
+		<result column="IS_SUPPORT_NAT" jdbcType="DECIMAL" property="isSupportNat" />
+		<result column="IS_SUPPORT_VOD2" jdbcType="DECIMAL" property="isSupportVod2" />
+		<result column="IS_SUPPORT_PTZ_LOCK" jdbcType="DECIMAL"
+			property="isSupportPtzLock" />
+		<result column="CREATETIME" jdbcType="DECIMAL" property="createtime" />
+		<result column="START_ONLINE_TIME" jdbcType="DECIMAL" property="startOnlineTime" />
+		<result column="IS_REGISTERD" jdbcType="DECIMAL" property="isRegisterd" />
+		<result column="WEB_PORT" jdbcType="DECIMAL" property="webPort" />
+		<result column="NAT_IP" jdbcType="VARCHAR" property="natIp" />
+		<result column="IS_NAT" jdbcType="DECIMAL" property="isNat" />
+		<result column="SUPPORT_CAPACITY" jdbcType="VARCHAR" property="supportCapacity" />
+		<result column="VIS_TYPE" jdbcType="VARCHAR" property="visType" />
+	</resultMap>
+	<resultMap class="com.megaeyes.persistence.ibatis.model.VideoInputServer"
+		id="listVisByOrganIdresult">
+		<result column="ID" jdbcType="VARCHAR" property="id" />
+		<result column="OPTIMISTIC_LOCK" jdbcType="DECIMAL" property="optimisticLock" />
+		<result column="F_NAME" jdbcType="VARCHAR" property="name" />
+		<result column="NAMING" jdbcType="VARCHAR" property="naming" />
+		<result column="INSTALL_LOCATION" jdbcType="VARCHAR" property="installLocation" />
+		<result column="NOTE" jdbcType="VARCHAR" property="note" />
+		<result column="DEVICE_NUMBER" jdbcType="VARCHAR" property="deviceNumber" />
+		<result column="IP" jdbcType="VARCHAR" property="ip" />
+		<result column="LINK_TYPE" jdbcType="VARCHAR" property="linkType" />
+		<result column="HEART_CYCLE" jdbcType="DECIMAL" property="heartCycle" />
+		<result column="REBOOT_TIME" jdbcType="VARCHAR" property="rebootTime" />
+		<result column="REBOOT_CYCLE" jdbcType="DECIMAL" property="rebootCycle" />
+		<result column="MAX_CONNECT_AMOUNT" jdbcType="DECIMAL"
+			property="maxConnectAmount" />
+		<result column="VIDEO_INTPUT_AMOUNT" jdbcType="DECIMAL"
+			property="videoIntputAmount" />
+		<result column="VIDEO_INPUT_SERVER_MODEL_ID" jdbcType="VARCHAR"
+			property="videoInputServerModelId" />
+		<result column="COMPANY_ID" jdbcType="VARCHAR" property="companyId" />
+		<result column="STD_ID" jdbcType="VARCHAR" property="stdId" />
+		<result column="IS_SUPPORT_SCHEME" jdbcType="DECIMAL" property="isSupportScheme" />
+		<result column="O_ORGAN_ID" jdbcType="VARCHAR" property="organId" />
+		<result column="MAX_VIDEOINPUT_CHANNEL" jdbcType="DECIMAL"
+			property="maxVideoinputChannel" />
+		<result column="MAX_ALARMOUTPUT_CHANNEL" jdbcType="DECIMAL"
+			property="maxAlarmoutputChannel" />
+		<result column="MAX_ALARMINPUT_CHANNEL" jdbcType="DECIMAL"
+			property="maxAlarminputChannel" />
+		<result column="IS_SUSPENDED" jdbcType="DECIMAL" property="isSuspended" />
+		<result column="IS_SUPPORT_NAT" jdbcType="DECIMAL" property="isSupportNat" />
+		<result column="IS_SUPPORT_VOD2" jdbcType="DECIMAL" property="isSupportVod2" />
+		<result column="IS_SUPPORT_PTZ_LOCK" jdbcType="DECIMAL"
+			property="isSupportPtzLock" />
+		<result column="CREATETIME" jdbcType="DECIMAL" property="createtime" />
+		<result column="START_ONLINE_TIME" jdbcType="DECIMAL" property="startOnlineTime" />
+		<result column="IS_REGISTERD" jdbcType="DECIMAL" property="isRegisterd" />
+		<result column="WEB_PORT" jdbcType="DECIMAL" property="webPort" />
+		<result column="NAT_IP" jdbcType="VARCHAR" property="natIp" />
+		<result column="IS_NAT" jdbcType="DECIMAL" property="isNat" />
+		<result column="SUPPORT_CAPACITY" jdbcType="VARCHAR" property="supportCapacity" />
+		<result column="VIS_TYPE" jdbcType="VARCHAR" property="visType" />
+		<result column="PASSWORD" jdbcType="VARCHAR" property="password" />
+	</resultMap>
+
+<resultMap class="com.megaeyes.persistence.ibatis.vo.VideoInputServerVO"
+		id="listVisByOrganIdresultvo">
+		<result column="ID" jdbcType="VARCHAR" property="id" />
+		<result column="OPTIMISTIC_LOCK" jdbcType="DECIMAL" property="optimisticLock" />
+		<result column="F_NAME" jdbcType="VARCHAR" property="name" />
+		<result column="NAMING" jdbcType="VARCHAR" property="naming" />
+		<result column="INSTALL_LOCATION" jdbcType="VARCHAR" property="installLocation" />
+		<result column="NOTE" jdbcType="VARCHAR" property="note" />
+		<result column="DEVICE_NUMBER" jdbcType="VARCHAR" property="deviceNumber" />
+		<result column="IP" jdbcType="VARCHAR" property="ip" />
+		<result column="LINK_TYPE" jdbcType="VARCHAR" property="linkType" />
+		<result column="HEART_CYCLE" jdbcType="DECIMAL" property="heartCycle" />
+		<result column="REBOOT_TIME" jdbcType="VARCHAR" property="rebootTime" />
+		<result column="REBOOT_CYCLE" jdbcType="DECIMAL" property="rebootCycle" />
+		<result column="MAX_CONNECT_AMOUNT" jdbcType="DECIMAL"
+			property="maxConnectAmount" />
+		<result column="VIDEO_INTPUT_AMOUNT" jdbcType="DECIMAL"
+			property="videoIntputAmount" />
+		<result column="VIDEO_INPUT_SERVER_MODEL_ID" jdbcType="VARCHAR"
+			property="videoInputServerModelId" />
+		<result column="COMPANY_ID" jdbcType="VARCHAR" property="companyId" />
+		<result column="STD_ID" jdbcType="VARCHAR" property="stdId" />
+		<result column="IS_SUPPORT_SCHEME" jdbcType="DECIMAL" property="isSupportScheme" />
+		<result column="O_ORGAN_ID" jdbcType="VARCHAR" property="organId" />
+		<result column="MAX_VIDEOINPUT_CHANNEL" jdbcType="DECIMAL"
+			property="maxVideoinputChannel" />
+		<result column="MAX_ALARMOUTPUT_CHANNEL" jdbcType="DECIMAL"
+			property="maxAlarmoutputChannel" />
+		<result column="MAX_ALARMINPUT_CHANNEL" jdbcType="DECIMAL"
+			property="maxAlarminputChannel" />
+		<result column="IS_SUSPENDED" jdbcType="DECIMAL" property="isSuspended" />
+		<result column="IS_SUPPORT_NAT" jdbcType="DECIMAL" property="isSupportNat" />
+		<result column="IS_SUPPORT_VOD2" jdbcType="DECIMAL" property="isSupportVod2" />
+		<result column="IS_SUPPORT_PTZ_LOCK" jdbcType="DECIMAL"
+			property="isSupportPtzLock" />
+		<result column="CREATETIME" jdbcType="DECIMAL" property="createtime" />
+		<result column="START_ONLINE_TIME" jdbcType="DECIMAL" property="startOnlineTime" />
+		<result column="IS_REGISTERD" jdbcType="DECIMAL" property="isRegisterd" />
+		<result column="WEB_PORT" jdbcType="DECIMAL" property="webPort" />
+		<result column="NAT_IP" jdbcType="VARCHAR" property="natIp" />
+		<result column="IS_NAT" jdbcType="DECIMAL" property="isNat" />
+		<result column="SUPPORT_CAPACITY" jdbcType="VARCHAR" property="supportCapacity" />
+		<result column="VIS_TYPE" jdbcType="VARCHAR" property="visType" />
+		<result column="PASSWORD" jdbcType="VARCHAR" property="password" />
+		<result column="SIP_PORT" jdbcType="VARCHAR" property="sipPort" />
+		<result column="SIP_CODE" jdbcType="VARCHAR" property="sipCode" />
+		<result column="longitude" jdbcType="VARCHAR" property="longitude" />
+		
+		<result column="latitude" jdbcType="VARCHAR" property="latitude" />
+	</resultMap>
+	<select id="getVISByOrganId" resultMap="userVisVO">
+		SELECT * FROM ( SELECT row_.*, ROWNUM rownum_ FROM (select *
+		from
+		VIDEO_INPUT_SERVER vis where 1=1
+		<isNotEmpty prepend="and" property="name">
+			vis.f_name like
+			'%$name$%'
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="organId">
+			vis.COMPANY_ID =
+			#organId#
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="deviceNumber">
+			vis.device_number like
+			'%$deviceNumber$%'
+		</isNotEmpty>
+		and vis.INSTALL_LOCATION in(select id from ep_install_address
+		addr
+		where 1=1
+		<isNotEmpty prepend="and" property="lineBackFew">
+			addr.LINE_BACK_FEW like
+			'%$lineBackFew$%'
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="towerNumber">
+			addr.TOWER_NUMBER like
+			'%$towerNumber$%'
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="switchesIp">
+			addr.SWITCHES_IP like
+			'%$switchesIp$%'
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="serialServerIp">
+			addr.SERIAL_SERVER_IP
+			like '%$serialServerIp$%'
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="voltageLevel">
+			addr.VOLTAGE_LEVEL like
+			'%$voltageLevel$%'
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="areaBelongs">
+			addr.AREA_BELONGS like
+			'%$areaBelongs$%'
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="type">
+			addr.TYPE=#type#
+		</isNotEmpty>
+		)) row_ WHERE ROWNUM
+		<![CDATA[ <]]>=#end#)
+		WHERE rownum_ >#start#
+	</select>
+	<select id="getVISByOrganIdCount" resultClass="java.lang.Integer">
+		select count(*) from VIDEO_INPUT_SERVER vis
+		where 1=1
+		<isNotEmpty prepend="and" property="name">
+			vis.f_name like
+			'%$name$%'
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="organId">
+			vis.COMPANY_ID =
+			#organId#
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="deviceNumber">
+			vis.device_number like
+			'%$deviceNumber$%'
+		</isNotEmpty>
+		and vis.INSTALL_LOCATION in(select id from ep_install_address
+		addr
+		where 1=1
+		<isNotEmpty prepend="and" property="lineBackFew">
+			addr.LINE_BACK_FEW like
+			'%$lineBackFew$%'
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="towerNumber">
+			addr.TOWER_NUMBER like
+			'%$towerNumber$%'
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="switchesIp">
+			addr.SWITCHES_IP like
+			'%$switchesIp$%'
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="serialServerIp">
+			addr.SERIAL_SERVER_IP
+			like '%$serialServerIp$%'
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="voltageLevel">
+			addr.VOLTAGE_LEVEL like
+			'%$voltageLevel$%'
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="areaBelongs">
+			addr.AREA_BELONGS like
+			'%$areaBelongs$%'
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="type">
+			addr.TYPE=#type#
+		</isNotEmpty>
+		)
+	</select>
+	<select id="getVISByUserId" resultMap="userVisVO">
+		SELECT * FROM ( SELECT row_.*, ROWNUM rownum_ FROM (select * from
+		video_input_server vis where vis.id not in(select visid from
+		r_user_vis where type=0 and userid=#userId#)
+		<isNotEmpty prepend="and" property="name">
+			vis.f_name like
+			'%$name$%'
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="address">
+			vis.INSTALL_LOCATION
+			like '%$address$%'
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="organId">
+			vis.COMPANY_ID =
+			#organId#
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="deviceNumber">
+			vis.device_number like
+			#deviceNumber#
+		</isNotEmpty>
+		)
+		row_ WHERE ROWNUM
+	<![CDATA[ <]]>=#end#)
+		WHERE rownum_ >#start#
+	</select>
+	<select id="getVISByUserIdCount" resultClass="java.lang.Integer">
+		select count(*) from video_input_server vis where vis.id not
+		in(select
+		visid from r_user_vis where type=0 and
+		userid=#userId#)
+		<isNotEmpty prepend="and" property="name">
+			vis.f_name like
+			'%$name$%'
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="address">
+			vis.INSTALL_LOCATION
+			like '%$address$%'
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="organId">
+			vis.COMPANY_ID =
+			#organId#
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="deviceNumber">
+			vis.device_number =
+			#deviceNumber#
+		</isNotEmpty>
+	</select>
+	<select id="getShareVisCount" resultClass="java.lang.Integer">
+		select count(*) from
+		r_user_vis where type = 2 and
+		userid=#userId#)
+	</select>
+
+	<select id="listVisByOrganId" resultMap="listVisByOrganIdresultvo">
+		select t.*,s.sip_code,s.longitude,s.latitude from
+		video_input_server t left join platform_resources s on t.id=s.resource_id and s.type='vis' where 1=1 and COMPANY_ID in(select id from organ
+		o where o.path like 
+		'%$organId$%')
+	</select>
+	
+	<select id="getByDeviceNumber" resultMap="VIDEO_INPUT_SERVER.abatorgenerated_VideoInputServerResult">
+		select ID, OPTIMISTIC_LOCK, F_NAME, NAMING, INSTALL_LOCATION, NOTE, DEVICE_NUMBER, IP,
+        LINK_TYPE, HEART_CYCLE, REBOOT_TIME, REBOOT_CYCLE, MAX_CONNECT_AMOUNT, VIDEO_INTPUT_AMOUNT,
+        VIDEO_INPUT_SERVER_MODEL_ID, COMPANY_ID, STD_ID, IS_SUPPORT_SCHEME, O_ORGAN_ID,
+        MAX_VIDEOINPUT_CHANNEL, MAX_ALARMOUTPUT_CHANNEL, MAX_ALARMINPUT_CHANNEL, IS_SUSPENDED,
+        IS_SUPPORT_NAT, IS_SUPPORT_VOD2, IS_SUPPORT_PTZ_LOCK, CREATETIME, START_ONLINE_TIME,
+        IS_REGISTERD, WEB_PORT, NAT_IP, IS_NAT, SUPPORT_CAPACITY, VIS_TYPE, PASSWORD, SIP_PORT
+        from VIDEO_INPUT_SERVER
+        where DEVICE_NUMBER = #deviceNumber:VARCHAR#
+	</select>
+	
+	
+	<parameterMap class="map" id="proUpdateTerminalNaming">
+		<parameter property="visId" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>
+		<parameter property="accessId" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN" />
+		<parameter property="cmsId" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>
+		<parameter property="isSupportScheme" jdbcType="NUMBER" javaType="java.lang.Short" mode="IN"/> 
+		<parameter property="company" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN"/>
+	</parameterMap>
+	<!-- 视频服务器注册时更新二级设备Naming -->
+	<procedure id="registerTerminal" parameterMap="proUpdateTerminalNaming">
+		<![CDATA[
+	  		{call register_terminal (?,?,?,?,?)}
+		]]>
+	</procedure>
+</sqlMap>

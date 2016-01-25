@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="EP_INTELLIGENT_DETECTION_VIEW">
+  <resultMap class="com.megaeyes.persistence.ibatis.vo.EpIntelligentDetectionAndDeviceVO" id="_EpIntelligentDetectionResult">
+    <result column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+    <result column="ORGAN_ID" jdbcType="VARCHAR" property="organId" />
+    <result column="PARENT_ID" jdbcType="VARCHAR" property="parentId" />
+    <result column="TYPE" jdbcType="DECIMAL" property="type" />
+    <result column="NOTE" jdbcType="VARCHAR" property="note" />
+    <result column="OPERATION" jdbcType="VARCHAR" property="operation" />
+  </resultMap>
+  
+    <select id="listEIDByOrganId" resultMap="_EpIntelligentDetectionResult">
+		select a.NAME,a.ORGAN_ID,a.PARENT_ID,a.NOTE,a.ID,a.OPERATION,a.TYPE from EP_DEVICE a where a.organ_id = #organId# and a.type = 3
+	</select>
+	
+</sqlMap>

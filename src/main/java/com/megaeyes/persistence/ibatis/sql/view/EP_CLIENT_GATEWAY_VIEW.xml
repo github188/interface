@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="EP_CLIENT_GATEWAY_VIEW">
+
+
+	<resultMap id="abatorgenerated_clientGatewayHeartbeatResult"
+		class="com.megaeyes.persistence.ibatis.vo.ClientGatewayHeartbeatVO">
+		<result column="centerDevicesLastUpdateTime" property="centerDevicesLastUpdateTime"
+			jdbcType="VARCHAR" />
+
+	</resultMap>
+
+	<select id="clientGatewayHeartbeat" resultMap="abatorgenerated_clientGatewayHeartbeatResult">
+		select
+		max(d.centerDevicesLastUpdateTime) centerDevicesLastUpdateTime from
+		(select max(a.last_update_time) as centerDevicesLastUpdateTime from
+		access_server a union select max(b.last_update_time) as
+		centerDevicesLastUpdateTime from ac_gateway b)d
+	</select>
+
+
+</sqlMap>

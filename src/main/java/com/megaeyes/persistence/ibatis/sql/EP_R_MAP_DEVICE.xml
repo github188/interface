@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="EP_R_MAP_DEVICE">
+  <resultMap class="com.megaeyes.persistence.ibatis.model.EpRMapDevice" id="_EpRMapDeviceResult">
+    <result column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="EP_MAP_ID" jdbcType="VARCHAR" property="epMapId" />
+    <result column="DEVICE_ID" jdbcType="VARCHAR" property="deviceId" />
+    <result column="DEVICE_TYPE" jdbcType="DECIMAL" property="deviceType" />
+    <result column="COORDINATE_X" jdbcType="VARCHAR" property="coordinateX" />
+    <result column="COORDINATE_Y" jdbcType="VARCHAR" property="coordinateY" />
+    <result column="LEFT" jdbcType="VARCHAR" property="left" />
+    <result column="RIGHT" jdbcType="VARCHAR" property="right" />
+    <result column="TOP" jdbcType="VARCHAR" property="top" />
+    <result column="BOTTOM" jdbcType="VARCHAR" property="bottom" />
+  </resultMap>
+  <sql id="_Example_Where_Clause">
+    <iterate conjunction="or" prepend="where" property="oredCriteria" removeFirstPrepend="iterate">
+      <isEqual compareValue="true" property="oredCriteria[].valid">
+        (
+        <iterate conjunction="and" prepend="and" property="oredCriteria[].criteriaWithoutValue">
+          $oredCriteria[].criteriaWithoutValue[]$
+        </iterate>
+        <iterate conjunction="and" prepend="and" property="oredCriteria[].criteriaWithSingleValue">
+          $oredCriteria[].criteriaWithSingleValue[].condition$
+            #oredCriteria[].criteriaWithSingleValue[].value#
+        </iterate>
+        <iterate conjunction="and" prepend="and" property="oredCriteria[].criteriaWithListValue">
+          $oredCriteria[].criteriaWithListValue[].condition$
+          <iterate close=")" conjunction="," open="(" property="oredCriteria[].criteriaWithListValue[].values">
+            #oredCriteria[].criteriaWithListValue[].values[]#
+          </iterate>
+        </iterate>
+        <iterate conjunction="and" prepend="and" property="oredCriteria[].criteriaWithBetweenValue">
+          $oredCriteria[].criteriaWithBetweenValue[].condition$
+          #oredCriteria[].criteriaWithBetweenValue[].values[0]# and
+          #oredCriteria[].criteriaWithBetweenValue[].values[1]#
+        </iterate>
+        )
+      </isEqual>
+    </iterate>
+  </sql>
+  <select id="_selectByPrimaryKey" parameterClass="com.megaeyes.persistence.ibatis.model.EpRMapDevice" resultMap="_EpRMapDeviceResult">
+    select ID, EP_MAP_ID, DEVICE_ID, DEVICE_TYPE, COORDINATE_X, COORDINATE_Y, LEFT, RIGHT, TOP,
+      BOTTOM
+    from EP_R_MAP_DEVICE
+    where ID = #id:VARCHAR#
+  </select>
+  <select id="_selectByExample" parameterClass="com.megaeyes.persistence.ibatis.model.EpRMapDeviceExample" resultMap="_EpRMapDeviceResult">
+    select ID, EP_MAP_ID, DEVICE_ID, DEVICE_TYPE, COORDINATE_X, COORDINATE_Y, LEFT, RIGHT, TOP,
+      BOTTOM
+    from EP_R_MAP_DEVICE
+    <isParameterPresent>
+      <include refid="EP_R_MAP_DEVICE._Example_Where_Clause" />
+      <isNotNull property="orderByClause">
+        order by $orderByClause$
+      </isNotNull>
+    </isParameterPresent>
+  </select>
+  <delete id="_deleteByPrimaryKey" parameterClass="com.megaeyes.persistence.ibatis.model.EpRMapDevice">
+    delete from EP_R_MAP_DEVICE
+    where ID = #id:VARCHAR#
+  </delete>
+  <delete id="_deleteByExample" parameterClass="com.megaeyes.persistence.ibatis.model.EpRMapDeviceExample">
+    delete from EP_R_MAP_DEVICE
+    <include refid="EP_R_MAP_DEVICE._Example_Where_Clause" />
+  </delete>
+  <insert id="_insert" parameterClass="com.megaeyes.persistence.ibatis.model.EpRMapDevice">
+    insert into EP_R_MAP_DEVICE (ID, EP_MAP_ID, DEVICE_ID, DEVICE_TYPE, COORDINATE_X, COORDINATE_Y,
+      LEFT, RIGHT, TOP, BOTTOM)
+    values (#id:VARCHAR#, #epMapId:VARCHAR#, #deviceId:VARCHAR#, #deviceType:DECIMAL#,
+      #coordinateX:VARCHAR#, #coordinateY:VARCHAR#, #left:VARCHAR#, #right:VARCHAR#, #top:VARCHAR#,
+      #bottom:VARCHAR#)
+  </insert>
+  <update id="_updateByPrimaryKey" parameterClass="com.megaeyes.persistence.ibatis.model.EpRMapDevice">
+    update EP_R_MAP_DEVICE
+    set EP_MAP_ID = #epMapId:VARCHAR#,
+      DEVICE_ID = #deviceId:VARCHAR#,
+      DEVICE_TYPE = #deviceType:DECIMAL#,
+      COORDINATE_X = #coordinateX:VARCHAR#,
+      COORDINATE_Y = #coordinateY:VARCHAR#,
+      LEFT = #left:VARCHAR#,
+      RIGHT = #right:VARCHAR#,
+      TOP = #top:VARCHAR#,
+      BOTTOM = #bottom:VARCHAR#
+    where ID = #id:VARCHAR#
+  </update>
+  <update id="_updateByPrimaryKeySelective" parameterClass="com.megaeyes.persistence.ibatis.model.EpRMapDevice">
+    update EP_R_MAP_DEVICE
+    <dynamic prepend="set">
+      <isNotNull prepend="," property="epMapId">
+        EP_MAP_ID = #epMapId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="deviceId">
+        DEVICE_ID = #deviceId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="deviceType">
+        DEVICE_TYPE = #deviceType:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="coordinateX">
+        COORDINATE_X = #coordinateX:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="coordinateY">
+        COORDINATE_Y = #coordinateY:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="left">
+        LEFT = #left:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="right">
+        RIGHT = #right:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="top">
+        TOP = #top:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="bottom">
+        BOTTOM = #bottom:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    where ID = #id:VARCHAR#
+  </update>
+  <select id="_countByExample" parameterClass="com.megaeyes.persistence.ibatis.model.EpRMapDeviceExample" resultClass="java.lang.Integer">
+    select count(*) from EP_R_MAP_DEVICE
+    <include refid="EP_R_MAP_DEVICE._Example_Where_Clause" />
+  </select>
+  <update id="_updateByExampleSelective">
+    update EP_R_MAP_DEVICE
+    <dynamic prepend="set">
+      <isNotNull prepend="," property="record.id">
+        ID = #record.id:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.epMapId">
+        EP_MAP_ID = #record.epMapId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.deviceId">
+        DEVICE_ID = #record.deviceId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.deviceType">
+        DEVICE_TYPE = #record.deviceType:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.coordinateX">
+        COORDINATE_X = #record.coordinateX:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.coordinateY">
+        COORDINATE_Y = #record.coordinateY:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.left">
+        LEFT = #record.left:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.right">
+        RIGHT = #record.right:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.top">
+        TOP = #record.top:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.bottom">
+        BOTTOM = #record.bottom:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    <isParameterPresent>
+      <include refid="EP_R_MAP_DEVICE._Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="_updateByExample">
+    update EP_R_MAP_DEVICE
+    set ID = #record.id:VARCHAR#,
+      EP_MAP_ID = #record.epMapId:VARCHAR#,
+      DEVICE_ID = #record.deviceId:VARCHAR#,
+      DEVICE_TYPE = #record.deviceType:DECIMAL#,
+      COORDINATE_X = #record.coordinateX:VARCHAR#,
+      COORDINATE_Y = #record.coordinateY:VARCHAR#,
+      LEFT = #record.left:VARCHAR#,
+      RIGHT = #record.right:VARCHAR#,
+      TOP = #record.top:VARCHAR#,
+      BOTTOM = #record.bottom:VARCHAR#
+    <isParameterPresent>
+      <include refid="EP_R_MAP_DEVICE._Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+</sqlMap>

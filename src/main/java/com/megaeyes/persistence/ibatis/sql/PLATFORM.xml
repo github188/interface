@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="PLATFORM">
+  <resultMap class="com.megaeyes.persistence.ibatis.model.Platform" id="_PlatformResult">
+    <result column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="OPTIMISTIC_LOCK" jdbcType="DECIMAL" property="optimisticLock" />
+    <result column="F_NAME" jdbcType="VARCHAR" property="name" />
+    <result column="CMS_ID" jdbcType="VARCHAR" property="cmsId" />
+    <result column="LOCATION" jdbcType="VARCHAR" property="location" />
+    <result column="VERIFY" jdbcType="VARCHAR" property="verify" />
+    <result column="NOTE" jdbcType="VARCHAR" property="note" />
+    <result column="PASSWORD" jdbcType="VARCHAR" property="password" />
+    <result column="USER_NOTIFY_SERVER_IP" jdbcType="VARCHAR" property="userNotifyServerIp" />
+    <result column="USER_NOTIFY_SERVER_PORT" jdbcType="DECIMAL" property="userNotifyServerPort" />
+    <result column="USER_NOTIFY_SERVER_URL" jdbcType="VARCHAR" property="userNotifyServerUrl" />
+    <result column="USER_NOTIFY_SERVER_LOGINNAME" jdbcType="VARCHAR" property="userNotifyServerLoginname" />
+    <result column="USER_NOTIFY_SERVER_PASSWORD" jdbcType="VARCHAR" property="userNotifyServerPassword" />
+    <result column="SMS_NOTIFY_TYPE" jdbcType="DECIMAL" property="smsNotifyType" />
+    <result column="SP_CODE" jdbcType="VARCHAR" property="spCode" />
+    <result column="CDR_SERVER_IP" jdbcType="VARCHAR" property="cdrServerIp" />
+    <result column="CDR_SERVER_PORT" jdbcType="DECIMAL" property="cdrServerPort" />
+    <result column="HTTPS_FLAG" jdbcType="DECIMAL" property="httpsFlag" />
+    <result column="IS_CONN_AUTH_CENTER" jdbcType="DECIMAL" property="isConnAuthCenter" />
+  </resultMap>
+  <sql id="_Example_Where_Clause">
+    <iterate conjunction="or" prepend="where" property="oredCriteria" removeFirstPrepend="iterate">
+      <isEqual compareValue="true" property="oredCriteria[].valid">
+        (
+        <iterate conjunction="and" prepend="and" property="oredCriteria[].criteriaWithoutValue">
+          $oredCriteria[].criteriaWithoutValue[]$
+        </iterate>
+        <iterate conjunction="and" prepend="and" property="oredCriteria[].criteriaWithSingleValue">
+          $oredCriteria[].criteriaWithSingleValue[].condition$
+            #oredCriteria[].criteriaWithSingleValue[].value#
+        </iterate>
+        <iterate conjunction="and" prepend="and" property="oredCriteria[].criteriaWithListValue">
+          $oredCriteria[].criteriaWithListValue[].condition$
+          <iterate close=")" conjunction="," open="(" property="oredCriteria[].criteriaWithListValue[].values">
+            #oredCriteria[].criteriaWithListValue[].values[]#
+          </iterate>
+        </iterate>
+        <iterate conjunction="and" prepend="and" property="oredCriteria[].criteriaWithBetweenValue">
+          $oredCriteria[].criteriaWithBetweenValue[].condition$
+          #oredCriteria[].criteriaWithBetweenValue[].values[0]# and
+          #oredCriteria[].criteriaWithBetweenValue[].values[1]#
+        </iterate>
+        )
+      </isEqual>
+    </iterate>
+  </sql>
+  <select id="_selectByPrimaryKey" parameterClass="com.megaeyes.persistence.ibatis.model.Platform" resultMap="_PlatformResult">
+    select ID, OPTIMISTIC_LOCK, F_NAME, CMS_ID, LOCATION, VERIFY, NOTE, PASSWORD,
+      USER_NOTIFY_SERVER_IP, USER_NOTIFY_SERVER_PORT, USER_NOTIFY_SERVER_URL,
+      USER_NOTIFY_SERVER_LOGINNAME, USER_NOTIFY_SERVER_PASSWORD, SMS_NOTIFY_TYPE, SP_CODE,
+      CDR_SERVER_IP, CDR_SERVER_PORT, HTTPS_FLAG, IS_CONN_AUTH_CENTER
+    from PLATFORM
+    where ID = #id:VARCHAR#
+  </select>
+  <select id="_selectByExample" parameterClass="com.megaeyes.persistence.ibatis.model.PlatformExample" resultMap="_PlatformResult">
+    select ID, OPTIMISTIC_LOCK, F_NAME, CMS_ID, LOCATION, VERIFY, NOTE, PASSWORD,
+      USER_NOTIFY_SERVER_IP, USER_NOTIFY_SERVER_PORT, USER_NOTIFY_SERVER_URL,
+      USER_NOTIFY_SERVER_LOGINNAME, USER_NOTIFY_SERVER_PASSWORD, SMS_NOTIFY_TYPE, SP_CODE,
+      CDR_SERVER_IP, CDR_SERVER_PORT, HTTPS_FLAG, IS_CONN_AUTH_CENTER
+    from PLATFORM
+    <isParameterPresent>
+      <include refid="PLATFORM._Example_Where_Clause" />
+      <isNotNull property="orderByClause">
+        order by $orderByClause$
+      </isNotNull>
+    </isParameterPresent>
+  </select>
+  <delete id="_deleteByPrimaryKey" parameterClass="com.megaeyes.persistence.ibatis.model.Platform">
+    delete from PLATFORM
+    where ID = #id:VARCHAR#
+  </delete>
+  <delete id="_deleteByExample" parameterClass="com.megaeyes.persistence.ibatis.model.PlatformExample">
+    delete from PLATFORM
+    <include refid="PLATFORM._Example_Where_Clause" />
+  </delete>
+  <insert id="_insert" parameterClass="com.megaeyes.persistence.ibatis.model.Platform">
+    insert into PLATFORM (ID, OPTIMISTIC_LOCK, F_NAME, CMS_ID, LOCATION, VERIFY, NOTE, PASSWORD,
+      USER_NOTIFY_SERVER_IP, USER_NOTIFY_SERVER_PORT, USER_NOTIFY_SERVER_URL,
+      USER_NOTIFY_SERVER_LOGINNAME, USER_NOTIFY_SERVER_PASSWORD, SMS_NOTIFY_TYPE, SP_CODE,
+      CDR_SERVER_IP, CDR_SERVER_PORT, HTTPS_FLAG, IS_CONN_AUTH_CENTER)
+    values (#id:VARCHAR#, #optimisticLock:DECIMAL#, #name:VARCHAR#, #cmsId:VARCHAR#,
+      #location:VARCHAR#, #verify:VARCHAR#, #note:VARCHAR#, #password:VARCHAR#,
+      #userNotifyServerIp:VARCHAR#, #userNotifyServerPort:DECIMAL#, #userNotifyServerUrl:VARCHAR#,
+      #userNotifyServerLoginname:VARCHAR#, #userNotifyServerPassword:VARCHAR#,
+      #smsNotifyType:DECIMAL#, #spCode:VARCHAR#, #cdrServerIp:VARCHAR#, #cdrServerPort:DECIMAL#,
+      #httpsFlag:DECIMAL#, #isConnAuthCenter:DECIMAL#)
+  </insert>
+  <update id="_updateByPrimaryKey" parameterClass="com.megaeyes.persistence.ibatis.model.Platform">
+    update PLATFORM
+    set OPTIMISTIC_LOCK = #optimisticLock:DECIMAL#,
+      F_NAME = #name:VARCHAR#,
+      CMS_ID = #cmsId:VARCHAR#,
+      LOCATION = #location:VARCHAR#,
+      VERIFY = #verify:VARCHAR#,
+      NOTE = #note:VARCHAR#,
+      PASSWORD = #password:VARCHAR#,
+      USER_NOTIFY_SERVER_IP = #userNotifyServerIp:VARCHAR#,
+      USER_NOTIFY_SERVER_PORT = #userNotifyServerPort:DECIMAL#,
+      USER_NOTIFY_SERVER_URL = #userNotifyServerUrl:VARCHAR#,
+      USER_NOTIFY_SERVER_LOGINNAME = #userNotifyServerLoginname:VARCHAR#,
+      USER_NOTIFY_SERVER_PASSWORD = #userNotifyServerPassword:VARCHAR#,
+      SMS_NOTIFY_TYPE = #smsNotifyType:DECIMAL#,
+      SP_CODE = #spCode:VARCHAR#,
+      CDR_SERVER_IP = #cdrServerIp:VARCHAR#,
+      CDR_SERVER_PORT = #cdrServerPort:DECIMAL#,
+      HTTPS_FLAG = #httpsFlag:DECIMAL#,
+      IS_CONN_AUTH_CENTER = #isConnAuthCenter:DECIMAL#
+    where ID = #id:VARCHAR#
+  </update>
+  <update id="_updateByPrimaryKeySelective" parameterClass="com.megaeyes.persistence.ibatis.model.Platform">
+    update PLATFORM
+    <dynamic prepend="set">
+      <isNotNull prepend="," property="optimisticLock">
+        OPTIMISTIC_LOCK = #optimisticLock:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="name">
+        F_NAME = #name:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="cmsId">
+        CMS_ID = #cmsId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="location">
+        LOCATION = #location:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="verify">
+        VERIFY = #verify:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="note">
+        NOTE = #note:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="password">
+        PASSWORD = #password:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="userNotifyServerIp">
+        USER_NOTIFY_SERVER_IP = #userNotifyServerIp:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="userNotifyServerPort">
+        USER_NOTIFY_SERVER_PORT = #userNotifyServerPort:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="userNotifyServerUrl">
+        USER_NOTIFY_SERVER_URL = #userNotifyServerUrl:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="userNotifyServerLoginname">
+        USER_NOTIFY_SERVER_LOGINNAME = #userNotifyServerLoginname:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="userNotifyServerPassword">
+        USER_NOTIFY_SERVER_PASSWORD = #userNotifyServerPassword:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="smsNotifyType">
+        SMS_NOTIFY_TYPE = #smsNotifyType:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="spCode">
+        SP_CODE = #spCode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="cdrServerIp">
+        CDR_SERVER_IP = #cdrServerIp:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="cdrServerPort">
+        CDR_SERVER_PORT = #cdrServerPort:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="httpsFlag">
+        HTTPS_FLAG = #httpsFlag:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="isConnAuthCenter">
+        IS_CONN_AUTH_CENTER = #isConnAuthCenter:DECIMAL#
+      </isNotNull>
+    </dynamic>
+    where ID = #id:VARCHAR#
+  </update>
+  <select id="_countByExample" parameterClass="com.megaeyes.persistence.ibatis.model.PlatformExample" resultClass="java.lang.Integer">
+    select count(*) from PLATFORM
+    <include refid="PLATFORM._Example_Where_Clause" />
+  </select>
+  <update id="_updateByExampleSelective">
+    update PLATFORM
+    <dynamic prepend="set">
+      <isNotNull prepend="," property="record.id">
+        ID = #record.id:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.optimisticLock">
+        OPTIMISTIC_LOCK = #record.optimisticLock:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.name">
+        F_NAME = #record.name:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.cmsId">
+        CMS_ID = #record.cmsId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.location">
+        LOCATION = #record.location:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.verify">
+        VERIFY = #record.verify:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.note">
+        NOTE = #record.note:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.password">
+        PASSWORD = #record.password:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.userNotifyServerIp">
+        USER_NOTIFY_SERVER_IP = #record.userNotifyServerIp:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.userNotifyServerPort">
+        USER_NOTIFY_SERVER_PORT = #record.userNotifyServerPort:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.userNotifyServerUrl">
+        USER_NOTIFY_SERVER_URL = #record.userNotifyServerUrl:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.userNotifyServerLoginname">
+        USER_NOTIFY_SERVER_LOGINNAME = #record.userNotifyServerLoginname:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.userNotifyServerPassword">
+        USER_NOTIFY_SERVER_PASSWORD = #record.userNotifyServerPassword:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.smsNotifyType">
+        SMS_NOTIFY_TYPE = #record.smsNotifyType:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.spCode">
+        SP_CODE = #record.spCode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.cdrServerIp">
+        CDR_SERVER_IP = #record.cdrServerIp:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.cdrServerPort">
+        CDR_SERVER_PORT = #record.cdrServerPort:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.httpsFlag">
+        HTTPS_FLAG = #record.httpsFlag:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.isConnAuthCenter">
+        IS_CONN_AUTH_CENTER = #record.isConnAuthCenter:DECIMAL#
+      </isNotNull>
+    </dynamic>
+    <isParameterPresent>
+      <include refid="PLATFORM._Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="_updateByExample">
+    update PLATFORM
+    set ID = #record.id:VARCHAR#,
+      OPTIMISTIC_LOCK = #record.optimisticLock:DECIMAL#,
+      F_NAME = #record.name:VARCHAR#,
+      CMS_ID = #record.cmsId:VARCHAR#,
+      LOCATION = #record.location:VARCHAR#,
+      VERIFY = #record.verify:VARCHAR#,
+      NOTE = #record.note:VARCHAR#,
+      PASSWORD = #record.password:VARCHAR#,
+      USER_NOTIFY_SERVER_IP = #record.userNotifyServerIp:VARCHAR#,
+      USER_NOTIFY_SERVER_PORT = #record.userNotifyServerPort:DECIMAL#,
+      USER_NOTIFY_SERVER_URL = #record.userNotifyServerUrl:VARCHAR#,
+      USER_NOTIFY_SERVER_LOGINNAME = #record.userNotifyServerLoginname:VARCHAR#,
+      USER_NOTIFY_SERVER_PASSWORD = #record.userNotifyServerPassword:VARCHAR#,
+      SMS_NOTIFY_TYPE = #record.smsNotifyType:DECIMAL#,
+      SP_CODE = #record.spCode:VARCHAR#,
+      CDR_SERVER_IP = #record.cdrServerIp:VARCHAR#,
+      CDR_SERVER_PORT = #record.cdrServerPort:DECIMAL#,
+      HTTPS_FLAG = #record.httpsFlag:DECIMAL#,
+      IS_CONN_AUTH_CENTER = #record.isConnAuthCenter:DECIMAL#
+    <isParameterPresent>
+      <include refid="PLATFORM._Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+</sqlMap>

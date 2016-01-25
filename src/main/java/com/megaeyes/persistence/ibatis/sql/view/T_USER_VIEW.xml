@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="T_USER_VIEW">
+	<resultMap class="com.megaeyes.persistence.ibatis.model.TUser"
+		id="abatorgenerated_TUserResult">
+		<result column="ID" jdbcType="VARCHAR" property="id" />
+		<result column="OPTIMISTIC_LOCK" jdbcType="DECIMAL" property="optimisticLock" />
+		<result column="NOTE" jdbcType="VARCHAR" property="note" />
+		<result column="ORGAN_ID" jdbcType="VARCHAR" property="organId" />
+		<result column="LOGON_NAME" jdbcType="VARCHAR" property="logonName" />
+		<result column="F_PASSWORD" jdbcType="VARCHAR" property="password" />
+		<result column="F_NAME" jdbcType="VARCHAR" property="name" />
+		<result column="NAMING" jdbcType="VARCHAR" property="naming" />
+		<result column="AGE" jdbcType="DECIMAL" property="age" />
+		<result column="SEX" jdbcType="VARCHAR" property="sex" />
+		<result column="MOBILE" jdbcType="VARCHAR" property="mobile" />
+		<result column="EMAIL" jdbcType="VARCHAR" property="email" />
+		<result column="PHONE" jdbcType="VARCHAR" property="phone" />
+		<result column="IS_SUSPENDED" jdbcType="DECIMAL" property="isSuspended" />
+		<result column="SESSION_MAX_AMOUNT" jdbcType="DECIMAL"
+			property="sessionMaxAmount" />
+		<result column="BIND_SOFTDOG" jdbcType="DECIMAL" property="bindSoftdog" />
+		<result column="CREATETIME" jdbcType="DECIMAL" property="createtime" />
+		<result column="STD_ID" jdbcType="VARCHAR" property="stdId" />
+		<result column="PRIORITY" jdbcType="DECIMAL" property="priority" />
+		<result column="MONITOR_ROLE" jdbcType="DECIMAL" property="monitorRole" />
+		<result column="PERMISSION_MODE" jdbcType="VARCHAR" property="permissionMode" />
+		<result column="PERMISSION_CHANGE" jdbcType="DECIMAL" property="permissionChange" />
+		<result column="EXPIRED_DAY" jdbcType="DATE" property="expiredDay" />
+		<result column="BILL_MODE" jdbcType="DECIMAL" property="billMode" />
+		<result column="DISPATCH_SERVER_ID" jdbcType="VARCHAR"
+			property="dispatchServerId" />
+		<result column="USER_ACCOUNT" jdbcType="VARCHAR" property="userAccount" />
+		<result column="IS_PHONE_NOTIFY" jdbcType="DECIMAL" property="isPhoneNotify" />
+		<result column="IS_EMAIL_NOTIFY" jdbcType="DECIMAL" property="isEmailNotify" />
+		<result column="SMS_SEND_RULE" jdbcType="VARCHAR" property="smsSendRule" />
+		<result column="AUDIO_ID" jdbcType="VARCHAR" property="audioId" />
+		<result column="AUDIO_SEND_RULE" jdbcType="VARCHAR" property="audioSendRule" />
+		<result column="IS_AUDIO_NOTIFY" jdbcType="DECIMAL" property="isAudioNotify" />
+		<result column="VIP" jdbcType="DECIMAL" property="vip" />
+		<result column="IS_MSP" jdbcType="DECIMAL" property="isMsp" />
+		<result column="BRANCH_ID" jdbcType="VARCHAR" property="branchId" />
+		<result column="GRADE" jdbcType="DECIMAL" property="grade" />
+		<result column="POSITION" jdbcType="VARCHAR" property="position" />
+		<result column="IS_BRANCH_MANAGE" jdbcType="DECIMAL" property="isBranchManage" />
+		<result column="ACCESS_SERVER_ID" jdbcType="VARCHAR" property="accessServerId" />
+	</resultMap>
+
+	<resultMap
+		class="com.megaeyes.persistence.ibatis.vo.ListUserSessionAndUserVO"
+		id="_UserSessionAndUser">
+		<result column="ID" jdbcType="VARCHAR" property="id" />
+		<result column="OPTIMISTIC_LOCK" jdbcType="DECIMAL" property="optimisticLock" />
+		<result column="LOGON_TIME" jdbcType="DECIMAL" property="logonTime" />
+		<result column="HEARTBEAT_TIME" jdbcType="DECIMAL" property="heartbeatTime" />
+		<result column="USER_ID" jdbcType="VARCHAR" property="userId" />
+		<result column="IP" jdbcType="VARCHAR" property="ip" />
+		<result column="CLIENT_TYPE" jdbcType="VARCHAR" property="clientType" />
+		<result column="LOGON_NAME" jdbcType="VARCHAR" property="logonName" />
+	</resultMap>
+
+	<select id="listUser" resultMap="abatorgenerated_TUserResult">
+		select * from T_USER
+	</select>
+	<select id="_countByExample" parameterClass="com.megaeyes.persistence.ibatis.model.TUserExample"
+		resultClass="java.lang.Integer">
+		select count(*) from T_USER
+		<include refid="T_USER.abatorgenerated_Example_Where_Clause" />
+	</select>
+
+	<resultMap class="com.megaeyes.persistence.ibatis.vo.TUserVO"
+		id="abatorgenerated_ListUsersByOrganId" extends="T_USER.abatorgenerated_TUserResult">
+		<result column="sip_code" property="sipCode" jdbcType="VARCHAR" />
+		<result column="longitude" property="longitude" jdbcType="VARCHAR" />
+		<result column="latitude" property="latitude" jdbcType="VARCHAR" />
+	</resultMap>
+	<select id="getUsersByOrganId" resultMap="abatorgenerated_ListUsersByOrganId">
+		select
+		a.*,b.sip_code,b.longitude,b.latitude from t_user a left join
+		platform_resources b on a.id=b.resource_id and b.type='user'
+		where
+		a.organ_id=#organId#
+	</select>
+	<select id="getAllChildUsersByOrganId" resultMap="abatorgenerated_TUserResult">
+		select * from
+		t_user
+		where organ_id in(select id from organ where path like
+		'%$organId$%')
+	</select>
+
+	<select id="listUserSessionAndUserLogName" resultMap="_UserSessionAndUser">
+		select
+		us.*,u.logon_name from user_session us,t_user u where us.user_id =
+		u.id
+	</select>
+</sqlMap>

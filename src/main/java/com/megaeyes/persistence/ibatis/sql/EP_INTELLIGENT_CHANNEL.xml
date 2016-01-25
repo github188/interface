@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="EP_INTELLIGENT_CHANNEL" >
+  <resultMap id="_EpIntelligentChannelResult" class="com.megaeyes.persistence.ibatis.model.EpIntelligentChannel" >
+    <result column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="OPTIMISTIC_LOCK" property="optimisticLock" jdbcType="DECIMAL" />
+    <result column="F_NAME" property="name" jdbcType="VARCHAR" />
+    <result column="NAMING" property="naming" jdbcType="VARCHAR" />
+    <result column="INSTALL_LOCATION" property="installLocation" jdbcType="VARCHAR" />
+    <result column="PARENT_ID" property="parentId" jdbcType="VARCHAR" />
+    <result column="PARENT_TYPE" property="parentType" jdbcType="DECIMAL" />
+    <result column="DESCRIPTION" property="description" jdbcType="VARCHAR" />
+    <result column="NOTE" property="note" jdbcType="VARCHAR" />
+    <result column="COMPANY" property="company" jdbcType="VARCHAR" />
+    <result column="CHANNEL_ID" property="channelId" jdbcType="DECIMAL" />
+    <result column="ORGAN_ID" property="organId" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="_Example_Where_Clause" >
+    <iterate property="oredCriteria" conjunction="or" prepend="where" removeFirstPrepend="iterate" >
+      <isEqual property="oredCriteria[].valid" compareValue="true" >
+        (
+        <iterate prepend="and" property="oredCriteria[].criteriaWithoutValue" conjunction="and" >
+          $oredCriteria[].criteriaWithoutValue[]$
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithSingleValue" conjunction="and" >
+          $oredCriteria[].criteriaWithSingleValue[].condition$
+            #oredCriteria[].criteriaWithSingleValue[].value#
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithListValue" conjunction="and" >
+          $oredCriteria[].criteriaWithListValue[].condition$
+          <iterate property="oredCriteria[].criteriaWithListValue[].values" open="(" close=")" conjunction="," >
+            #oredCriteria[].criteriaWithListValue[].values[]#
+          </iterate>
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithBetweenValue" conjunction="and" >
+          $oredCriteria[].criteriaWithBetweenValue[].condition$
+          #oredCriteria[].criteriaWithBetweenValue[].values[0]# and
+          #oredCriteria[].criteriaWithBetweenValue[].values[1]#
+        </iterate>
+        )
+      </isEqual>
+    </iterate>
+  </sql>
+  <select id="_selectByPrimaryKey" resultMap="_EpIntelligentChannelResult" parameterClass="com.megaeyes.persistence.ibatis.model.EpIntelligentChannel" >
+    select ID, OPTIMISTIC_LOCK, F_NAME, NAMING, INSTALL_LOCATION, PARENT_ID, PARENT_TYPE,
+      DESCRIPTION, NOTE, COMPANY, CHANNEL_ID, ORGAN_ID
+    from EP_INTELLIGENT_CHANNEL
+    where ID = #id:VARCHAR#
+  </select>
+  <select id="_selectByExample" resultMap="_EpIntelligentChannelResult" parameterClass="com.megaeyes.persistence.ibatis.model.EpIntelligentChannelExample" >
+    select ID, OPTIMISTIC_LOCK, F_NAME, NAMING, INSTALL_LOCATION, PARENT_ID, PARENT_TYPE,
+      DESCRIPTION, NOTE, COMPANY, CHANNEL_ID, ORGAN_ID
+    from EP_INTELLIGENT_CHANNEL
+    <isParameterPresent >
+      <include refid="EP_INTELLIGENT_CHANNEL._Example_Where_Clause" />
+      <isNotNull property="orderByClause" >
+        order by $orderByClause$
+      </isNotNull>
+    </isParameterPresent>
+  </select>
+  <delete id="_deleteByPrimaryKey" parameterClass="com.megaeyes.persistence.ibatis.model.EpIntelligentChannel" >
+    delete from EP_INTELLIGENT_CHANNEL
+    where ID = #id:VARCHAR#
+  </delete>
+  <delete id="_deleteByExample" parameterClass="com.megaeyes.persistence.ibatis.model.EpIntelligentChannelExample" >
+    delete from EP_INTELLIGENT_CHANNEL
+    <include refid="EP_INTELLIGENT_CHANNEL._Example_Where_Clause" />
+  </delete>
+  <insert id="_insert" parameterClass="com.megaeyes.persistence.ibatis.model.EpIntelligentChannel" >
+    insert into EP_INTELLIGENT_CHANNEL (ID, OPTIMISTIC_LOCK, F_NAME, NAMING, INSTALL_LOCATION,
+      PARENT_ID, PARENT_TYPE, DESCRIPTION, NOTE, COMPANY, CHANNEL_ID, ORGAN_ID)
+    values (#id:VARCHAR#, #optimisticLock:DECIMAL#, #name:VARCHAR#, #naming:VARCHAR#,
+      #installLocation:VARCHAR#, #parentId:VARCHAR#, #parentType:DECIMAL#, #description:VARCHAR#,
+      #note:VARCHAR#, #company:VARCHAR#, #channelId:DECIMAL#, #organId:VARCHAR#)
+  </insert>
+  <update id="_updateByPrimaryKey" parameterClass="com.megaeyes.persistence.ibatis.model.EpIntelligentChannel" >
+    update EP_INTELLIGENT_CHANNEL
+    set OPTIMISTIC_LOCK = #optimisticLock:DECIMAL#,
+      F_NAME = #name:VARCHAR#,
+      NAMING = #naming:VARCHAR#,
+      INSTALL_LOCATION = #installLocation:VARCHAR#,
+      PARENT_ID = #parentId:VARCHAR#,
+      PARENT_TYPE = #parentType:DECIMAL#,
+      DESCRIPTION = #description:VARCHAR#,
+      NOTE = #note:VARCHAR#,
+      COMPANY = #company:VARCHAR#,
+      CHANNEL_ID = #channelId:DECIMAL#,
+      ORGAN_ID = #organId:VARCHAR#
+    where ID = #id:VARCHAR#
+  </update>
+  <update id="_updateByPrimaryKeySelective" parameterClass="com.megaeyes.persistence.ibatis.model.EpIntelligentChannel" >
+    update EP_INTELLIGENT_CHANNEL
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="optimisticLock" >
+        OPTIMISTIC_LOCK = #optimisticLock:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="name" >
+        F_NAME = #name:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="naming" >
+        NAMING = #naming:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="installLocation" >
+        INSTALL_LOCATION = #installLocation:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="parentId" >
+        PARENT_ID = #parentId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="parentType" >
+        PARENT_TYPE = #parentType:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="description" >
+        DESCRIPTION = #description:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="note" >
+        NOTE = #note:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="company" >
+        COMPANY = #company:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="channelId" >
+        CHANNEL_ID = #channelId:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="organId" >
+        ORGAN_ID = #organId:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    where ID = #id:VARCHAR#
+  </update>
+  <select id="_countByExample" parameterClass="com.megaeyes.persistence.ibatis.model.EpIntelligentChannelExample" resultClass="java.lang.Integer" >
+    select count(*) from EP_INTELLIGENT_CHANNEL
+    <include refid="EP_INTELLIGENT_CHANNEL._Example_Where_Clause" />
+  </select>
+  <update id="_updateByExampleSelective" >
+    update EP_INTELLIGENT_CHANNEL
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="record.id" >
+        ID = #record.id:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.optimisticLock" >
+        OPTIMISTIC_LOCK = #record.optimisticLock:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.name" >
+        F_NAME = #record.name:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.naming" >
+        NAMING = #record.naming:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.installLocation" >
+        INSTALL_LOCATION = #record.installLocation:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.parentId" >
+        PARENT_ID = #record.parentId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.parentType" >
+        PARENT_TYPE = #record.parentType:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.description" >
+        DESCRIPTION = #record.description:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.note" >
+        NOTE = #record.note:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.company" >
+        COMPANY = #record.company:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.channelId" >
+        CHANNEL_ID = #record.channelId:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.organId" >
+        ORGAN_ID = #record.organId:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    <isParameterPresent >
+      <include refid="EP_INTELLIGENT_CHANNEL._Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="_updateByExample" >
+    update EP_INTELLIGENT_CHANNEL
+    set ID = #record.id:VARCHAR#,
+      OPTIMISTIC_LOCK = #record.optimisticLock:DECIMAL#,
+      F_NAME = #record.name:VARCHAR#,
+      NAMING = #record.naming:VARCHAR#,
+      INSTALL_LOCATION = #record.installLocation:VARCHAR#,
+      PARENT_ID = #record.parentId:VARCHAR#,
+      PARENT_TYPE = #record.parentType:DECIMAL#,
+      DESCRIPTION = #record.description:VARCHAR#,
+      NOTE = #record.note:VARCHAR#,
+      COMPANY = #record.company:VARCHAR#,
+      CHANNEL_ID = #record.channelId:DECIMAL#,
+      ORGAN_ID = #record.organId:VARCHAR#
+    <isParameterPresent >
+      <include refid="EP_INTELLIGENT_CHANNEL._Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+</sqlMap>

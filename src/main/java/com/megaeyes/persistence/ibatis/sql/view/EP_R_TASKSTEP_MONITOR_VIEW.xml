@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="EP_R_TASKSTEP_MONITOR_VIEW">
+	<resultMap id="view_EpRTaskstepMonitorResult"
+		class="com.megaeyes.persistence.ibatis.model.EpRTaskstepMonitor">
+		<result column="ID" property="id" jdbcType="VARCHAR" />
+		<result column="STEP_ID" property="stepId" jdbcType="VARCHAR" />
+		<result column="MONITOR_ID" property="monitorId" jdbcType="VARCHAR" />
+		<result column="MONITOR_TYPE" property="monitorType" jdbcType="DECIMAL" />
+		<result column="TASK_ID" property="taskId" jdbcType="VARCHAR" />
+		<result column="PRESET_ID" property="presetId" jdbcType="VARCHAR" />
+	</resultMap>
+	<select id="listEpRTaskstepMonitor" resultMap="view_EpRTaskstepMonitorResult">
+		select * from
+		EP_R_TASKSTEP_MONITOR where STEP_ID=#stepId# order by
+		MONITOR_TYPE,MONITOR_ID,PRESET_ID
+	</select>
+
+</sqlMap>

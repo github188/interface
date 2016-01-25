@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="ALARM_OUTPUT_CHANNEL_TYPE">
+  <resultMap class="com.megaeyes.persistence.ibatis.model.AlarmOutputChannelType" id="_AlarmOutputChannelTypeResult">
+    <result column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="OPTIMISTIC_LOCK" jdbcType="DECIMAL" property="optimisticLock" />
+    <result column="F_NAME" jdbcType="VARCHAR" property="name" />
+    <result column="IS_CONTROLLABLE_BY_USER" jdbcType="DECIMAL" property="isControllableByUser" />
+    <result column="DESCRIBE" jdbcType="VARCHAR" property="describe" />
+  </resultMap>
+  <sql id="_Example_Where_Clause">
+    <iterate conjunction="or" prepend="where" property="oredCriteria" removeFirstPrepend="iterate">
+      <isEqual compareValue="true" property="oredCriteria[].valid">
+        (
+        <iterate conjunction="and" prepend="and" property="oredCriteria[].criteriaWithoutValue">
+          $oredCriteria[].criteriaWithoutValue[]$
+        </iterate>
+        <iterate conjunction="and" prepend="and" property="oredCriteria[].criteriaWithSingleValue">
+          $oredCriteria[].criteriaWithSingleValue[].condition$
+            #oredCriteria[].criteriaWithSingleValue[].value#
+        </iterate>
+        <iterate conjunction="and" prepend="and" property="oredCriteria[].criteriaWithListValue">
+          $oredCriteria[].criteriaWithListValue[].condition$
+          <iterate close=")" conjunction="," open="(" property="oredCriteria[].criteriaWithListValue[].values">
+            #oredCriteria[].criteriaWithListValue[].values[]#
+          </iterate>
+        </iterate>
+        <iterate conjunction="and" prepend="and" property="oredCriteria[].criteriaWithBetweenValue">
+          $oredCriteria[].criteriaWithBetweenValue[].condition$
+          #oredCriteria[].criteriaWithBetweenValue[].values[0]# and
+          #oredCriteria[].criteriaWithBetweenValue[].values[1]#
+        </iterate>
+        )
+      </isEqual>
+    </iterate>
+  </sql>
+  <select id="_selectByPrimaryKey" parameterClass="com.megaeyes.persistence.ibatis.model.AlarmOutputChannelType" resultMap="_AlarmOutputChannelTypeResult">
+    select ID, OPTIMISTIC_LOCK, F_NAME, IS_CONTROLLABLE_BY_USER, DESCRIBE
+    from ALARM_OUTPUT_CHANNEL_TYPE
+    where ID = #id:VARCHAR#
+  </select>
+  <select id="_selectByExample" parameterClass="com.megaeyes.persistence.ibatis.model.AlarmOutputChannelTypeExample" resultMap="_AlarmOutputChannelTypeResult">
+    select ID, OPTIMISTIC_LOCK, F_NAME, IS_CONTROLLABLE_BY_USER, DESCRIBE
+    from ALARM_OUTPUT_CHANNEL_TYPE
+    <isParameterPresent>
+      <include refid="ALARM_OUTPUT_CHANNEL_TYPE._Example_Where_Clause" />
+      <isNotNull property="orderByClause">
+        order by $orderByClause$
+      </isNotNull>
+    </isParameterPresent>
+  </select>
+  <delete id="_deleteByPrimaryKey" parameterClass="com.megaeyes.persistence.ibatis.model.AlarmOutputChannelType">
+    delete from ALARM_OUTPUT_CHANNEL_TYPE
+    where ID = #id:VARCHAR#
+  </delete>
+  <delete id="_deleteByExample" parameterClass="com.megaeyes.persistence.ibatis.model.AlarmOutputChannelTypeExample">
+    delete from ALARM_OUTPUT_CHANNEL_TYPE
+    <include refid="ALARM_OUTPUT_CHANNEL_TYPE._Example_Where_Clause" />
+  </delete>
+  <insert id="_insert" parameterClass="com.megaeyes.persistence.ibatis.model.AlarmOutputChannelType">
+    insert into ALARM_OUTPUT_CHANNEL_TYPE (ID, OPTIMISTIC_LOCK, F_NAME, IS_CONTROLLABLE_BY_USER,
+      DESCRIBE)
+    values (#id:VARCHAR#, #optimisticLock:DECIMAL#, #name:VARCHAR#, #isControllableByUser:DECIMAL#,
+      #describe:VARCHAR#)
+  </insert>
+  <update id="_updateByPrimaryKey" parameterClass="com.megaeyes.persistence.ibatis.model.AlarmOutputChannelType">
+    update ALARM_OUTPUT_CHANNEL_TYPE
+    set OPTIMISTIC_LOCK = #optimisticLock:DECIMAL#,
+      F_NAME = #name:VARCHAR#,
+      IS_CONTROLLABLE_BY_USER = #isControllableByUser:DECIMAL#,
+      DESCRIBE = #describe:VARCHAR#
+    where ID = #id:VARCHAR#
+  </update>
+  <update id="_updateByPrimaryKeySelective" parameterClass="com.megaeyes.persistence.ibatis.model.AlarmOutputChannelType">
+    update ALARM_OUTPUT_CHANNEL_TYPE
+    <dynamic prepend="set">
+      <isNotNull prepend="," property="optimisticLock">
+        OPTIMISTIC_LOCK = #optimisticLock:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="name">
+        F_NAME = #name:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="isControllableByUser">
+        IS_CONTROLLABLE_BY_USER = #isControllableByUser:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="describe">
+        DESCRIBE = #describe:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    where ID = #id:VARCHAR#
+  </update>
+  <select id="_countByExample" parameterClass="com.megaeyes.persistence.ibatis.model.AlarmOutputChannelTypeExample" resultClass="java.lang.Integer">
+    select count(*) from ALARM_OUTPUT_CHANNEL_TYPE
+    <include refid="ALARM_OUTPUT_CHANNEL_TYPE._Example_Where_Clause" />
+  </select>
+  <update id="_updateByExampleSelective">
+    update ALARM_OUTPUT_CHANNEL_TYPE
+    <dynamic prepend="set">
+      <isNotNull prepend="," property="record.id">
+        ID = #record.id:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.optimisticLock">
+        OPTIMISTIC_LOCK = #record.optimisticLock:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.name">
+        F_NAME = #record.name:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.isControllableByUser">
+        IS_CONTROLLABLE_BY_USER = #record.isControllableByUser:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.describe">
+        DESCRIBE = #record.describe:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    <isParameterPresent>
+      <include refid="ALARM_OUTPUT_CHANNEL_TYPE._Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="_updateByExample">
+    update ALARM_OUTPUT_CHANNEL_TYPE
+    set ID = #record.id:VARCHAR#,
+      OPTIMISTIC_LOCK = #record.optimisticLock:DECIMAL#,
+      F_NAME = #record.name:VARCHAR#,
+      IS_CONTROLLABLE_BY_USER = #record.isControllableByUser:DECIMAL#,
+      DESCRIBE = #record.describe:VARCHAR#
+    <isParameterPresent>
+      <include refid="ALARM_OUTPUT_CHANNEL_TYPE._Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+</sqlMap>

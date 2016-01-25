@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans default-autowire="byName">
+	<bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor" />
+	<bean id="txProxyTemplate" abstract="true"
+		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+		<property name="transactionManager" ref="transactionManager" />
+		<property name="transactionAttributes">
+			<props>
+				<prop key="update*">
+					PROPAGATION_REQUIRES_NEW,-BusinessException
+				</prop>
+				<prop key="create*">
+					PROPAGATION_REQUIRES_NEW,-BusinessException
+				</prop>
+				<prop key="delete*">
+					PROPAGATION_REQUIRES_NEW,-BusinessException
+				</prop>
+			</props>
+		</property>
+	</bean>
+
+	<bean id="baseManager" class="com.megaeyes.service.impl.BaseManagerImpl" />
+	<bean id="centerDeviceManager" parent="txProxyTemplate">
+		<property name="target">
+			<bean class="com.megaeyes.service.impl.CenterDeviceManagerImpl" />
+		</property>
+	</bean>
+	<bean id="userManager" parent="txProxyTemplate">
+		<property name="target">
+			<bean class="com.megaeyes.service.impl.UserManagerImpl" />
+		</property>
+	</bean>
+	<bean id="logManager" class="com.megaeyes.service.impl.LogManagerImpl" />
+	<bean id="organManager" parent="txProxyTemplate">
+		<property name="target">
+			<bean class="com.megaeyes.service.impl.OrganManagerImpl" />
+		</property>
+	</bean>
+	<bean id="visManager" parent="txProxyTemplate">
+		<property name="target">
+			<bean class="com.megaeyes.service.impl.VISManagerImpl" />
+		</property>
+	</bean>
+	<bean id="roleManager" parent="txProxyTemplate">
+		<property name="target">
+			<bean class="com.megaeyes.service.impl.RoleManagerImpl" />
+		</property>
+	</bean>
+	<bean id="asssetsManager" class="com.megaeyes.service.impl.AssetsManagerImpl" />
+	<bean id="epEventServerManager" class="com.megaeyes.service.impl.EpEventServerManagerImpl" />
+	<bean id="epGatherServerMananger" class="com.megaeyes.service.impl.EpGatherServerManagerImpl" />
+	<bean id="alarmManager" parent="txProxyTemplate">
+		<property name="target">
+			<bean class="com.megaeyes.service.impl.AlarmManagerImpl" />
+		</property>
+	</bean>
+	<bean id="dispatchServerManager" parent="txProxyTemplate">
+		<property name="target">
+			<bean class="com.megaeyes.service.impl.DispatchServerManagerImpl" />
+		</property>
+	</bean>
+	<bean id="storageServerManager" parent="txProxyTemplate">
+		<property name="target">
+			<bean class="com.megaeyes.service.impl.StorageServerManagerImpl" />
+		</property>
+	</bean>
+	<bean id="displayServerManager" parent="txProxyTemplate">
+		<property name="target">
+			<bean class="com.megaeyes.service.impl.VideoDisplayDeviceManagerImpl" />
+		</property>
+	</bean>
+	<bean id="vicManager" parent="txProxyTemplate">
+		<property name="target">
+			<bean class="com.megaeyes.service.impl.VICManagerImpl" />
+		</property>
+	</bean>
+	
+	<bean id="epSchemeManager" parent="txProxyTemplate">
+		<property name="target">
+			<bean class="com.megaeyes.service.impl.EpSchemeManagerImpl" />
+		</property>
+	</bean>
+	
+	<bean id="acEmployeesManager" class="com.megaeyes.service.impl.AcEmployeesManagerImpl" />
+	<bean id="epDeviceLinesManager" class="com.megaeyes.service.impl.EpDeviceLinesManagerImpl" />
+	<bean id="epIntelligentDetectionManager" class="com.megaeyes.service.impl.EpIntelligentDetectionManagerImpl" />
+	<bean id="bindEpRMonitorDeviceManager" class="com.megaeyes.service.impl.BindEpRMonitorDeviceManagerImpl" />
+	<bean id="branchManager" class="com.megaeyes.service.impl.BranchManagerImpl" />
+	<bean id="epControlServerManager" class="com.megaeyes.service.impl.EpControlServerManagerImpl" />
+	<bean id="epProberManager" class="com.megaeyes.service.impl.EpProberManagerImpl" />
+	
+	<bean id="accessControllerManager" parent="txProxyTemplate">
+		<property name="target">
+			<bean class="com.megaeyes.service.impl.AccessControllerManagerImpl" />
+		</property>
+	</bean>
+	
+	<bean id="interConnectManager" parent="txProxyTemplate">
+		<property name="target">
+			<bean class="com.megaeyes.service.impl.InterConnectManagerImpl" />
+		</property>
+	</bean>
+	
+	<bean id="mapManager" class="com.megaeyes.service.impl.MapManagerImple" />
+	<bean id="acAccessServersManager" class="com.megaeyes.service.impl.AcAccessServersManagerImpl" />
+	<bean id="epPresetManager" class="com.megaeyes.service.impl.EpPresetManagerImpl" />
+	<bean id="routingInspectionManager" class="com.megaeyes.service.impl.RoutingInspectionManagerImpl" />
+	<bean id="bindEpRProberVICManager" class="com.megaeyes.service.impl.BindEpRProberVICManagerImpl" />
+	<bean id="acAccessCardManager" class="com.megaeyes.service.impl.AcAccessCardManagerImpl" />
+	<bean id="vocManager" parent="txProxyTemplate">
+		<property name="target">
+			<bean class="com.megaeyes.service.impl.VOCManagerImpl" />
+		</property>
+	</bean>
+	<bean id="ivuTaskManager" class="com.megaeyes.service.impl.IvuTaskManagerImpl" />
+	<bean id="epClientGatewayManager" class="com.megaeyes.service.impl.EpClientGatewayManagerImpl" />
+	
+	<bean id="employeeScheduleManager" class="com.megaeyes.service.impl.AcEmployeeScheduleManagerImpl" />
+	<bean id="employeeGroupManager" class="com.megaeyes.service.impl.AcEmployeeGroupManagerImpl" />
+	<bean id="employeeAbsentManager" class="com.megaeyes.service.impl.AcEmployeeAbsenceManagerImpl" />
+	<bean id="workRuleManager" class="com.megaeyes.service.impl.AcWorkRuleManagerImpl"/>
+</beans>

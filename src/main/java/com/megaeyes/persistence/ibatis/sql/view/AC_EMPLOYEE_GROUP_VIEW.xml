@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="AC_EMPLOYEE_GROUP_VIEW">
+	<resultMap class="com.megaeyes.persistence.ibatis.model.AcEmployeeGroup" id="employeeGroupResult">
+		<result column="ID" jdbcType="VARCHAR" property="id" />
+		<result column="NAME" jdbcType="VARCHAR" property="name" />
+		<result column="ORGAN_ID" jdbcType="VARCHAR" property="organId" />
+		<result column="CREATOR_ID" jdbcType="VARCHAR" property="creatorId" />
+		<result column="CREATE_TIME" jdbcType="DATE" property="createTime" />
+		<result column="NOTE" jdbcType="VARCHAR" property="note" />
+	</resultMap>
+	
+	<select id="getGroupListByScheduleId" resultMap="employeeGroupResult">
+		select aeg.* from ac_employee_group aeg, ac_r_schedule_group arsg
+		where aeg.id = arsg.group_id and arsg.schedule_id = #scheduleId#
+	</select>
+
+</sqlMap>

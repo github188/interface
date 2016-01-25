@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="EP_R_ASSETS_VIC_VIEW" >
+  <resultMap id="_EpRAssetsVicViewResult" class="com.megaeyes.persistence.ibatis.model.EpRAssetsVic" >
+    <result column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="ASSETS_ID" property="assetsId" jdbcType="VARCHAR" />
+    <result column="VIC_ID" property="vicId" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <delete id="deleteByAssetsId" parameterClass="java.lang.String">
+			delete from
+		EP_R_ASSETS_VIC where ASSETS_ID=#assetsId#
+	</delete>
+	
+</sqlMap>

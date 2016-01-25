@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="AC_ACCESS_SERVERS_VIEW" >
+
+<select id="getIpByGateWayId" resultClass="java.lang.String">
+	select LAN_IP from AC_GATEWAY where id = #gatewayId#
+</select>
+
+ <delete id="deleteAcAccessControlsByServersId" parameterClass="java.lang.String">
+		delete from
+	AC_ACCESS_CONTROLS where ACCESS_SERVER_ID=#id#
+</delete>
+
+</sqlMap>

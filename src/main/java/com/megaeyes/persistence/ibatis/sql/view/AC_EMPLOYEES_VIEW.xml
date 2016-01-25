@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="AC_EMPLOYEES_VIEW">
+	<resultMap class="com.megaeyes.persistence.ibatis.vo.AcEmployeesVO"
+		id="_AcEmployeesResult">
+		<result column="ID" property="id" jdbcType="VARCHAR" />
+		<result column="NAME" property="name" jdbcType="VARCHAR" />
+		<result column="IS_USER" property="isUser" jdbcType="DECIMAL" />
+		<result column="USER_ID" property="userId" jdbcType="VARCHAR" />
+		<result column="NOTE" property="note" jdbcType="VARCHAR" />
+		<result column="MOBILE" property="mobile" jdbcType="VARCHAR" />
+		<result column="PHONE" property="phone" jdbcType="VARCHAR" />
+		<result column="EMAIL" property="email" jdbcType="VARCHAR" />
+		<result column="AGE" property="age" jdbcType="DECIMAL" />
+		<result column="GENDER" property="gender" jdbcType="DECIMAL" />
+		<result column="ADDRESS" property="address" jdbcType="VARCHAR" />
+		<result column="EMP_NO" property="empNo" jdbcType="VARCHAR" />
+		<result column="NATION" property="nation" jdbcType="VARCHAR" />
+		<result column="FOLK" property="folk" jdbcType="VARCHAR" />
+		<result column="ID_CARD" property="idCard" jdbcType="VARCHAR" />
+		<result column="BIRTHDAY" property="birthday" jdbcType="DECIMAL" />
+		<result column="PLACE" property="place" jdbcType="VARCHAR" />
+		<result column="POSITION" property="position" jdbcType="VARCHAR" />
+		<result column="ORGAN_ID" property="organId" jdbcType="VARCHAR" />
+		<result column="BRANCH_ID" property="branchId" jdbcType="VARCHAR" />
+		<result column="BRANCH_NAME" property="branchName" jdbcType="VARCHAR" />
+		<result column="userName" property="userName" jdbcType="VARCHAR" />
+	</resultMap>
+	<resultMap id="getAcEmployeesByCardNumber"
+		class="com.megaeyes.persistence.ibatis.model.AcEmployees">
+		<result column="ID" property="id" jdbcType="VARCHAR" />
+		<result column="NAME" property="name" jdbcType="VARCHAR" />
+		<result column="IS_USER" property="isUser" jdbcType="DECIMAL" />
+		<result column="USER_ID" property="userId" jdbcType="VARCHAR" />
+		<result column="NOTE" property="note" jdbcType="VARCHAR" />
+		<result column="MOBILE" property="mobile" jdbcType="VARCHAR" />
+		<result column="PHONE" property="phone" jdbcType="VARCHAR" />
+		<result column="EMAIL" property="email" jdbcType="VARCHAR" />
+		<result column="AGE" property="age" jdbcType="DECIMAL" />
+		<result column="GENDER" property="gender" jdbcType="DECIMAL" />
+		<result column="ADDRESS" property="address" jdbcType="VARCHAR" />
+		<result column="EMP_NO" property="empNo" jdbcType="VARCHAR" />
+		<result column="NATION" property="nation" jdbcType="VARCHAR" />
+		<result column="FOLK" property="folk" jdbcType="VARCHAR" />
+		<result column="ID_CARD" property="idCard" jdbcType="VARCHAR" />
+		<result column="BIRTHDAY" property="birthday" jdbcType="DECIMAL" />
+		<result column="PLACE" property="place" jdbcType="VARCHAR" />
+		<result column="GROUP_ID" property="groupId" jdbcType="VARCHAR" />
+		<result column="POSITION" property="position" jdbcType="VARCHAR" />
+		<result column="ORGAN_ID" property="organId" jdbcType="VARCHAR" />
+		<result column="BRANCH_ID" property="branchId" jdbcType="VARCHAR" />
+		 <result column="IMAGE" property="image" jdbcType="BLOB" />
+	</resultMap>
+	<select id="listAcEmployees" resultMap="_AcEmployeesResult">
+		select a.ID, a.NAME,
+		a.IS_USER, a.USER_ID, a.NOTE, a.MOBILE, a.PHONE,
+		a.EMAIL, a.AGE,
+		a.GENDER,
+		a.ADDRESS, a.EMP_NO,
+		a.NATION, a.FOLK,
+		a.ID_CARD, a.BIRTHDAY,
+		a.PLACE,b.name BRANCH_NAME
+		,a.POSITION,c.logon_name
+		userName,
+		a.ORGAN_ID,a.BRANCH_ID
+		from AC_EMPLOYEES a left join BRANCH b on
+		a.BRANCH_ID=b.id left join
+		T_USER c on a.USER_ID=c.id
+	</select>
+	<select id="listAcEmployeesByBranchId" resultMap="_AcEmployeesResult">
+		select a.ID,
+		a.NAME,
+		a.IS_USER, a.USER_ID, a.NOTE, a.MOBILE, a.PHONE,
+		a.EMAIL, a.AGE,
+		a.GENDER,
+		a.ADDRESS, a.EMP_NO,
+		a.NATION, a.FOLK,
+		a.ID_CARD, a.BIRTHDAY,
+		a.PLACE,b.name BRANCH_NAME
+		,a.POSITION,c.logon_name
+		userName,
+		a.ORGAN_ID,a.BRANCH_ID
+		from AC_EMPLOYEES a left join BRANCH b on
+		a.BRANCH_ID=b.id left join
+		T_USER c on a.USER_ID=c.id where
+		a.BRANCH_ID=#branchId#
+	</select>
+	<select id="getAcEmployeeByCardNumber" resultMap="getAcEmployeesByCardNumber">
+		select a.* from ac_employees a, ac_r_employee_card
+		b,ac_access_cards c where a.id=b.employee_id and b.card_id=c.id and
+		c.card_number=#cardNumber#
+	</select>
+	
+	<select id="getAcEmployeeListByGroupId" resultMap="_AcEmployeesResult">
+			select a.id,
+			       a.name,
+			       a.is_user,
+			       a.user_id,
+			       a.note,
+			       a.mobile,
+			       a.phone,
+			       a.email,
+			       a.age,
+			       a.gender,
+			       a.address,
+			       a.emp_no,
+			       a.nation,
+			       a.folk,
+			       a.id_card,
+			       a.birthday,
+			       a.place,
+			       a.position,
+			       a.organ_id,
+			       a.branch_id,
+			       b.name branch_name,
+			       c.logon_name username
+			  from ac_employees a
+			  left join branch b on a.branch_id = b.id
+			  left join t_user c on a.user_id = c.id
+			 inner join ac_r_employee_group eg on a.id = eg.employee_id
+			 where eg.group_id = #groupId#
+	</select>
+</sqlMap>

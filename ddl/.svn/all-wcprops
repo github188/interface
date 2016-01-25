@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/megaeyes/!svn/ver/18212/SmartVDS2.0/branches/2.5/CenterServer/interface/ddl
+END
+1-ddl.sql
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/megaeyes/!svn/ver/18580/SmartVDS2.0/branches/2.5/CenterServer/interface/ddl/1-ddl.sql
+END
+sequence.sql
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/megaeyes/!svn/ver/18212/SmartVDS2.0/branches/2.5/CenterServer/interface/ddl/sequence.sql
+END
+2-initData.sql
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/megaeyes/!svn/ver/18580/SmartVDS2.0/branches/2.5/CenterServer/interface/ddl/2-initData.sql
+END
+3-patch.sql
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/megaeyes/!svn/ver/18610/SmartVDS2.0/branches/2.5/CenterServer/interface/ddl/3-patch.sql
+END

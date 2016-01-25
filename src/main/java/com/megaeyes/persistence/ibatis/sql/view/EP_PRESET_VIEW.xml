@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="EP_PRESET_VIEW">
+	<resultMap class="com.megaeyes.persistence.ibatis.model.EpPreset"
+		id="EpPresetResult">
+		<result column="ID" jdbcType="VARCHAR" property="id" />
+		<result column="NAME" jdbcType="VARCHAR" property="name" />
+		<result column="PRESET_NUMBER" jdbcType="DECIMAL" property="presetNumber" />
+		<result column="VIC_ID" jdbcType="VARCHAR" property="vicId" />
+		<result column="NOTE" jdbcType="VARCHAR" property="note" />
+		<result column="TYPE" jdbcType="DECIMAL" property="type" />
+		<result column="SET_FLAG" jdbcType="DECIMAL" property="setFlag" />
+	</resultMap>
+	<select id="listEpPresetByVicId" resultMap="EpPresetResult">
+		select * from
+		EP_PRESET where vic_id=#vicId#
+	</select>
+	<delete id="deleteByvicId" parameterClass="java.lang.String">
+			delete from
+		EP_PRESET where vic_id=#roleId#
+	</delete>
+</sqlMap>

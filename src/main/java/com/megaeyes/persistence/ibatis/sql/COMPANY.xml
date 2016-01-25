@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="COMPANY">
+  <resultMap class="com.megaeyes.persistence.ibatis.model.Company" id="_CompanyResult">
+    <result column="ORGAN_ID" jdbcType="VARCHAR" property="organId" />
+    <result column="NOTE" jdbcType="VARCHAR" property="note" />
+    <result column="LINKMAN" jdbcType="VARCHAR" property="linkman" />
+    <result column="EMAIL" jdbcType="VARCHAR" property="email" />
+    <result column="PHONE" jdbcType="VARCHAR" property="phone" />
+    <result column="FAX" jdbcType="VARCHAR" property="fax" />
+    <result column="ADDRESS" jdbcType="VARCHAR" property="address" />
+    <result column="POSTALCODE" jdbcType="VARCHAR" property="postalcode" />
+    <result column="IS_SUSPENDED" jdbcType="DECIMAL" property="isSuspended" />
+    <result column="F_NUMBER" jdbcType="VARCHAR" property="fNumber" />
+    <result column="O_ORGAN_ID" jdbcType="VARCHAR" property="oOrganId" />
+    <result column="CREATETIME" jdbcType="DECIMAL" property="createtime" />
+    <result column="IS_MSP" jdbcType="DECIMAL" property="isMsp" />
+  </resultMap>
+  <sql id="_Example_Where_Clause">
+    <iterate conjunction="or" prepend="where" property="oredCriteria" removeFirstPrepend="iterate">
+      <isEqual compareValue="true" property="oredCriteria[].valid">
+        (
+        <iterate conjunction="and" prepend="and" property="oredCriteria[].criteriaWithoutValue">
+          $oredCriteria[].criteriaWithoutValue[]$
+        </iterate>
+        <iterate conjunction="and" prepend="and" property="oredCriteria[].criteriaWithSingleValue">
+          $oredCriteria[].criteriaWithSingleValue[].condition$
+            #oredCriteria[].criteriaWithSingleValue[].value#
+        </iterate>
+        <iterate conjunction="and" prepend="and" property="oredCriteria[].criteriaWithListValue">
+          $oredCriteria[].criteriaWithListValue[].condition$
+          <iterate close=")" conjunction="," open="(" property="oredCriteria[].criteriaWithListValue[].values">
+            #oredCriteria[].criteriaWithListValue[].values[]#
+          </iterate>
+        </iterate>
+        <iterate conjunction="and" prepend="and" property="oredCriteria[].criteriaWithBetweenValue">
+          $oredCriteria[].criteriaWithBetweenValue[].condition$
+          #oredCriteria[].criteriaWithBetweenValue[].values[0]# and
+          #oredCriteria[].criteriaWithBetweenValue[].values[1]#
+        </iterate>
+        )
+      </isEqual>
+    </iterate>
+  </sql>
+  <select id="_selectByPrimaryKey" parameterClass="com.megaeyes.persistence.ibatis.model.Company" resultMap="_CompanyResult">
+    select ORGAN_ID, NOTE, LINKMAN, EMAIL, PHONE, FAX, ADDRESS, POSTALCODE, IS_SUSPENDED, F_NUMBER,
+      O_ORGAN_ID, CREATETIME, IS_MSP
+    from COMPANY
+    where ORGAN_ID = #organId:VARCHAR#
+  </select>
+  <select id="_selectByExample" parameterClass="com.megaeyes.persistence.ibatis.model.CompanyExample" resultMap="_CompanyResult">
+    select ORGAN_ID, NOTE, LINKMAN, EMAIL, PHONE, FAX, ADDRESS, POSTALCODE, IS_SUSPENDED, F_NUMBER,
+      O_ORGAN_ID, CREATETIME, IS_MSP
+    from COMPANY
+    <isParameterPresent>
+      <include refid="COMPANY._Example_Where_Clause" />
+      <isNotNull property="orderByClause">
+        order by $orderByClause$
+      </isNotNull>
+    </isParameterPresent>
+  </select>
+  <delete id="_deleteByPrimaryKey" parameterClass="com.megaeyes.persistence.ibatis.model.Company">
+    delete from COMPANY
+    where ORGAN_ID = #organId:VARCHAR#
+  </delete>
+  <delete id="_deleteByExample" parameterClass="com.megaeyes.persistence.ibatis.model.CompanyExample">
+    delete from COMPANY
+    <include refid="COMPANY._Example_Where_Clause" />
+  </delete>
+  <insert id="_insert" parameterClass="com.megaeyes.persistence.ibatis.model.Company">
+    insert into COMPANY (ORGAN_ID, NOTE, LINKMAN, EMAIL, PHONE, FAX, ADDRESS, POSTALCODE,
+      IS_SUSPENDED, F_NUMBER, O_ORGAN_ID, CREATETIME, IS_MSP)
+    values (#organId:VARCHAR#, #note:VARCHAR#, #linkman:VARCHAR#, #email:VARCHAR#, #phone:VARCHAR#,
+      #fax:VARCHAR#, #address:VARCHAR#, #postalcode:VARCHAR#, #isSuspended:DECIMAL#,
+      #fNumber:VARCHAR#, #oOrganId:VARCHAR#, #createtime:DECIMAL#, #isMsp:DECIMAL#)
+  </insert>
+  <update id="_updateByPrimaryKey" parameterClass="com.megaeyes.persistence.ibatis.model.Company">
+    update COMPANY
+    set NOTE = #note:VARCHAR#,
+      LINKMAN = #linkman:VARCHAR#,
+      EMAIL = #email:VARCHAR#,
+      PHONE = #phone:VARCHAR#,
+      FAX = #fax:VARCHAR#,
+      ADDRESS = #address:VARCHAR#,
+      POSTALCODE = #postalcode:VARCHAR#,
+      IS_SUSPENDED = #isSuspended:DECIMAL#,
+      F_NUMBER = #fNumber:VARCHAR#,
+      O_ORGAN_ID = #oOrganId:VARCHAR#,
+      CREATETIME = #createtime:DECIMAL#,
+      IS_MSP = #isMsp:DECIMAL#
+    where ORGAN_ID = #organId:VARCHAR#
+  </update>
+  <update id="_updateByPrimaryKeySelective" parameterClass="com.megaeyes.persistence.ibatis.model.Company">
+    update COMPANY
+    <dynamic prepend="set">
+      <isNotNull prepend="," property="note">
+        NOTE = #note:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="linkman">
+        LINKMAN = #linkman:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="email">
+        EMAIL = #email:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="phone">
+        PHONE = #phone:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="fax">
+        FAX = #fax:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="address">
+        ADDRESS = #address:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="postalcode">
+        POSTALCODE = #postalcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="isSuspended">
+        IS_SUSPENDED = #isSuspended:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="fNumber">
+        F_NUMBER = #fNumber:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="oOrganId">
+        O_ORGAN_ID = #oOrganId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="createtime">
+        CREATETIME = #createtime:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="isMsp">
+        IS_MSP = #isMsp:DECIMAL#
+      </isNotNull>
+    </dynamic>
+    where ORGAN_ID = #organId:VARCHAR#
+  </update>
+  <select id="_countByExample" parameterClass="com.megaeyes.persistence.ibatis.model.CompanyExample" resultClass="java.lang.Integer">
+    select count(*) from COMPANY
+    <include refid="COMPANY._Example_Where_Clause" />
+  </select>
+  <update id="_updateByExampleSelective">
+    update COMPANY
+    <dynamic prepend="set">
+      <isNotNull prepend="," property="record.organId">
+        ORGAN_ID = #record.organId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.note">
+        NOTE = #record.note:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.linkman">
+        LINKMAN = #record.linkman:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.email">
+        EMAIL = #record.email:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.phone">
+        PHONE = #record.phone:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.fax">
+        FAX = #record.fax:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.address">
+        ADDRESS = #record.address:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.postalcode">
+        POSTALCODE = #record.postalcode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.isSuspended">
+        IS_SUSPENDED = #record.isSuspended:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.fNumber">
+        F_NUMBER = #record.fNumber:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.oOrganId">
+        O_ORGAN_ID = #record.oOrganId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.createtime">
+        CREATETIME = #record.createtime:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.isMsp">
+        IS_MSP = #record.isMsp:DECIMAL#
+      </isNotNull>
+    </dynamic>
+    <isParameterPresent>
+      <include refid="COMPANY._Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="_updateByExample">
+    update COMPANY
+    set ORGAN_ID = #record.organId:VARCHAR#,
+      NOTE = #record.note:VARCHAR#,
+      LINKMAN = #record.linkman:VARCHAR#,
+      EMAIL = #record.email:VARCHAR#,
+      PHONE = #record.phone:VARCHAR#,
+      FAX = #record.fax:VARCHAR#,
+      ADDRESS = #record.address:VARCHAR#,
+      POSTALCODE = #record.postalcode:VARCHAR#,
+      IS_SUSPENDED = #record.isSuspended:DECIMAL#,
+      F_NUMBER = #record.fNumber:VARCHAR#,
+      O_ORGAN_ID = #record.oOrganId:VARCHAR#,
+      CREATETIME = #record.createtime:DECIMAL#,
+      IS_MSP = #record.isMsp:DECIMAL#
+    <isParameterPresent>
+      <include refid="COMPANY._Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+</sqlMap>

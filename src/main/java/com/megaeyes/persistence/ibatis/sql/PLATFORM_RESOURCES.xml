@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="PLATFORM_RESOURCES">
+  <resultMap class="com.megaeyes.persistence.ibatis.model.PlatformResources" id="_PlatformResourcesResult">
+    <result column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="RESOURCE_ID" jdbcType="VARCHAR" property="resourceId" />
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+    <result column="NAMING" jdbcType="VARCHAR" property="naming" />
+    <result column="SIP_CODE" jdbcType="VARCHAR" property="sipCode" />
+    <result column="ORGAN_ID" jdbcType="VARCHAR" property="organId" />
+    <result column="IS_SHARE" jdbcType="DECIMAL" property="isShare" />
+    <result column="STATUS" jdbcType="DECIMAL" property="status" />
+    <result column="LONGITUDE" jdbcType="VARCHAR" property="longitude" />
+    <result column="LATITUDE" jdbcType="VARCHAR" property="latitude" />
+    <result column="TYPE" jdbcType="VARCHAR" property="type" />
+    <result column="STANDARD_TYPE" jdbcType="VARCHAR" property="standardType" />
+  </resultMap>
+  <sql id="_Example_Where_Clause">
+    <iterate conjunction="or" prepend="where" property="oredCriteria" removeFirstPrepend="iterate">
+      <isEqual compareValue="true" property="oredCriteria[].valid">
+        (
+        <iterate conjunction="and" prepend="and" property="oredCriteria[].criteriaWithoutValue">
+          $oredCriteria[].criteriaWithoutValue[]$
+        </iterate>
+        <iterate conjunction="and" prepend="and" property="oredCriteria[].criteriaWithSingleValue">
+          $oredCriteria[].criteriaWithSingleValue[].condition$
+            #oredCriteria[].criteriaWithSingleValue[].value#
+        </iterate>
+        <iterate conjunction="and" prepend="and" property="oredCriteria[].criteriaWithListValue">
+          $oredCriteria[].criteriaWithListValue[].condition$
+          <iterate close=")" conjunction="," open="(" property="oredCriteria[].criteriaWithListValue[].values">
+            #oredCriteria[].criteriaWithListValue[].values[]#
+          </iterate>
+        </iterate>
+        <iterate conjunction="and" prepend="and" property="oredCriteria[].criteriaWithBetweenValue">
+          $oredCriteria[].criteriaWithBetweenValue[].condition$
+          #oredCriteria[].criteriaWithBetweenValue[].values[0]# and
+          #oredCriteria[].criteriaWithBetweenValue[].values[1]#
+        </iterate>
+        )
+      </isEqual>
+    </iterate>
+  </sql>
+  <select id="_selectByPrimaryKey" parameterClass="com.megaeyes.persistence.ibatis.model.PlatformResources" resultMap="_PlatformResourcesResult">
+    select ID, RESOURCE_ID, NAME, NAMING, SIP_CODE, ORGAN_ID, IS_SHARE, STATUS, LONGITUDE, LATITUDE,
+      TYPE, STANDARD_TYPE
+    from PLATFORM_RESOURCES
+    where ID = #id:VARCHAR#
+  </select>
+  <select id="_selectByExample" parameterClass="com.megaeyes.persistence.ibatis.model.PlatformResourcesExample" resultMap="_PlatformResourcesResult">
+    select ID, RESOURCE_ID, NAME, NAMING, SIP_CODE, ORGAN_ID, IS_SHARE, STATUS, LONGITUDE, LATITUDE,
+      TYPE, STANDARD_TYPE
+    from PLATFORM_RESOURCES
+    <isParameterPresent>
+      <include refid="PLATFORM_RESOURCES._Example_Where_Clause" />
+      <isNotNull property="orderByClause">
+        order by $orderByClause$
+      </isNotNull>
+    </isParameterPresent>
+  </select>
+  <delete id="_deleteByPrimaryKey" parameterClass="com.megaeyes.persistence.ibatis.model.PlatformResources">
+    delete from PLATFORM_RESOURCES
+    where ID = #id:VARCHAR#
+  </delete>
+  <delete id="_deleteByExample" parameterClass="com.megaeyes.persistence.ibatis.model.PlatformResourcesExample">
+    delete from PLATFORM_RESOURCES
+    <include refid="PLATFORM_RESOURCES._Example_Where_Clause" />
+  </delete>
+  <insert id="_insert" parameterClass="com.megaeyes.persistence.ibatis.model.PlatformResources">
+    insert into PLATFORM_RESOURCES (ID, RESOURCE_ID, NAME, NAMING, SIP_CODE, ORGAN_ID, IS_SHARE,
+      STATUS, LONGITUDE, LATITUDE, TYPE, STANDARD_TYPE)
+    values (#id:VARCHAR#, #resourceId:VARCHAR#, #name:VARCHAR#, #naming:VARCHAR#, #sipCode:VARCHAR#,
+      #organId:VARCHAR#, #isShare:DECIMAL#, #status:DECIMAL#, #longitude:VARCHAR#,
+      #latitude:VARCHAR#, #type:VARCHAR#, #standardType:VARCHAR#)
+  </insert>
+  <update id="_updateByPrimaryKey" parameterClass="com.megaeyes.persistence.ibatis.model.PlatformResources">
+    update PLATFORM_RESOURCES
+    set RESOURCE_ID = #resourceId:VARCHAR#,
+      NAME = #name:VARCHAR#,
+      NAMING = #naming:VARCHAR#,
+      SIP_CODE = #sipCode:VARCHAR#,
+      ORGAN_ID = #organId:VARCHAR#,
+      IS_SHARE = #isShare:DECIMAL#,
+      STATUS = #status:DECIMAL#,
+      LONGITUDE = #longitude:VARCHAR#,
+      LATITUDE = #latitude:VARCHAR#,
+      TYPE = #type:VARCHAR#,
+      STANDARD_TYPE = #standardType:VARCHAR#
+    where ID = #id:VARCHAR#
+  </update>
+  <update id="_updateByPrimaryKeySelective" parameterClass="com.megaeyes.persistence.ibatis.model.PlatformResources">
+    update PLATFORM_RESOURCES
+    <dynamic prepend="set">
+      <isNotNull prepend="," property="resourceId">
+        RESOURCE_ID = #resourceId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="name">
+        NAME = #name:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="naming">
+        NAMING = #naming:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="sipCode">
+        SIP_CODE = #sipCode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="organId">
+        ORGAN_ID = #organId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="isShare">
+        IS_SHARE = #isShare:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="status">
+        STATUS = #status:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="longitude">
+        LONGITUDE = #longitude:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="latitude">
+        LATITUDE = #latitude:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="type">
+        TYPE = #type:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="standardType">
+        STANDARD_TYPE = #standardType:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    where ID = #id:VARCHAR#
+  </update>
+  <select id="_countByExample" parameterClass="com.megaeyes.persistence.ibatis.model.PlatformResourcesExample" resultClass="java.lang.Integer">
+    select count(*) from PLATFORM_RESOURCES
+    <include refid="PLATFORM_RESOURCES._Example_Where_Clause" />
+  </select>
+  <update id="_updateByExampleSelective">
+    update PLATFORM_RESOURCES
+    <dynamic prepend="set">
+      <isNotNull prepend="," property="record.id">
+        ID = #record.id:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.resourceId">
+        RESOURCE_ID = #record.resourceId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.name">
+        NAME = #record.name:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.naming">
+        NAMING = #record.naming:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.sipCode">
+        SIP_CODE = #record.sipCode:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.organId">
+        ORGAN_ID = #record.organId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.isShare">
+        IS_SHARE = #record.isShare:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.status">
+        STATUS = #record.status:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.longitude">
+        LONGITUDE = #record.longitude:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.latitude">
+        LATITUDE = #record.latitude:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.type">
+        TYPE = #record.type:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.standardType">
+        STANDARD_TYPE = #record.standardType:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    <isParameterPresent>
+      <include refid="PLATFORM_RESOURCES._Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="_updateByExample">
+    update PLATFORM_RESOURCES
+    set ID = #record.id:VARCHAR#,
+      RESOURCE_ID = #record.resourceId:VARCHAR#,
+      NAME = #record.name:VARCHAR#,
+      NAMING = #record.naming:VARCHAR#,
+      SIP_CODE = #record.sipCode:VARCHAR#,
+      ORGAN_ID = #record.organId:VARCHAR#,
+      IS_SHARE = #record.isShare:DECIMAL#,
+      STATUS = #record.status:DECIMAL#,
+      LONGITUDE = #record.longitude:VARCHAR#,
+      LATITUDE = #record.latitude:VARCHAR#,
+      TYPE = #record.type:VARCHAR#,
+      STANDARD_TYPE = #record.standardType:VARCHAR#
+    <isParameterPresent>
+      <include refid="PLATFORM_RESOURCES._Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+</sqlMap>

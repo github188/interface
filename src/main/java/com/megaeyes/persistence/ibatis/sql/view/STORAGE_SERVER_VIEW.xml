@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="STORAGE_SERVER_VIEW">
+	<resultMap id="abatorgenerated_StorageServerResult"
+		class="com.megaeyes.persistence.ibatis.vo.ListRemoteStorageServerVO">
+		<result column="ID" property="id" jdbcType="VARCHAR" />
+		<result column="OPTIMISTIC_LOCK" property="optimisticLock"
+			jdbcType="DECIMAL" />
+		<result column="F_NAME" property="name" jdbcType="VARCHAR" />
+		<result column="NAMING" property="naming" jdbcType="VARCHAR" />
+		<result column="INSTALL_LOCATION" property="installLocation"
+			jdbcType="VARCHAR" />
+		<result column="NOTE" property="note" jdbcType="VARCHAR" />
+		<result column="DEVICE_NUMBER" property="deviceNumber"
+			jdbcType="VARCHAR" />
+		<result column="IP" property="ip" jdbcType="VARCHAR" />
+		<result column="LINK_TYPE" property="linkType" jdbcType="VARCHAR" />
+		<result column="HEART_CYCLE" property="heartCycle" jdbcType="DECIMAL" />
+		<result column="MAX_OUTPUT_AMOUNT" property="maxOutputAmount"
+			jdbcType="DECIMAL" />
+		<result column="MAX_INPUT_AMOUNT" property="maxInputAmount"
+			jdbcType="DECIMAL" />
+		<result column="FTP_PORT" property="ftpPort" jdbcType="DECIMAL" />
+		<result column="FTP_USER_NAME" property="ftpUserName" jdbcType="VARCHAR" />
+		<result column="FTP_PASSWORD" property="ftpPassword" jdbcType="VARCHAR" />
+		<result column="IP2" property="ip2" jdbcType="VARCHAR" />
+		<result column="MESSAGE_PORT" property="messagePort" jdbcType="DECIMAL" />
+		<result column="STD_ID" property="stdId" jdbcType="VARCHAR" />
+		<result column="IS_VIRTUAL_IP" property="isVirtualIp" jdbcType="DECIMAL" />
+		<result column="has_vod" property="hasVod" />
+	</resultMap>
+	<resultMap id="getStorageInfoOfCamera_RESULT"
+		class="com.megaeyes.persistence.ibatis.vo.StorageInfoQueryVO">
+		<result column="ID" property="cameraId" jdbcType="VARCHAR" />
+		<result column="store_type" property="storeType" jdbcType="NUMBER" nullValue="0"/>
+		<result column="l_id" property="localId" jdbcType="VARCHAR" />
+		<result column="l_ip" property="localIp" jdbcType="VARCHAR" />
+		<result column="r_id" property="remoteId" jdbcType="VARCHAR" />
+		<result column="r_ip" property="remoteIp" jdbcType="VARCHAR" />
+		<result column="r_vod" property="hasVOD" jdbcType="NUMBER" nullValue="0"/>
+		<result column="encode" property="encodeType" jdbcType="VARCHAR" />
+	</resultMap>
+	<select id="listRemoteStorageServer" resultMap="abatorgenerated_StorageServerResult">
+		select a.ID,
+		a.OPTIMISTIC_LOCK, a.F_NAME, a.NAMING, a.INSTALL_LOCATION,
+		a.NOTE,
+		a.DEVICE_NUMBER, a.IP, a.LINK_TYPE, a.HEART_CYCLE,
+		a.MAX_OUTPUT_AMOUNT,
+		a.MAX_INPUT_AMOUNT, a.FTP_PORT, a.FTP_USER_NAME,
+		a.FTP_PASSWORD, a.IP2,
+		a.MESSAGE_PORT, a.STD_ID, a.IS_VIRTUAL_IP,b.has_vod 
+		from
+		STORAGE_SERVER a, REMOTE_STORAGE_SERVER b
+		where b.STORAGE_SERVER_ID =
+		a.ID
+	</select>
+	<select id="countStorageServer" resultClass="java.lang.Integer">
+		select count(*) from
+		STORAGE_SERVER where f_name=#name# and id!=#id#
+	</select>
+	<select id="getStorageInfoOfCamera" resultMap="getStorageInfoOfCamera_RESULT">
+		 select t.id,t.store_type,
+		       (select ss1.id from storage_server ss1
+		         where ss1.id = (select lss.storage_server_id from local_storage_server lss where lss.video_input_server_id = vis.id) ) l_id,
+		       (select ss1.ip from storage_server ss1
+		         where ss1.id = (select lss.storage_server_id from local_storage_server lss where lss.video_input_server_id = vis.id)) l_ip,
+		       (select ss1.id from storage_server ss1 where ss1.id = t.remote_storage_server_id ) r_id,
+		       (select ss1.ip from storage_server ss1 where ss1.id = t.remote_storage_server_id ) r_ip,
+		       (select rss.has_vod from remote_storage_server rss where rss.storage_server_id = t.remote_storage_server_id) r_vod, 
+		       (select vism.encode from video_input_server_model vism where vism.id = vis.video_input_server_model_id) encode 
+		  from video_input_channel   t,video_input_server    vis where t.video_input_server_id = vis.id and t.id = #accessId#
+	</select>
+	
+	<!-- 查询中心存储版本 -->
+	<select id="getStorageHasVod" resultClass="java.lang.Integer">
+		select HAS_VOD  from  storage_server s, remote_storage_server t 
+		where s.id = t.storage_server_id   and s.device_number = #deviceNumber#
+	</select>
+	
+	<!-- 查询全部中心存储信息 -->
+	<select id="findAllRemoteStorageServer" resultMap="STORAGE_SERVER._StorageServerResult">
+		select s.* from storage_server s, remote_storage_server t where s.id = t.storage_server_id
+	</select>
+</sqlMap>

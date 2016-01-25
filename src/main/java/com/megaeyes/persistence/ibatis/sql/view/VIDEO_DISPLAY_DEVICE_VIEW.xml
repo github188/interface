@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="VIDEO_DISPLAY_DEVICE_VIEW">
+  <resultMap class="com.megaeyes.persistence.ibatis.model.VideoDisplayDevice" id="abatorgenerated_VideoDisplayDeviceResult">
+    <result column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="OPTIMISTIC_LOCK" jdbcType="DECIMAL" property="optimisticLock" />
+    <result column="F_NAME" jdbcType="VARCHAR" property="name" />
+    <result column="NAMING" jdbcType="VARCHAR" property="naming" />
+    <result column="INSTALL_LOCATION" jdbcType="VARCHAR" property="installLocation" />
+    <result column="NOTE" jdbcType="VARCHAR" property="note" />
+    <result column="DEVICE_NUMBER" jdbcType="VARCHAR" property="deviceNumber" />
+    <result column="IP" jdbcType="VARCHAR" property="ip" />
+    <result column="LINK_TYPE" jdbcType="VARCHAR" property="linkType" />
+    <result column="HEART_CYCLE" jdbcType="DECIMAL" property="heartCycle" />
+    <result column="REBOOT_TIME" jdbcType="VARCHAR" property="rebootTime" />
+    <result column="REBOOT_CYCLE" jdbcType="DECIMAL" property="rebootCycle" />
+    <result column="VIDEO_INTPUT_AMOUNT" jdbcType="DECIMAL" property="videoIntputAmount" />
+    <result column="VIDEO_OUTPUT_AMOUNT" jdbcType="DECIMAL" property="videoOutputAmount" />
+    <result column="COMPANY_ID" jdbcType="VARCHAR" property="companyId" />
+    <result column="O_ORGAN_ID" jdbcType="VARCHAR" property="oOrganId" />
+  </resultMap>
+  
+  <select id="listVideoDisplayDevice"
+		resultMap="abatorgenerated_VideoDisplayDeviceResult">
+		select * from VIDEO_DISPLAY_DEVICE v where v.COMPANY_ID = #organId#
+	</select>
+</sqlMap>

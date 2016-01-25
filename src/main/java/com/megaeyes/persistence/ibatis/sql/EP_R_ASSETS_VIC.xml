@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="EP_R_ASSETS_VIC" >
+  <resultMap id="_EpRAssetsVicResult" class="com.megaeyes.persistence.ibatis.model.EpRAssetsVic" >
+    <result column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="ASSETS_ID" property="assetsId" jdbcType="VARCHAR" />
+    <result column="VIC_ID" property="vicId" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="_Example_Where_Clause" >
+    <iterate property="oredCriteria" conjunction="or" prepend="where" removeFirstPrepend="iterate" >
+      <isEqual property="oredCriteria[].valid" compareValue="true" >
+        (
+        <iterate prepend="and" property="oredCriteria[].criteriaWithoutValue" conjunction="and" >
+          $oredCriteria[].criteriaWithoutValue[]$
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithSingleValue" conjunction="and" >
+          $oredCriteria[].criteriaWithSingleValue[].condition$
+            #oredCriteria[].criteriaWithSingleValue[].value#
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithListValue" conjunction="and" >
+          $oredCriteria[].criteriaWithListValue[].condition$
+          <iterate property="oredCriteria[].criteriaWithListValue[].values" open="(" close=")" conjunction="," >
+            #oredCriteria[].criteriaWithListValue[].values[]#
+          </iterate>
+        </iterate>
+        <iterate prepend="and" property="oredCriteria[].criteriaWithBetweenValue" conjunction="and" >
+          $oredCriteria[].criteriaWithBetweenValue[].condition$
+          #oredCriteria[].criteriaWithBetweenValue[].values[0]# and
+          #oredCriteria[].criteriaWithBetweenValue[].values[1]#
+        </iterate>
+        )
+      </isEqual>
+    </iterate>
+  </sql>
+  <select id="_selectByPrimaryKey" resultMap="_EpRAssetsVicResult" parameterClass="com.megaeyes.persistence.ibatis.model.EpRAssetsVic" >
+    select ID, ASSETS_ID, VIC_ID
+    from EP_R_ASSETS_VIC
+    where ID = #id:VARCHAR#
+  </select>
+  <select id="_selectByExample" resultMap="_EpRAssetsVicResult" parameterClass="com.megaeyes.persistence.ibatis.model.EpRAssetsVicExample" >
+    select ID, ASSETS_ID, VIC_ID
+    from EP_R_ASSETS_VIC
+    <isParameterPresent >
+      <include refid="EP_R_ASSETS_VIC._Example_Where_Clause" />
+      <isNotNull property="orderByClause" >
+        order by $orderByClause$
+      </isNotNull>
+    </isParameterPresent>
+  </select>
+  <delete id="_deleteByPrimaryKey" parameterClass="com.megaeyes.persistence.ibatis.model.EpRAssetsVic" >
+    delete from EP_R_ASSETS_VIC
+    where ID = #id:VARCHAR#
+  </delete>
+  <delete id="_deleteByExample" parameterClass="com.megaeyes.persistence.ibatis.model.EpRAssetsVicExample" >
+    delete from EP_R_ASSETS_VIC
+    <include refid="EP_R_ASSETS_VIC._Example_Where_Clause" />
+  </delete>
+  <insert id="_insert" parameterClass="com.megaeyes.persistence.ibatis.model.EpRAssetsVic" >
+    insert into EP_R_ASSETS_VIC (ID, ASSETS_ID, VIC_ID)
+    values (#id:VARCHAR#, #assetsId:VARCHAR#, #vicId:VARCHAR#)
+  </insert>
+  <update id="_updateByPrimaryKey" parameterClass="com.megaeyes.persistence.ibatis.model.EpRAssetsVic" >
+    update EP_R_ASSETS_VIC
+    set ASSETS_ID = #assetsId:VARCHAR#,
+      VIC_ID = #vicId:VARCHAR#
+    where ID = #id:VARCHAR#
+  </update>
+  <update id="_updateByPrimaryKeySelective" parameterClass="com.megaeyes.persistence.ibatis.model.EpRAssetsVic" >
+    update EP_R_ASSETS_VIC
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="assetsId" >
+        ASSETS_ID = #assetsId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="vicId" >
+        VIC_ID = #vicId:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    where ID = #id:VARCHAR#
+  </update>
+  <select id="_countByExample" parameterClass="com.megaeyes.persistence.ibatis.model.EpRAssetsVicExample" resultClass="java.lang.Integer" >
+    select count(*) from EP_R_ASSETS_VIC
+    <include refid="EP_R_ASSETS_VIC._Example_Where_Clause" />
+  </select>
+  <update id="_updateByExampleSelective" >
+    update EP_R_ASSETS_VIC
+    <dynamic prepend="set" >
+      <isNotNull prepend="," property="record.id" >
+        ID = #record.id:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.assetsId" >
+        ASSETS_ID = #record.assetsId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.vicId" >
+        VIC_ID = #record.vicId:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    <isParameterPresent >
+      <include refid="EP_R_ASSETS_VIC._Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="_updateByExample" >
+    update EP_R_ASSETS_VIC
+    set ID = #record.id:VARCHAR#,
+      ASSETS_ID = #record.assetsId:VARCHAR#,
+      VIC_ID = #record.vicId:VARCHAR#
+    <isParameterPresent >
+      <include refid="EP_R_ASSETS_VIC._Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+</sqlMap>

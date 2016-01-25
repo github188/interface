@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="VIDEO_OUTPUT_CHANNEL_MODEL_VIEW">
+  <resultMap class="com.megaeyes.persistence.ibatis.model.VideoOutputChannelModel" id="_VideoOutputChannelModelResult">
+    <result column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="OPTIMISTIC_LOCK" jdbcType="DECIMAL" property="optimisticLock" />
+    <result column="MANUFACTURER_ID" jdbcType="VARCHAR" property="manufacturerId" />
+    <result column="F_NAME" jdbcType="VARCHAR" property="name" />
+    <result column="NOTE" jdbcType="VARCHAR" property="note" />
+  </resultMap>
+
+<select id="listVOCModel" resultMap="_VideoOutputChannelModelResult">
+	select v.* from video_output_channel_model v
+	
+</select>
+  
+</sqlMap>

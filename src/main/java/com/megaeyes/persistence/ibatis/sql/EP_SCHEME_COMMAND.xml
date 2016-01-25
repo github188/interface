@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="EP_SCHEME_COMMAND">
+  <resultMap class="com.megaeyes.persistence.ibatis.model.EpSchemeCommand" id="_EpSchemeCommandResult">
+    <result column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="EP_SCHEME_ID" jdbcType="VARCHAR" property="epSchemeId" />
+    <result column="TARGET_ID" jdbcType="VARCHAR" property="targetId" />
+    <result column="TARGET_TYPE" jdbcType="VARCHAR" property="targetType" />
+    <result column="VALUE" jdbcType="VARCHAR" property="value" />
+    <result column="DURATION" jdbcType="VARCHAR" property="duration" />
+    <result column="SEQ" jdbcType="DECIMAL" property="seq" />
+  </resultMap>
+  <sql id="_Example_Where_Clause">
+    <iterate conjunction="or" prepend="where" property="oredCriteria" removeFirstPrepend="iterate">
+      <isEqual compareValue="true" property="oredCriteria[].valid">
+        (
+        <iterate conjunction="and" prepend="and" property="oredCriteria[].criteriaWithoutValue">
+          $oredCriteria[].criteriaWithoutValue[]$
+        </iterate>
+        <iterate conjunction="and" prepend="and" property="oredCriteria[].criteriaWithSingleValue">
+          $oredCriteria[].criteriaWithSingleValue[].condition$
+            #oredCriteria[].criteriaWithSingleValue[].value#
+        </iterate>
+        <iterate conjunction="and" prepend="and" property="oredCriteria[].criteriaWithListValue">
+          $oredCriteria[].criteriaWithListValue[].condition$
+          <iterate close=")" conjunction="," open="(" property="oredCriteria[].criteriaWithListValue[].values">
+            #oredCriteria[].criteriaWithListValue[].values[]#
+          </iterate>
+        </iterate>
+        <iterate conjunction="and" prepend="and" property="oredCriteria[].criteriaWithBetweenValue">
+          $oredCriteria[].criteriaWithBetweenValue[].condition$
+          #oredCriteria[].criteriaWithBetweenValue[].values[0]# and
+          #oredCriteria[].criteriaWithBetweenValue[].values[1]#
+        </iterate>
+        )
+      </isEqual>
+    </iterate>
+  </sql>
+  <select id="_selectByPrimaryKey" parameterClass="com.megaeyes.persistence.ibatis.model.EpSchemeCommand" resultMap="_EpSchemeCommandResult">
+    select ID, EP_SCHEME_ID, TARGET_ID, TARGET_TYPE, VALUE, DURATION, SEQ
+    from EP_SCHEME_COMMAND
+    where ID = #id:VARCHAR#
+  </select>
+  <select id="_selectByExample" parameterClass="com.megaeyes.persistence.ibatis.model.EpSchemeCommandExample" resultMap="_EpSchemeCommandResult">
+    select ID, EP_SCHEME_ID, TARGET_ID, TARGET_TYPE, VALUE, DURATION, SEQ
+    from EP_SCHEME_COMMAND
+    <isParameterPresent>
+      <include refid="EP_SCHEME_COMMAND._Example_Where_Clause" />
+      <isNotNull property="orderByClause">
+        order by $orderByClause$
+      </isNotNull>
+    </isParameterPresent>
+  </select>
+  <delete id="_deleteByPrimaryKey" parameterClass="com.megaeyes.persistence.ibatis.model.EpSchemeCommand">
+    delete from EP_SCHEME_COMMAND
+    where ID = #id:VARCHAR#
+  </delete>
+  <delete id="_deleteByExample" parameterClass="com.megaeyes.persistence.ibatis.model.EpSchemeCommandExample">
+    delete from EP_SCHEME_COMMAND
+    <include refid="EP_SCHEME_COMMAND._Example_Where_Clause" />
+  </delete>
+  <insert id="_insert" parameterClass="com.megaeyes.persistence.ibatis.model.EpSchemeCommand">
+    insert into EP_SCHEME_COMMAND (ID, EP_SCHEME_ID, TARGET_ID, TARGET_TYPE, VALUE, DURATION, SEQ)
+    values (#id:VARCHAR#, #epSchemeId:VARCHAR#, #targetId:VARCHAR#, #targetType:VARCHAR#,
+      #value:VARCHAR#, #duration:VARCHAR#, #seq:DECIMAL#)
+  </insert>
+  <update id="_updateByPrimaryKey" parameterClass="com.megaeyes.persistence.ibatis.model.EpSchemeCommand">
+    update EP_SCHEME_COMMAND
+    set EP_SCHEME_ID = #epSchemeId:VARCHAR#,
+      TARGET_ID = #targetId:VARCHAR#,
+      TARGET_TYPE = #targetType:VARCHAR#,
+      VALUE = #value:VARCHAR#,
+      DURATION = #duration:VARCHAR#,
+      SEQ = #seq:DECIMAL#
+    where ID = #id:VARCHAR#
+  </update>
+  <update id="_updateByPrimaryKeySelective" parameterClass="com.megaeyes.persistence.ibatis.model.EpSchemeCommand">
+    update EP_SCHEME_COMMAND
+    <dynamic prepend="set">
+      <isNotNull prepend="," property="epSchemeId">
+        EP_SCHEME_ID = #epSchemeId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="targetId">
+        TARGET_ID = #targetId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="targetType">
+        TARGET_TYPE = #targetType:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="value">
+        VALUE = #value:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="duration">
+        DURATION = #duration:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="seq">
+        SEQ = #seq:DECIMAL#
+      </isNotNull>
+    </dynamic>
+    where ID = #id:VARCHAR#
+  </update>
+  <select id="_countByExample" parameterClass="com.megaeyes.persistence.ibatis.model.EpSchemeCommandExample" resultClass="java.lang.Integer">
+    select count(*) from EP_SCHEME_COMMAND
+    <include refid="EP_SCHEME_COMMAND._Example_Where_Clause" />
+  </select>
+  <update id="_updateByExampleSelective">
+    update EP_SCHEME_COMMAND
+    <dynamic prepend="set">
+      <isNotNull prepend="," property="record.id">
+        ID = #record.id:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.epSchemeId">
+        EP_SCHEME_ID = #record.epSchemeId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.targetId">
+        TARGET_ID = #record.targetId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.targetType">
+        TARGET_TYPE = #record.targetType:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.value">
+        VALUE = #record.value:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.duration">
+        DURATION = #record.duration:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.seq">
+        SEQ = #record.seq:DECIMAL#
+      </isNotNull>
+    </dynamic>
+    <isParameterPresent>
+      <include refid="EP_SCHEME_COMMAND._Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="_updateByExample">
+    update EP_SCHEME_COMMAND
+    set ID = #record.id:VARCHAR#,
+      EP_SCHEME_ID = #record.epSchemeId:VARCHAR#,
+      TARGET_ID = #record.targetId:VARCHAR#,
+      TARGET_TYPE = #record.targetType:VARCHAR#,
+      VALUE = #record.value:VARCHAR#,
+      DURATION = #record.duration:VARCHAR#,
+      SEQ = #record.seq:DECIMAL#
+    <isParameterPresent>
+      <include refid="EP_SCHEME_COMMAND._Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+</sqlMap>

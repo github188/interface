@@ -1,0 +1,486 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+	"http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	<bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor" />
+	 
+	<bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
+		<property name="jndiName">
+			<value>java:/MegaeyesDS</value>
+		</property>
+	</bean>
+	 
+	 <!--  
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"> 
+		<property name="driverClassName"> 
+			<value>oracle.jdbc.driver.OracleDriver</value> 
+		</property> 
+		<property name="url"> 
+			<value>jdbc:oracle:thin:@192.168.50.122:1521:MEGA</value> 
+		</property> 
+		<property name="username" value="dl25" /> 
+		<property name="password" value="dl25" /> 
+	</bean>
+	-->
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	
+	<bean id="sqlMapClient" class="org.springframework.orm.ibatis.SqlMapClientFactoryBean">
+		<property name="configLocation">
+			<value>WEB-INF/sql-map-config.xml</value>
+		</property>
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	<bean id="accessServerDAO"
+		class="com.megaeyes.persistence.ibatis.impl.AccessServerDAOiBatis">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+	<bean id="sequenceDAO" class="com.megaeyes.persistence.ibatis.impl.SequenceDAOiBatis">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+	<bean id="acGatewayDAO" class="com.megaeyes.persistence.ibatis.impl.AcGatewayDAOiBatis">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+	<bean id="dispatchServerDAO"
+		class="com.megaeyes.persistence.ibatis.impl.DispatchServerDAOiBatis">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+	<bean id="storageServerDAO"
+		class="com.megaeyes.persistence.ibatis.impl.StorageServerDAOiBatis">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+	<bean id="remoteStorageServerDAO"
+		class="com.megaeyes.persistence.ibatis.impl.RemoteStorageServerDAOiBatis">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+	<bean id="userSessionDAO"
+		class="com.megaeyes.persistence.ibatis.impl.UserSessionDAOiBatis">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+	<bean id="organDAO" class="com.megaeyes.persistence.ibatis.impl.OrganDAOiBatis">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+	<bean id="platformDAO" class="com.megaeyes.persistence.ibatis.impl.PlatformDAOIbatis">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+	<bean id="userDAO" class="com.megaeyes.persistence.ibatis.impl.UserDAOiBatis">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+	<bean id="epOperationLogDAO"
+		class="com.megaeyes.persistence.ibatis.impl.EpOperationLogDAOiBatis">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+	<bean id="platformResourcesDAO"
+		class="com.megaeyes.persistence.ibatis.impl.PlatformResourcesDAOiBatis">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+	<bean id="companyDAO" class="com.megaeyes.persistence.ibatis.impl.CompanyDAOiBatis">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+
+	<bean id="videoInputServerDAO"
+		class="com.megaeyes.persistence.ibatis.impl.VideoInputServerDAOiBatis">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+	<bean id="generalCameraVisDAO"
+		class="com.megaeyes.persistence.ibatis.impl.GeneralCameraVisDAOiBatis">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+	<bean id="localStorageServerDAO"
+		class="com.megaeyes.persistence.ibatis.impl.LocalStorageServerDAOiBatis">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+	<bean id="ipCameraVisDAO"
+		class="com.megaeyes.persistence.ibatis.impl.IpCameraVisDAOiBatis">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+
+	<bean id="epEventServerDAO"
+		class="com.megaeyes.persistence.ibatis.impl.EpEventServerDAOiBatis">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+	<bean id="VideoInputChannelDAO"
+		class="com.megaeyes.persistence.ibatis.impl.VideoInputChannelDAOiBatis">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+	<bean id="epRDeviceVicDAO"
+		class="com.megaeyes.persistence.ibatis.impl.EpRDeviceVicDAOiBatis">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+	<bean id="epPresetDAO" class="com.megaeyes.persistence.ibatis.impl.EpPresetDAOiBatis">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+
+	<bean id="epSchemeCommandDAO"
+		class="com.megaeyes.persistence.ibatis.impl.EpSchemeCommandDAOiBatis">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+	<bean id="epRSchemeAlarmSourceDAO"
+		class="com.megaeyes.persistence.ibatis.impl.EpRSchemeAlarmSourceDAOiBatis">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+	<bean id="epSchemeDAO" class="com.megaeyes.persistence.ibatis.impl.EpSchemeDAOiBatis">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+	<bean id="epRMapDeviceDAO"
+		class="com.megaeyes.persistence.ibatis.impl.EpRMapDeviceDAOiBatis">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+	<bean id="generalCameraVicDAO"
+		class="com.megaeyes.persistence.ibatis.impl.GeneralCameraVicDAOiBatis">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+	<bean id="ipCameraVicDAO"
+		class="com.megaeyes.persistence.ibatis.impl.IpCameraVicDAOiBatis">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+	<bean id="alarmBoxDAO" class="com.megaeyes.persistence.ibatis.impl.AlarmBoxDAOiBatis">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+	<bean id="alarmInputChannelDAO"
+		class="com.megaeyes.persistence.ibatis.impl.AlarmInputChannelDAOiBatis">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+	<bean id="alarmOutputChannelDAO"
+		class="com.megaeyes.persistence.ibatis.impl.AlarmOutputChannelDAOiBatis">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+	<bean id="intelligentChannelDAO"
+		class="com.megaeyes.persistence.ibatis.impl.IntelligentChannelDAOiBatis">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+	<bean id="rUserVisDAO" class="com.megaeyes.persistence.ibatis.impl.RUserVisDAOiBatis">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+	<bean id="videoInputServerModelDAO"
+		class="com.megaeyes.persistence.ibatis.impl.VideoInputServerModelDAOiBatis">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+	<bean id="epGatherServerDAO"
+		class="com.megaeyes.persistence.ibatis.impl.EpGatherServerDAOiBatis">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+	<bean id="videoDisplayDeviceDAO"
+		class="com.megaeyes.persistence.ibatis.impl.VideoDisplayDeviceDAOiBatis">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+	<bean id="videoOutputChannelDAO"
+		class="com.megaeyes.persistence.ibatis.impl.VideoOutputChannelDAOiBatis">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+	<bean id="manufacturerDAO"
+		class="com.megaeyes.persistence.ibatis.impl.ManufacturerDAOiBatis">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+	<bean id="videoInputChannelModelDAO"
+		class="com.megaeyes.persistence.ibatis.impl.VideoInputChannelModelDAOiBatis">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+	<bean id="epIntelligentChannelDAO"
+		class="com.megaeyes.persistence.ibatis.impl.EpIntelligentChannelDAOiBatis">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+	<bean id="alarmInputChannelTypeDAO"
+		class="com.megaeyes.persistence.ibatis.impl.AlarmInputChannelTypeDAOiBatis">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+	<bean id="alarmOutputChannelTypeDAO"
+		class="com.megaeyes.persistence.ibatis.impl.AlarmOutputChannelTypeDAOiBatis">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+
+	<bean id="epRoleDAO" class="com.megaeyes.persistence.ibatis.impl.EpRoleDAOiBatis">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+	<bean id="epRUserRoleDAO"
+		class="com.megaeyes.persistence.ibatis.impl.EpRUserRoleDAOiBatis">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+	<bean id="userSessionHistoryDAO"
+		class="com.megaeyes.persistence.ibatis.impl.UserSessionHistoryDAOiBatis">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+
+	<bean id="videoOutputChannelModelDAO"
+		class="com.megaeyes.persistence.ibatis.impl.VideoOutputChannelModelDAOiBatis">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+	<bean id="epAssetsDAO" class="com.megaeyes.persistence.ibatis.impl.EpAssetsDAOiBatis">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+	<bean id="epOperationDAO"
+		class="com.megaeyes.persistence.ibatis.impl.EpOperationDAOiBatis">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+	<bean id="epRRoleOperationDAO"
+		class="com.megaeyes.persistence.ibatis.impl.EpRRoleOperationDAOiBatis">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+	<bean id="epRAssetsVicDAO"
+		class="com.megaeyes.persistence.ibatis.impl.EpRAssetsVicDAOiBatis">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+	<bean id="epRRoleResourceDAO"
+		class="com.megaeyes.persistence.ibatis.impl.EpRRoleResourceDAOiBatis">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+
+	<bean id="epAlarmEventDAO"
+		class="com.megaeyes.persistence.ibatis.impl.EpAlarmEventDAOiBatis">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+
+	<bean id="epTrackDAO" class="com.megaeyes.persistence.ibatis.impl.EpTrackDAOiBatis">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+	<bean id="epProberDAO" class="com.megaeyes.persistence.ibatis.impl.EpProberDAOiBatis">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+	<bean id="epEventTypeDAO"
+		class="com.megaeyes.persistence.ibatis.impl.EpEventTypeDAOiBatis">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+	<bean id="sipServerDAO" class="com.megaeyes.persistence.ibatis.impl.SipServerDAOiBatis">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+
+	<bean id="acAccessControlDAO"
+		class="com.megaeyes.persistence.ibatis.impl.AcAccessControlsDAOiBatis">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+	<bean id="acLogDAO" class="com.megaeyes.persistence.ibatis.impl.AcLogDAOiBatis">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+	<bean id="userSubscribeDAO"
+		class="com.megaeyes.persistence.ibatis.iface.UserSubscribeDAOImpl">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+	<bean id="tempResourceDAO"
+		class="com.megaeyes.persistence.ibatis.impl.TempResourcesDAOiBatis">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+	<bean id="acEmployeesDAO"
+		class="com.megaeyes.persistence.ibatis.impl.AcEmployeesDAOiBatis">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+	<bean id="epControlServerDAO"
+		class="com.megaeyes.persistence.ibatis.impl.EpControlServerDAOiBatis">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+	<bean id="epMapDAO" class="com.megaeyes.persistence.ibatis.impl.EpMapDAOiBatis">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+	<bean id="epDeviceDAO" class="com.megaeyes.persistence.ibatis.impl.EpDeviceDAOiBatis">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+	<bean id="epMonitorDeviceDAO"
+		class="com.megaeyes.persistence.ibatis.impl.EpMonitorDeviceDAOiBatis">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+	<bean id="epRMonitorDeviceDAO"
+		class="com.megaeyes.persistence.ibatis.impl.EpRMonitorDeviceDAOiBatis">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+
+	<bean id="epIntelligentDetectionDAO"
+		class="com.megaeyes.persistence.ibatis.impl.EpIntelligentDetectionDAOiBatis">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+
+	<bean id="thirdPartyPlatformDAO"
+		class="com.megaeyes.persistence.ibatis.iface.ThirdPartyPlatformDAOImpl">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+	<bean id="platformSubscribeDAO"
+		class="com.megaeyes.persistence.ibatis.iface.PlatformSubscribeDAOImpl">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+	<bean id="branchDAO" class="com.megaeyes.persistence.ibatis.impl.BranchDAOiBatis">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+	<bean id="epTaskInspectionDAO"
+		class="com.megaeyes.persistence.ibatis.impl.EpTaskInspectionDAOiBatis">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+	<bean id="epTaskDAO" class="com.megaeyes.persistence.ibatis.impl.EpTaskDAOiBatis">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+	<bean id="epTaskStepDAO"
+		class="com.megaeyes.persistence.ibatis.impl.EpTaskStepDAOiBatis">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+	<bean id="epRTaskstepMonitorDao"
+		class="com.megaeyes.persistence.ibatis.impl.EpRTaskstepMonitorDAOiBatis">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+	<bean id="epRTaskEmployeeDAO"
+		class="com.megaeyes.persistence.ibatis.impl.EpRTaskEmployeeDAOiBatis">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+	<bean id="epTaskStepHistoryDAO"
+		class="com.megaeyes.persistence.ibatis.impl.EpTaskStepHistoryDAOiBatis">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+	<bean id="epTaskHistoryDAO"
+		class="com.megaeyes.persistence.ibatis.impl.EpTaskHistoryDAOiBatis">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+	<bean id="rtpPayloadDAO" class="com.megaeyes.persistence.ibatis.iface.RtpPayloadDAOImpl">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+	<bean id="epProberTypeDAO"
+		class="com.megaeyes.persistence.ibatis.impl.EpProberTypeDAOiBatis">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+	<bean id="epRProberVicDAO"
+		class="com.megaeyes.persistence.ibatis.impl.EpRProberVicDAOiBatis">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+	<bean id="acAccessServersDAO" class="com.megaeyes.persistence.ibatis.impl.AcAccessServersDAOiBatis">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+	<bean id="mediaGatewayServerDAO" class="com.megaeyes.persistence.ibatis.impl.MediaGatewayServerDAOiBatis">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+	<bean id="acAccessCardsDAO" class="com.megaeyes.persistence.ibatis.impl.AcAccessCardsDAOiBatis">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+	<bean id="acRDoorCardDAO" class="com.megaeyes.persistence.ibatis.impl.AcRDoorCardDAOiBatis">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+	<bean id="acREmployeeCardDAO" class="com.megaeyes.persistence.ibatis.impl.AcREmployeeCardDAOiBatis">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+	<bean id="epRDoorVicDAO" class="com.megaeyes.persistence.ibatis.impl.EpRDoorVicDAOiBatis">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+	<bean id="rUserAccontrolDAO" class="com.megaeyes.persistence.ibatis.impl.RUserAccontrolDAOiBatis">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+	<bean id="ivuTaskDAO" class="com.megaeyes.persistence.ibatis.impl.IvuTaskDAOiBatis">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+	<bean id="epClientGatewayDAO" class="com.megaeyes.persistence.ibatis.impl.EpClientGatewayDAOiBatis">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+	
+	<bean id="employeeGroupDAO" class="com.megaeyes.persistence.ibatis.impl.AcEmployeeGroupDAOiBatis">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+	<bean id="employeeScheduleDAO" class="com.megaeyes.persistence.ibatis.iface.AcEmployeeScheduleDAOImpl">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+	<bean id="rScheduleGroupDAO" class="com.megaeyes.persistence.ibatis.iface.AcRScheduleGroupDAOImpl">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+	<bean id="rEmployeeGroupDAO" class="com.megaeyes.persistence.ibatis.iface.AcREmployeeGroupDAOImpl">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+	<bean id="employeeAbsentDAO" class="com.megaeyes.persistence.ibatis.impl.AcEmployeeAbsenceRecordDAOiBatis">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+	
+	<bean id="attendanceRuleDAO" class="com.megaeyes.persistence.ibatis.iface.AcWorkAttendanceRuleDAOImpl">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+	<bean id="workRuleDAO" class="com.megaeyes.persistence.ibatis.iface.AcWorkRuleDAOImpl">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+</beans>

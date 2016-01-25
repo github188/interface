@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="VIDEO_OUTPUT_CHANNEL">
+  <resultMap class="com.megaeyes.persistence.ibatis.model.VideoOutputChannel" id="_VideoOutputChannelResult">
+    <result column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="OPTIMISTIC_LOCK" jdbcType="DECIMAL" property="optimisticLock" />
+    <result column="F_NAME" jdbcType="VARCHAR" property="name" />
+    <result column="NAMING" jdbcType="VARCHAR" property="naming" />
+    <result column="INSTALL_LOCATION" jdbcType="VARCHAR" property="installLocation" />
+    <result column="NOTE" jdbcType="VARCHAR" property="note" />
+    <result column="VIDEO_DISPLAY_DEVICE_ID" jdbcType="VARCHAR" property="videoDisplayDeviceId" />
+    <result column="ADDRESS_NUMBER" jdbcType="VARCHAR" property="addressNumber" />
+    <result column="VIDEO_OUTPUT_CHANNEL_MODEL_ID" jdbcType="VARCHAR" property="videoOutputChannelModelId" />
+    <result column="ORGAN_ID" jdbcType="VARCHAR" property="organId" />
+    <result column="DEVICE_PHYSICAL_RELATION_ID" jdbcType="VARCHAR" property="devicePhysicalRelationId" />
+    <result column="STD_ID" jdbcType="VARCHAR" property="stdId" />
+    <result column="IS_SHARE" jdbcType="DECIMAL" property="isShare" />
+    <result column="DISPATCH_SERVER_ID" jdbcType="VARCHAR" property="dispatchServerId" />
+  </resultMap>
+  <sql id="_Example_Where_Clause">
+    <iterate conjunction="or" prepend="where" property="oredCriteria" removeFirstPrepend="iterate">
+      <isEqual compareValue="true" property="oredCriteria[].valid">
+        (
+        <iterate conjunction="and" prepend="and" property="oredCriteria[].criteriaWithoutValue">
+          $oredCriteria[].criteriaWithoutValue[]$
+        </iterate>
+        <iterate conjunction="and" prepend="and" property="oredCriteria[].criteriaWithSingleValue">
+          $oredCriteria[].criteriaWithSingleValue[].condition$
+            #oredCriteria[].criteriaWithSingleValue[].value#
+        </iterate>
+        <iterate conjunction="and" prepend="and" property="oredCriteria[].criteriaWithListValue">
+          $oredCriteria[].criteriaWithListValue[].condition$
+          <iterate close=")" conjunction="," open="(" property="oredCriteria[].criteriaWithListValue[].values">
+            #oredCriteria[].criteriaWithListValue[].values[]#
+          </iterate>
+        </iterate>
+        <iterate conjunction="and" prepend="and" property="oredCriteria[].criteriaWithBetweenValue">
+          $oredCriteria[].criteriaWithBetweenValue[].condition$
+          #oredCriteria[].criteriaWithBetweenValue[].values[0]# and
+          #oredCriteria[].criteriaWithBetweenValue[].values[1]#
+        </iterate>
+        )
+      </isEqual>
+    </iterate>
+  </sql>
+  <select id="_selectByPrimaryKey" parameterClass="com.megaeyes.persistence.ibatis.model.VideoOutputChannel" resultMap="_VideoOutputChannelResult">
+    select ID, OPTIMISTIC_LOCK, F_NAME, NAMING, INSTALL_LOCATION, NOTE, VIDEO_DISPLAY_DEVICE_ID,
+      ADDRESS_NUMBER, VIDEO_OUTPUT_CHANNEL_MODEL_ID, ORGAN_ID, DEVICE_PHYSICAL_RELATION_ID, STD_ID,
+      IS_SHARE, DISPATCH_SERVER_ID
+    from VIDEO_OUTPUT_CHANNEL
+    where ID = #id:VARCHAR#
+  </select>
+  <select id="_selectByExample" parameterClass="com.megaeyes.persistence.ibatis.model.VideoOutputChannelExample" resultMap="_VideoOutputChannelResult">
+    select ID, OPTIMISTIC_LOCK, F_NAME, NAMING, INSTALL_LOCATION, NOTE, VIDEO_DISPLAY_DEVICE_ID,
+      ADDRESS_NUMBER, VIDEO_OUTPUT_CHANNEL_MODEL_ID, ORGAN_ID, DEVICE_PHYSICAL_RELATION_ID, STD_ID,
+      IS_SHARE, DISPATCH_SERVER_ID
+    from VIDEO_OUTPUT_CHANNEL
+    <isParameterPresent>
+      <include refid="VIDEO_OUTPUT_CHANNEL._Example_Where_Clause" />
+      <isNotNull property="orderByClause">
+        order by $orderByClause$
+      </isNotNull>
+    </isParameterPresent>
+  </select>
+  <delete id="_deleteByPrimaryKey" parameterClass="com.megaeyes.persistence.ibatis.model.VideoOutputChannel">
+    delete from VIDEO_OUTPUT_CHANNEL
+    where ID = #id:VARCHAR#
+  </delete>
+  <delete id="_deleteByExample" parameterClass="com.megaeyes.persistence.ibatis.model.VideoOutputChannelExample">
+    delete from VIDEO_OUTPUT_CHANNEL
+    <include refid="VIDEO_OUTPUT_CHANNEL._Example_Where_Clause" />
+  </delete>
+  <insert id="_insert" parameterClass="com.megaeyes.persistence.ibatis.model.VideoOutputChannel">
+    insert into VIDEO_OUTPUT_CHANNEL (ID, OPTIMISTIC_LOCK, F_NAME, NAMING, INSTALL_LOCATION, NOTE,
+      VIDEO_DISPLAY_DEVICE_ID, ADDRESS_NUMBER, VIDEO_OUTPUT_CHANNEL_MODEL_ID, ORGAN_ID,
+      DEVICE_PHYSICAL_RELATION_ID, STD_ID, IS_SHARE, DISPATCH_SERVER_ID)
+    values (#id:VARCHAR#, #optimisticLock:DECIMAL#, #name:VARCHAR#, #naming:VARCHAR#,
+      #installLocation:VARCHAR#, #note:VARCHAR#, #videoDisplayDeviceId:VARCHAR#,
+      #addressNumber:VARCHAR#, #videoOutputChannelModelId:VARCHAR#, #organId:VARCHAR#,
+      #devicePhysicalRelationId:VARCHAR#, #stdId:VARCHAR#, #isShare:DECIMAL#,
+      #dispatchServerId:VARCHAR#)
+  </insert>
+  <update id="_updateByPrimaryKey" parameterClass="com.megaeyes.persistence.ibatis.model.VideoOutputChannel">
+    update VIDEO_OUTPUT_CHANNEL
+    set OPTIMISTIC_LOCK = #optimisticLock:DECIMAL#,
+      F_NAME = #name:VARCHAR#,
+      NAMING = #naming:VARCHAR#,
+      INSTALL_LOCATION = #installLocation:VARCHAR#,
+      NOTE = #note:VARCHAR#,
+      VIDEO_DISPLAY_DEVICE_ID = #videoDisplayDeviceId:VARCHAR#,
+      ADDRESS_NUMBER = #addressNumber:VARCHAR#,
+      VIDEO_OUTPUT_CHANNEL_MODEL_ID = #videoOutputChannelModelId:VARCHAR#,
+      ORGAN_ID = #organId:VARCHAR#,
+      DEVICE_PHYSICAL_RELATION_ID = #devicePhysicalRelationId:VARCHAR#,
+      STD_ID = #stdId:VARCHAR#,
+      IS_SHARE = #isShare:DECIMAL#,
+      DISPATCH_SERVER_ID = #dispatchServerId:VARCHAR#
+    where ID = #id:VARCHAR#
+  </update>
+  <update id="_updateByPrimaryKeySelective" parameterClass="com.megaeyes.persistence.ibatis.model.VideoOutputChannel">
+    update VIDEO_OUTPUT_CHANNEL
+    <dynamic prepend="set">
+      <isNotNull prepend="," property="optimisticLock">
+        OPTIMISTIC_LOCK = #optimisticLock:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="name">
+        F_NAME = #name:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="naming">
+        NAMING = #naming:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="installLocation">
+        INSTALL_LOCATION = #installLocation:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="note">
+        NOTE = #note:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="videoDisplayDeviceId">
+        VIDEO_DISPLAY_DEVICE_ID = #videoDisplayDeviceId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="addressNumber">
+        ADDRESS_NUMBER = #addressNumber:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="videoOutputChannelModelId">
+        VIDEO_OUTPUT_CHANNEL_MODEL_ID = #videoOutputChannelModelId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="organId">
+        ORGAN_ID = #organId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="devicePhysicalRelationId">
+        DEVICE_PHYSICAL_RELATION_ID = #devicePhysicalRelationId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="stdId">
+        STD_ID = #stdId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="isShare">
+        IS_SHARE = #isShare:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="dispatchServerId">
+        DISPATCH_SERVER_ID = #dispatchServerId:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    where ID = #id:VARCHAR#
+  </update>
+  <select id="_countByExample" parameterClass="com.megaeyes.persistence.ibatis.model.VideoOutputChannelExample" resultClass="java.lang.Integer">
+    select count(*) from VIDEO_OUTPUT_CHANNEL
+    <include refid="VIDEO_OUTPUT_CHANNEL._Example_Where_Clause" />
+  </select>
+  <update id="_updateByExampleSelective">
+    update VIDEO_OUTPUT_CHANNEL
+    <dynamic prepend="set">
+      <isNotNull prepend="," property="record.id">
+        ID = #record.id:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.optimisticLock">
+        OPTIMISTIC_LOCK = #record.optimisticLock:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.name">
+        F_NAME = #record.name:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.naming">
+        NAMING = #record.naming:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.installLocation">
+        INSTALL_LOCATION = #record.installLocation:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.note">
+        NOTE = #record.note:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.videoDisplayDeviceId">
+        VIDEO_DISPLAY_DEVICE_ID = #record.videoDisplayDeviceId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.addressNumber">
+        ADDRESS_NUMBER = #record.addressNumber:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.videoOutputChannelModelId">
+        VIDEO_OUTPUT_CHANNEL_MODEL_ID = #record.videoOutputChannelModelId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.organId">
+        ORGAN_ID = #record.organId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.devicePhysicalRelationId">
+        DEVICE_PHYSICAL_RELATION_ID = #record.devicePhysicalRelationId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.stdId">
+        STD_ID = #record.stdId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.isShare">
+        IS_SHARE = #record.isShare:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.dispatchServerId">
+        DISPATCH_SERVER_ID = #record.dispatchServerId:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    <isParameterPresent>
+      <include refid="VIDEO_OUTPUT_CHANNEL._Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="_updateByExample">
+    update VIDEO_OUTPUT_CHANNEL
+    set ID = #record.id:VARCHAR#,
+      OPTIMISTIC_LOCK = #record.optimisticLock:DECIMAL#,
+      F_NAME = #record.name:VARCHAR#,
+      NAMING = #record.naming:VARCHAR#,
+      INSTALL_LOCATION = #record.installLocation:VARCHAR#,
+      NOTE = #record.note:VARCHAR#,
+      VIDEO_DISPLAY_DEVICE_ID = #record.videoDisplayDeviceId:VARCHAR#,
+      ADDRESS_NUMBER = #record.addressNumber:VARCHAR#,
+      VIDEO_OUTPUT_CHANNEL_MODEL_ID = #record.videoOutputChannelModelId:VARCHAR#,
+      ORGAN_ID = #record.organId:VARCHAR#,
+      DEVICE_PHYSICAL_RELATION_ID = #record.devicePhysicalRelationId:VARCHAR#,
+      STD_ID = #record.stdId:VARCHAR#,
+      IS_SHARE = #record.isShare:DECIMAL#,
+      DISPATCH_SERVER_ID = #record.dispatchServerId:VARCHAR#
+    <isParameterPresent>
+      <include refid="VIDEO_OUTPUT_CHANNEL._Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+</sqlMap>

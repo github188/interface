@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+	"http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close">
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
+		<property name="url" value="jdbc:oracle:thin:@192.168.50.98:1521:MEGA" />
+		<property name="username" value="hbdw1" />
+		<property name="password" value="hbdw1" />
+	</bean>
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	<bean id="sqlMapClient"
+		class="org.springframework.orm.ibatis.SqlMapClientFactoryBean">
+		<property name="configLocation">
+			<value>WEB-INF/sql-map-config.xml</value>
+		</property>
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	<bean id="userDao"
+		class="com.megaeyes.persistence.ibatis.impl.TUserDAOImpliBatis">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+	<bean id="accessServerDAO"
+		class="com.megaeyes.persistence.ibatis.impl.AccessServerDAOiBatis">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+	<bean id="sequenceDAO"
+		class="com.megaeyes.persistence.ibatis.impl.SequenceDAOiBatis">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+	<bean id="acGatewayDAO"
+		class="com.megaeyes.persistence.ibatis.impl.AcGatewayDAOiBatis">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+	<bean id="dispatchServerDAO"
+		class="com.megaeyes.persistence.ibatis.impl.DispatchServerDAOiBatis">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+	<bean id="storageServerDAO"
+		class="com.megaeyes.persistence.ibatis.impl.StorageServerDAOiBatis">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+	<bean id="remoteStorageServerDAO"
+		class="com.megaeyes.persistence.ibatis.impl.RemoteStorageServerDAOiBatis">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+	<bean id="userSessionDAO"
+		class="com.megaeyes.persistence.ibatis.iface.UserSessionDAOImpl">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+</beans>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="ALARM_BOX_VIEW" >
+  <resultMap id="abatorgenerated_AlarmBoxResult" class="com.megaeyes.persistence.ibatis.model.AlarmBox" >
+    <result column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="OPTIMISTIC_LOCK" property="optimisticLock" jdbcType="DECIMAL" />
+    <result column="F_NAME" property="name" jdbcType="VARCHAR" />
+    <result column="NAMING" property="naming" jdbcType="VARCHAR" />
+    <result column="INSTALL_LOCATION" property="installLocation" jdbcType="VARCHAR" />
+    <result column="NOTE" property="note" jdbcType="VARCHAR" />
+    <result column="VIDEO_INPUT_SERVER_ID" property="videoInputServerId" jdbcType="VARCHAR" />
+    <result column="ADDRESS_NUMBER" property="addressNumber" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <select id="listAlarmBoxByVisId" resultMap="abatorgenerated_AlarmBoxResult">
+  	select ID, OPTIMISTIC_LOCK, F_NAME, NAMING, INSTALL_LOCATION, NOTE, VIDEO_INPUT_SERVER_ID,
+      ADDRESS_NUMBER
+    from ALARM_BOX
+    where VIDEO_INPUT_SERVER_ID = #visId:VARCHAR#
+  </select>
+
+</sqlMap>

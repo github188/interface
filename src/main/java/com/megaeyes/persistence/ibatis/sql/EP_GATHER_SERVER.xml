@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="EP_GATHER_SERVER">
+  <resultMap class="com.megaeyes.persistence.ibatis.model.EpGatherServer" id="_EpGatherServerResult">
+    <result column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="ORGAN_ID" jdbcType="VARCHAR" property="organId" />
+    <result column="IP" jdbcType="VARCHAR" property="ip" />
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+    <result column="NOTE" jdbcType="VARCHAR" property="note" />
+    <result column="HEART_CYCLE" jdbcType="DECIMAL" property="heartCycle" />
+    <result column="EVENT_SERVER_ID" jdbcType="VARCHAR" property="eventServerId" />
+    <result column="EVENT_PORT" jdbcType="VARCHAR" property="eventPort" />
+    <result column="CLIENT_PORT" jdbcType="VARCHAR" property="clientPort" />
+    <result column="CONSOLE_LISTENER_IP" jdbcType="VARCHAR" property="consoleListenerIp" />
+    <result column="CONSOLE_LISTENER_PORT" jdbcType="VARCHAR" property="consoleListenerPort" />
+    <result column="CONSOLE_PASSWORD" jdbcType="VARCHAR" property="consolePassword" />
+    <result column="CLIENT_IP" jdbcType="VARCHAR" property="clientIp" />
+    <result column="EVENT_IP" jdbcType="VARCHAR" property="eventIp" />
+    <result column="DEVICE_NUMBER" jdbcType="VARCHAR" property="deviceNumber" />
+  </resultMap>
+  <sql id="_Example_Where_Clause">
+    <iterate conjunction="or" prepend="where" property="oredCriteria" removeFirstPrepend="iterate">
+      <isEqual compareValue="true" property="oredCriteria[].valid">
+        (
+        <iterate conjunction="and" prepend="and" property="oredCriteria[].criteriaWithoutValue">
+          $oredCriteria[].criteriaWithoutValue[]$
+        </iterate>
+        <iterate conjunction="and" prepend="and" property="oredCriteria[].criteriaWithSingleValue">
+          $oredCriteria[].criteriaWithSingleValue[].condition$
+            #oredCriteria[].criteriaWithSingleValue[].value#
+        </iterate>
+        <iterate conjunction="and" prepend="and" property="oredCriteria[].criteriaWithListValue">
+          $oredCriteria[].criteriaWithListValue[].condition$
+          <iterate close=")" conjunction="," open="(" property="oredCriteria[].criteriaWithListValue[].values">
+            #oredCriteria[].criteriaWithListValue[].values[]#
+          </iterate>
+        </iterate>
+        <iterate conjunction="and" prepend="and" property="oredCriteria[].criteriaWithBetweenValue">
+          $oredCriteria[].criteriaWithBetweenValue[].condition$
+          #oredCriteria[].criteriaWithBetweenValue[].values[0]# and
+          #oredCriteria[].criteriaWithBetweenValue[].values[1]#
+        </iterate>
+        )
+      </isEqual>
+    </iterate>
+  </sql>
+  <select id="_selectByPrimaryKey" parameterClass="com.megaeyes.persistence.ibatis.model.EpGatherServer" resultMap="_EpGatherServerResult">
+    select ID, ORGAN_ID, IP, NAME, NOTE, HEART_CYCLE, EVENT_SERVER_ID, EVENT_PORT, CLIENT_PORT,
+      CONSOLE_LISTENER_IP, CONSOLE_LISTENER_PORT, CONSOLE_PASSWORD, CLIENT_IP, EVENT_IP,
+      DEVICE_NUMBER
+    from EP_GATHER_SERVER
+    where ID = #id:VARCHAR#
+  </select>
+  <select id="_selectByExample" parameterClass="com.megaeyes.persistence.ibatis.model.EpGatherServerExample" resultMap="_EpGatherServerResult">
+    select ID, ORGAN_ID, IP, NAME, NOTE, HEART_CYCLE, EVENT_SERVER_ID, EVENT_PORT, CLIENT_PORT,
+      CONSOLE_LISTENER_IP, CONSOLE_LISTENER_PORT, CONSOLE_PASSWORD, CLIENT_IP, EVENT_IP,
+      DEVICE_NUMBER
+    from EP_GATHER_SERVER
+    <isParameterPresent>
+      <include refid="EP_GATHER_SERVER._Example_Where_Clause" />
+      <isNotNull property="orderByClause">
+        order by $orderByClause$
+      </isNotNull>
+    </isParameterPresent>
+  </select>
+  <delete id="_deleteByPrimaryKey" parameterClass="com.megaeyes.persistence.ibatis.model.EpGatherServer">
+    delete from EP_GATHER_SERVER
+    where ID = #id:VARCHAR#
+  </delete>
+  <delete id="_deleteByExample" parameterClass="com.megaeyes.persistence.ibatis.model.EpGatherServerExample">
+    delete from EP_GATHER_SERVER
+    <include refid="EP_GATHER_SERVER._Example_Where_Clause" />
+  </delete>
+  <insert id="_insert" parameterClass="com.megaeyes.persistence.ibatis.model.EpGatherServer">
+    insert into EP_GATHER_SERVER (ID, ORGAN_ID, IP, NAME, NOTE, HEART_CYCLE, EVENT_SERVER_ID,
+      EVENT_PORT, CLIENT_PORT, CONSOLE_LISTENER_IP, CONSOLE_LISTENER_PORT, CONSOLE_PASSWORD,
+      CLIENT_IP, EVENT_IP, DEVICE_NUMBER)
+    values (#id:VARCHAR#, #organId:VARCHAR#, #ip:VARCHAR#, #name:VARCHAR#, #note:VARCHAR#,
+      #heartCycle:DECIMAL#, #eventServerId:VARCHAR#, #eventPort:VARCHAR#, #clientPort:VARCHAR#,
+      #consoleListenerIp:VARCHAR#, #consoleListenerPort:VARCHAR#, #consolePassword:VARCHAR#,
+      #clientIp:VARCHAR#, #eventIp:VARCHAR#, #deviceNumber:VARCHAR#)
+  </insert>
+  <update id="_updateByPrimaryKey" parameterClass="com.megaeyes.persistence.ibatis.model.EpGatherServer">
+    update EP_GATHER_SERVER
+    set ORGAN_ID = #organId:VARCHAR#,
+      IP = #ip:VARCHAR#,
+      NAME = #name:VARCHAR#,
+      NOTE = #note:VARCHAR#,
+      HEART_CYCLE = #heartCycle:DECIMAL#,
+      EVENT_SERVER_ID = #eventServerId:VARCHAR#,
+      EVENT_PORT = #eventPort:VARCHAR#,
+      CLIENT_PORT = #clientPort:VARCHAR#,
+      CONSOLE_LISTENER_IP = #consoleListenerIp:VARCHAR#,
+      CONSOLE_LISTENER_PORT = #consoleListenerPort:VARCHAR#,
+      CONSOLE_PASSWORD = #consolePassword:VARCHAR#,
+      CLIENT_IP = #clientIp:VARCHAR#,
+      EVENT_IP = #eventIp:VARCHAR#,
+      DEVICE_NUMBER = #deviceNumber:VARCHAR#
+    where ID = #id:VARCHAR#
+  </update>
+  <update id="_updateByPrimaryKeySelective" parameterClass="com.megaeyes.persistence.ibatis.model.EpGatherServer">
+    update EP_GATHER_SERVER
+    <dynamic prepend="set">
+      <isNotNull prepend="," property="organId">
+        ORGAN_ID = #organId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="ip">
+        IP = #ip:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="name">
+        NAME = #name:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="note">
+        NOTE = #note:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="heartCycle">
+        HEART_CYCLE = #heartCycle:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="eventServerId">
+        EVENT_SERVER_ID = #eventServerId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="eventPort">
+        EVENT_PORT = #eventPort:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="clientPort">
+        CLIENT_PORT = #clientPort:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="consoleListenerIp">
+        CONSOLE_LISTENER_IP = #consoleListenerIp:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="consoleListenerPort">
+        CONSOLE_LISTENER_PORT = #consoleListenerPort:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="consolePassword">
+        CONSOLE_PASSWORD = #consolePassword:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="clientIp">
+        CLIENT_IP = #clientIp:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="eventIp">
+        EVENT_IP = #eventIp:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="deviceNumber">
+        DEVICE_NUMBER = #deviceNumber:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    where ID = #id:VARCHAR#
+  </update>
+  <select id="_countByExample" parameterClass="com.megaeyes.persistence.ibatis.model.EpGatherServerExample" resultClass="java.lang.Integer">
+    select count(*) from EP_GATHER_SERVER
+    <include refid="EP_GATHER_SERVER._Example_Where_Clause" />
+  </select>
+  <update id="_updateByExampleSelective">
+    update EP_GATHER_SERVER
+    <dynamic prepend="set">
+      <isNotNull prepend="," property="record.id">
+        ID = #record.id:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.organId">
+        ORGAN_ID = #record.organId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.ip">
+        IP = #record.ip:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.name">
+        NAME = #record.name:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.note">
+        NOTE = #record.note:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.heartCycle">
+        HEART_CYCLE = #record.heartCycle:DECIMAL#
+      </isNotNull>
+      <isNotNull prepend="," property="record.eventServerId">
+        EVENT_SERVER_ID = #record.eventServerId:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.eventPort">
+        EVENT_PORT = #record.eventPort:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.clientPort">
+        CLIENT_PORT = #record.clientPort:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.consoleListenerIp">
+        CONSOLE_LISTENER_IP = #record.consoleListenerIp:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.consoleListenerPort">
+        CONSOLE_LISTENER_PORT = #record.consoleListenerPort:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.consolePassword">
+        CONSOLE_PASSWORD = #record.consolePassword:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.clientIp">
+        CLIENT_IP = #record.clientIp:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.eventIp">
+        EVENT_IP = #record.eventIp:VARCHAR#
+      </isNotNull>
+      <isNotNull prepend="," property="record.deviceNumber">
+        DEVICE_NUMBER = #record.deviceNumber:VARCHAR#
+      </isNotNull>
+    </dynamic>
+    <isParameterPresent>
+      <include refid="EP_GATHER_SERVER._Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+  <update id="_updateByExample">
+    update EP_GATHER_SERVER
+    set ID = #record.id:VARCHAR#,
+      ORGAN_ID = #record.organId:VARCHAR#,
+      IP = #record.ip:VARCHAR#,
+      NAME = #record.name:VARCHAR#,
+      NOTE = #record.note:VARCHAR#,
+      HEART_CYCLE = #record.heartCycle:DECIMAL#,
+      EVENT_SERVER_ID = #record.eventServerId:VARCHAR#,
+      EVENT_PORT = #record.eventPort:VARCHAR#,
+      CLIENT_PORT = #record.clientPort:VARCHAR#,
+      CONSOLE_LISTENER_IP = #record.consoleListenerIp:VARCHAR#,
+      CONSOLE_LISTENER_PORT = #record.consoleListenerPort:VARCHAR#,
+      CONSOLE_PASSWORD = #record.consolePassword:VARCHAR#,
+      CLIENT_IP = #record.clientIp:VARCHAR#,
+      EVENT_IP = #record.eventIp:VARCHAR#,
+      DEVICE_NUMBER = #record.deviceNumber:VARCHAR#
+    <isParameterPresent>
+      <include refid="EP_GATHER_SERVER._Example_Where_Clause" />
+    </isParameterPresent>
+  </update>
+</sqlMap>
